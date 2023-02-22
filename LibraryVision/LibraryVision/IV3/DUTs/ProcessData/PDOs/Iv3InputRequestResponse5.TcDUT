@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="Iv3InputRequestResponse5" Id="{25255ade-9ed7-0fb2-0b62-8caee1ab7ca9}">
+    <Declaration><![CDATA[//Index0x7000   Subindex 16#5
+TYPE
+    Iv3InputRequestResponse5 :
+    STRUCT
+        Bit0                     : BIT;
+        SwitchProgrammNumberBit3 : BIT;
+        Bit2                     : BIT;
+        Bit3                     : BIT;
+        Bit4                     : BIT;
+        Bit5                     : BIT;
+        Bit6                     : BIT;
+        Bit7                     : BIT;
+        Bit8                     : BIT;
+        Bit9                     : BIT;
+        Bit10                    : BIT;
+        Bit11                    : BIT;
+        Bit12                    : BIT;
+        Bit13                    : BIT;
+        Bit14                    : BIT;
+        Bit15                    : BIT;
+
+    END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

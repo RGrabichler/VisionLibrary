@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MainStation" Id="{39734a4c-3ca6-4cf0-a64d-d2b9690f49f5}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK MainStation EXTENDS TcoCore.TcoObject
+VAR
+    counter : INT;
+
+    _IvController       : LibraryVision.IVController(THIS^);
+    _trigger            : BOOL;
+    _coordinate         : BOOL;
+    _coordinates        : ARRAY[0..2] OF LibraryVision.Coordinates;
+    _distanceFromObject : LREAL;
+END_VAR
+
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[counter := counter + 1;
+
+IF (THIS^.counter MOD 13 = 0) THEN
+    THIS^.Messenger.Info('opalalla').Pin();
+END_IF
+
+IF (THIS^.counter MOD 400 = 0) THEN
+    THIS^.Messenger.Error('ich Poste').Pin();
+END_IF
+
+_IvController();
+
+IF _trigger THEN
+    IF _IvController.TriggerSensorMethod().Done THEN
+        _trigger := FALSE;
+    end_if
+END_IF
+
+IF _coordinate THEN
+    IF _IvController.ReadTool1CoordinatesMethod().Done
+           and _IvController.ReadTool2CoordinatesMethod().Done
+           and _IvController.ReadTool3CoordinatesMethod().Done THEN
+        _coordinate     := FALSE;
+        _coordinates[0] := _IvController.RawCoordinatesTool1;
+        _coordinates[1] := _IvController.RawCoordinatesTool2;
+        _coordinates[2] := _IvController.RawCoordinatesTool3;
+
+        _distanceFromObject := _IvController._readTool2CoordinatesTask.DistanceFromObject;
+    END_IF
+END_IF
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//==============================================================================================
+///////////////////////////////////////////////////////////////////////////////////////////////
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

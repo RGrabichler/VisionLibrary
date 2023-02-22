@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="GeneralDeviceInformation" Id="{825f55b9-8e37-0748-3a6f-50048b9f708c}">
+    <Declaration><![CDATA[TYPE
+    GeneralDeviceInformation :
+    STRUCT
+        DeviceType      : UDINT;
+        DeviceName      : STRING;
+        HardwareVersion : STRING;
+        SoftwareVersion : STRING;
+    END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

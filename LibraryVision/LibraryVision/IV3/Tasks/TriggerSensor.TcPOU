@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="TriggerSensor" Id="{5ae7e97a-745d-0450-3624-14347edad9e0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TriggerSensor EXTENDS TcoCore.TcoTask
+VAR_IN_OUT
+    Iv3InputRequest1  : Iv3InputRequestResponse1;
+    Iv3InputResponse1 : Iv3InputRequestResponse1;
+    StatusOfSystem    : StatusOfSystem;
+END_VAR
+VAR_INPUT
+    ActionDesc : STRING(25);
+END_VAR
+VAR
+    _state   : USINT;
+    _errorId : UINT;
+
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF (THIS^.Execute()) THEN
+    //ERror Case
+               THIS^.ThrowWhen(StatusOfSystem.Error);
+
+    CASE _state OF
+        10:
+            Iv3InputRequest1.Trigger := TRUE;
+            _state                   := 20;
+        20:
+            THIS^.DoneWhen(Iv3InputResponse1.Trigger);
+    END_CASE
+END_IF]]></ST>
+    </Implementation>
+    <Folder Name="Status" Id="{e5258f6a-6fda-08af-1e11-15196222e01d}" />
+    <Folder Name="TcOpen" Id="{15ac5c90-0ff4-00df-2fe5-f2f2e632ed69}" />
+    <Property Name="ErrorId" Id="{074c839d-1aff-069c-13c3-8583227e275d}" FolderPath="Status\">
+      <Declaration><![CDATA[{attribute 'monitoring' := 'call'}
+PROPERTY ErrorId : UINT]]></Declaration>
+      <Get Name="Get" Id="{5cea298d-f7ee-0e2c-10d5-c8a2e9f7d15e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ErrorId := _errorId;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="FB_init" Id="{f881f68d-d59c-0de7-106e-f5e7542e2bda}">
+      <Declaration><![CDATA[METHOD PUBLIC FB_init : BOOL
+VAR_INPUT
+    bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+    bInCopyCode  : BOOL; // if TRUE, the instance afterwards gets moved into the copy code (online change)
+    ParentObject : ITcoObject;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// This is not clear to me... I from time to time the consumer code does not see 'FB_init' of 'TcoObject', that's why overridden here with super call...
+{warning disable C0316}
+SUPER^.FB_init(bInitRetains, bInCopyCode, ParentObject);
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnDone" Id="{e24e86ea-6a6b-0c3c-032f-3aefae451002}" FolderPath="TcOpen\">
+      <Declaration><![CDATA[(*~
+    <docu>
+        <summary>
+            Executes when task reaches the ```Done``` state .
+        </summary>
+    </docu>
+~*)
+METHOD PROTECTED OnDone
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[{warning disable C0371}
+Iv3InputRequest1.Trigger := false;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnError" Id="{4081d238-c888-08c6-25e7-8b62c813d56f}" FolderPath="TcOpen\">
+      <Declaration><![CDATA[(*~
+    <docu>
+        <summary>
+            Executes when task reaches the ```Error``` state.
+            <para>
+                Do not confuse with <see cref="PlcDocu.TcoCore.TcoTask.WhileError()"/>, that is called cyclically until '''Error''' state is left.
+            </para>
+        </summary>
+    </docu>
+~*)
+METHOD PROTECTED OnError
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[{warning disable C0371}
+_errorId := StatusOfSystem.ErrorId;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnStart" Id="{4ac58202-e85e-089c-0df4-20f782230e33}" FolderPath="TcOpen\">
+      <Declaration><![CDATA[(*~
+	<docu>
+		<summary>
+			Executes ones when the task starts (at the moment of transition from the ```Requested``` state into the ```Busy``` state).
+		</summary>			
+	</docu>	
+~*)
+METHOD PROTECTED OnStart
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[{warning disable C0371}
+_state := 10;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Restore" Id="{5b99f8ba-2e98-068e-1ebd-b1c5a16b7f07}" FolderPath="TcOpen\">
+      <Declaration><![CDATA[(*~
+    <docu>
+        <summary>
+            Restores this instance to the Ready state. Can be called explicitly or from within one of the restore mechanisms.
+            <para>
+                See also <see cref="PlcDocu.TcoCore.TcoTask.AutoRestorable()"/>
+            </para>
+        </summary>
+    </docu>
+~*)
+METHOD Restore : ITcoRestorable
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[{warning disable C0371}
+Iv3InputRequest1.Trigger    := FALSE;
+Iv3InputRequest1.ResetError := TRUE;
+
+IF Iv3InputResponse1.ResetError THEN
+    Iv3InputRequest1.ResetError := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

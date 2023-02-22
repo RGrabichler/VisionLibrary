@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="FieldOfView" Id="{689afe8b-5568-0dc5-2d51-f7e1529bcecf}">
+    <Declaration><![CDATA[TYPE
+    FieldOfView :
+    STRUCT
+        xValue : LREAL;
+        yValue : lreal;
+    END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

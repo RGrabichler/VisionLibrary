@@ -1,0 +1,580 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="IVController" Id="{dc97945e-e484-0055-193f-f0ad3a13ca29}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK IVController EXTENDS TcoCore.TcoComponent
+VAR
+    _triggerSensorTask : TriggerSensor(THIS^);
+    _readTool1CoordinatesTask : ReadCoordinates(THIS^, CoeIndex := Tool1CoeIndex);
+    _readTool2CoordinatesTask : ReadCoordinates(THIS^, CoeIndex := Tool2CoeIndex);
+    _readTool3CoordinatesTask : ReadCoordinates(THIS^, CoeIndex := Tool3CoeIndex);
+END_VAR
+
+VAR
+    _fb_coe_write : FB_EcCoESdoWrite; // Function Block for writing in CoE
+    _fb_coe_read : FB_EcCoESdoRead; // Function Block for reading from CoE
+    userNetId : T_AmsNetId; // Have to be entered
+    _startWrite : BOOL := FALSE; // Sign for start writing
+    _startRead : BOOL := FALSE; // Sign for start reading
+    _nState : BYTE := 0; // RW-status
+    _int16Buffer : INT; // Buffer for reading
+    _uint16Buffer : UINT := 22; // Buffer for writing
+    _bTxPDOState AT %I* : BOOL; // (PDO for synchronization)
+    AdsErrId : UDINT;
+    CANopenErrId : UDINT;
+
+    _index : UINT := 16#1008;
+    _subIndex : BYTE := 0;
+    _result : STRING;
+    _stringBuffer : STRING;
+    _numberBuffer : UDINT;
+    _exe : BOOL;
+    _generalDeviceInfo : GeneralDeviceInformation;
+    _IdentityCoe : IdentityCoe;
+    _coordinates : Coordinates;
+    _readCoordinates : BOOL;
+END_VAR
+VAR CONSTANT
+    Tool1CoeIndex : UINT := 16#8015;
+    Tool2CoeIndex : UINT := 16#8025;
+    Tool3CoeIndex : UINT := 16#8035;
+
+END_VAR
+VAR
+
+    //    //Ethercat Status
+    //~
+    StatusOfSystem AT %I* : StatusOfSystem;
+    //PDO Vision Sensor   
+    InputResponse1 AT %I* : Iv3InputRequestResponse1;
+    InputResponse2 AT %I* : Iv3InputRequestResponse2;
+    InputResponse3 AT %I* : Iv3InputRequestResponse3;
+    InputResponse4 AT %I* : Iv3InputRequestResponse4;
+    InputResponse5 AT %I* : Iv3InputRequestResponse5;
+    ID01 AT %I* : DWORD;
+    ID02_MatchingRateOfPositionAdujustmentTool_01 AT %I* : DWORD; //value 0..1
+    ID02_MatchingRateOfPositionAdujustmentTool_02 at %I* : DWORD; //value 0..1
+    ID02_MatchingRateOfPositionAdujustmentTool_03 at %I* : DWORD; //value 0..1
+    ID02_MatchingRateOfPositionAdujustmentTool_04 at %I* : DWORD; //value 0..1
+    ID02_MatchingRateOfPositionAdujustmentTool_05 at %I* : DWORD; //value 0..1
+    ID02_MatchingRateOfPositionAdujustmentTool_06 at %I* : DWORD; //value 0..1
+    ID02_MatchingRateOfPositionAdujustmentTool_07 at %I* : DWORD; //value 0..1
+    ID01Status AT %I* : WORD;
+    ID02Status AT %I* : WORD;
+    ID03Status AT %I* : WORD;
+    ID04Status AT %I* : WORD;
+    ID05Status AT %I* : WORD;
+    ID06Status AT %I* : WORD;
+    ID07Status AT %I* : WORD;
+    ID08Status AT %I* : WORD;
+    InputRequest1 AT %Q* : Iv3InputRequestResponse1;
+    InputRequest2 AT %Q* : Iv3InputRequestResponse2;
+    InputRequest3 AT %Q* : Iv3InputRequestResponse3;
+    InputRequest4 AT %Q* : Iv3InputRequestResponse4;
+    InputRequest5 AT %Q* : Iv3InputRequestResponse5;
+    //    //General Ethercat Data
+    WcState AT %I* : WcState;
+    InfoData AT %I* : InfoData;
+    //~
+
+    _trigger : BOOL;
+    _readString : BOOL;
+    _readDeviceInfo : BOOL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[////////////////////////////////////////////
+_triggerSensorTask
+(
+    Iv3InputRequest1    := InputRequest1
+    , Iv3InputResponse1 := InputResponse1
+    , StatusOfSystem    := StatusOfSystem
+    , ActionDesc        := '<#TriggerSensor#>'
+);
+
+_readTool1CoordinatesTask
+(
+    InfoData         := InfoData
+    , StatusOfSystem := StatusOfSystem
+    , ResultValue    := ID02_MatchingRateOfPositionAdujustmentTool_01
+    , ActionDesc     := '<#ReadCoordinates Tool1#>'
+);
+
+_readTool2CoordinatesTask
+(
+    InfoData         := InfoData
+    , StatusOfSystem := StatusOfSystem
+    , ResultValue    := ID02_MatchingRateOfPositionAdujustmentTool_02
+
+    , ActionDesc := '<#ReadCoordinates Tool2#>'
+);
+
+_readTool3CoordinatesTask
+(
+    InfoData         := InfoData
+    , StatusOfSystem := StatusOfSystem
+    , ResultValue    := ID02_MatchingRateOfPositionAdujustmentTool_03
+    , ActionDesc     := '<#ReadCoordinates Tool3#>'
+);
+
+/////////////////////////////////////////////
+
+IF _trigger THEN
+    InputRequest1.Trigger := TRUE;
+
+    IF InputResponse1.Trigger THEN
+        _trigger              := FALSE;
+        InputRequest1.Trigger := FALSE;
+    end_if
+END_IF
+
+userNetId := Tc2_System.F_CreateAmsNetId(infodata.AdsAddr.netId);
+
+IF _readString THEN
+    _stringBuffer := CoeReadString(_index := _index, _subIndex := _subIndex);
+END_IF
+
+IF _readDeviceInfo THEN
+
+    IF GeneralDeviceInfo() THEN
+        _readDeviceInfo := false;
+    END_IF
+END_IF
+
+CoeReadIdentity();
+
+IF _readCoordinates THEN
+    IF CoeReadCoordinates() THEN
+        _readCoordinates := FALSE;
+    END_IF
+
+END_IF
+]]></ST>
+    </Implementation>
+    <Folder Name="old" Id="{b26ebfb8-7b13-0ab2-293c-ccdc657e455d}">
+      <Folder Name="CoeActions" Id="{38ad5833-e228-06d5-08c2-692a96a63a0e}" />
+    </Folder>
+    <Folder Name="Operations" Id="{73edbd5f-9d8c-0675-1377-2777718712ca}" />
+    <Folder Name="Output" Id="{49e001ad-6d3b-0279-17e3-1e208771d9e3}" />
+    <Folder Name="Status" Id="{88295d5c-9c9f-0625-38a0-8dbfe52d7dab}" />
+    <Folder Name="Tasks" Id="{d55a3cef-ea3c-0d2c-34c4-7b3b367731a4}" />
+    <Method Name="CoeReadCoordinates" Id="{d69b9830-585e-0540-3a8c-20a136c13133}" FolderPath="old\">
+      <Declaration><![CDATA[METHOD CoeReadCoordinates : BOOL
+VAR_INST
+    step : UINT := 1;
+
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE step OF
+    1:
+        CoeReadCoordinates := FALSE;
+        step               := 10;
+    10:
+        _coordinates.xValue := CoeReadUDINT
+        (
+            _index      := 16#8015
+            , _subIndex := 16#11
+        );
+
+        IF NOT _fb_coe_read.bBusy THEN
+            step := 20;
+        END_IF
+    20:
+        _coordinates.yValue := CoeReadUDINT
+        (
+            _index      := 16#8015
+            , _subIndex := 16#12
+        );
+
+        IF NOT _fb_coe_read.bBusy THEN
+            step := 40;
+        END_IF
+    40:
+        _coordinates.variableValue := CoeReadUDINT
+        (
+            _index      := 16#8015
+            , _subIndex := 16#13
+        );
+
+        IF NOT _fb_coe_read.bBusy THEN
+            step               := 1;
+            CoeReadCoordinates := TRUE;
+        END_IF
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CoeReadIdentity" Id="{e57c205c-7cb3-05a6-3726-236b1a9f2fa2}" FolderPath="old\CoeActions\">
+      <Declaration><![CDATA[METHOD CoeReadIdentity : UDINT
+VAR_INST
+    _fb_coe_read_ext   : Tc2_EtherCAT.FB_EcCoESdoReadEx;
+    _timeout           : TIME := DEFAULT_ADS_TIMEOUT;
+    _identityCoeToSwap : IdentityCoe;
+
+    i     : UINT;
+    _test : STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+// Read entry
+_fb_coe_read_ext
+(
+    sNetId            := userNetId
+    , nSlaveAddr      := InfoData.AdsAddr.port
+    , nSubIndex       := 0
+    , nIndex          := 16#1018
+    , pDstBuf         := ADR(_identityCoeToSwap)
+    , cbBufLen        := 32
+    , bExecute        := true
+    , tTimeout        := _timeout
+    , bCompleteAccess := TRUE
+);
+
+IF _fb_coe_read.bError THEN
+    _nState := 100; // Error case
+ELSE
+
+    IF NOT _fb_coe_read.bBusy THEN
+        _IdentityCoe.ProductKey   := SHR(_identityCoeToSwap.ProductKey, 16);
+        _IdentityCoe.VendorId     := SHR(_identityCoeToSwap.VendorId, 16);
+        _IdentityCoe.Revision     := SHR(_identityCoeToSwap.Revision, 16);
+        _IdentityCoe.SerialNumber := SHR(_identityCoeToSwap.SerialNumber, 16);
+        _fb_coe_read(bExecute := FALSE);
+        _readString := false;
+    END_IF
+
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CoeReadString" Id="{42f2292e-1927-0b19-3ef9-98e41834e163}" FolderPath="old\CoeActions\">
+      <Declaration><![CDATA[METHOD CoeReadString : STRING
+//VAR_INST
+//    _stringBuffer : STRING;
+//END_VAR
+VAR_INPUT
+    _index    : UINT;
+    _subIndex : BYTE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+// Read entry
+_fb_coe_read
+(
+    sNetId       := userNetId
+    , nSlaveAddr := InfoData.AdsAddr.port
+    //    , nSlaveAddr := 1001
+    , nSubIndex := _subIndex
+    , nIndex    := _index
+    , pDstBuf   := ADR(_stringBuffer)
+    , cbBufLen  := 12
+    , bExecute  := true
+    , tTimeout  := T#1S
+);
+
+IF _fb_coe_read.bError THEN
+    AdsErrId := _fb_coe_read.nErrId;
+ELSE
+    IF NOT _fb_coe_read.bBusy THEN
+        _fb_coe_read(bExecute := FALSE);
+        _readString := false;
+    END_IF
+END_IF
+
+CoeReadString := _stringBuffer;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CoeReadUDINT" Id="{92682cd2-ba9e-0cfb-2606-7b5c3a5df8e8}" FolderPath="old\CoeActions\">
+      <Declaration><![CDATA[METHOD CoeReadUDINT : UDINT
+//VAR_INST
+//    _stringBuffer : STRING;
+//END_VAR
+VAR_INPUT
+    _index    : UINT;
+    _subIndex : BYTE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+// Read entry
+_fb_coe_read
+(
+    sNetId       := userNetId
+    , nSlaveAddr := InfoData.AdsAddr.port
+    //    , nSlaveAddr := 1001
+    , nSubIndex := _subIndex
+    , nIndex    := _index
+    , pDstBuf   := ADR(_numberBuffer)
+    , cbBufLen  := 32
+    , bExecute  := true
+    , tTimeout  := T#1S
+);
+
+IF _fb_coe_read.bError THEN
+    _nState := 100; // Error case
+ELSE
+    IF NOT _fb_coe_read.bBusy THEN
+        _fb_coe_read(bExecute := FALSE);
+        _readString := false;
+    END_IF
+END_IF
+
+CoeReadUDINT := _numberBuffer;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="ErrorId" Id="{170082a8-5568-0cb7-25a9-5def9d9978a7}" FolderPath="Status\">
+      <Declaration><![CDATA[{attribute 'monitoring' := 'call'}
+PROPERTY ErrorId : UINT]]></Declaration>
+      <Get Name="Get" Id="{890deffe-5712-015b-2b21-50b154030c91}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ErrorId := THIS^.statusOfSystem.ErrorId or _readTool1CoordinatesTask.ErrorId or _triggerSensorTask.ErrorId;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="GeneralDeviceInfo" Id="{537a1c31-cc9e-0538-0ff6-87339f8ab6f8}" FolderPath="old\">
+      <Declaration><![CDATA[METHOD PRIVATE GeneralDeviceInfo : BOOL;
+VAR_INST
+    step : UINT := 1;
+
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE step OF
+    1:
+        GeneralDeviceInfo := FALSE;
+        step              := 10;
+    10:
+        _generalDeviceInfo.DeviceName := CoeReadString
+        (
+            _index      := 16#1008
+            , _subIndex := 0
+        );
+
+        IF NOT _fb_coe_read.bBusy THEN
+            step := 20;
+        END_IF
+    20:
+        step := 25;
+    25:
+        _generalDeviceInfo.HardwareVersion := CoeReadString
+        (
+            _index      := 16#1009
+            , _subIndex := 0
+        );
+
+        IF NOT _fb_coe_read.bBusy THEN
+            step := 30;
+        END_IF
+    30:
+        step := 35;
+    35:
+        _generalDeviceInfo.DeviceType := CoeReadUDINT
+        (
+            _index      := 16#1000
+            , _subIndex := 0
+        );
+
+        IF NOT _fb_coe_read.bBusy THEN
+            step := 40;
+        END_IF
+    40:
+        GeneralDeviceInfo := FALSE;
+        step              := 45;
+    45:
+        _generalDeviceInfo.SoftwareVersion := CoeReadString
+        (
+            _index      := 16#100A
+            , _subIndex := 0
+        );
+
+        IF NOT _fb_coe_read.bBusy THEN
+            step              := 1;
+            GeneralDeviceInfo := TRUE;
+        END_IF
+
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="IsError" Id="{fb44b890-472b-0194-0ca4-20bd3157b0fe}" FolderPath="Status\">
+      <Declaration><![CDATA[{attribute 'monitoring' := 'call'}
+PROPERTY IsError : BOOL]]></Declaration>
+      <Get Name="Get" Id="{fc701666-5383-0ba7-10e6-e8194b7fc443}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[//collected Error from Tasks
+IsError := statusOfSystem.Error OR TriggerSensorTask.Error or ReadTool1CoordinatesTask.Error;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="RawCoordinatesTool1" Id="{0b90991a-a7c4-0005-17c3-92368e989ae1}" FolderPath="Output\">
+      <Declaration><![CDATA[PROPERTY RawCoordinatesTool1 : REFERENCE TO Coordinates]]></Declaration>
+      <Get Name="Get" Id="{800e7a61-3d57-0ef0-38e7-075359b444fa}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[RawCoordinatesTool1 REF= _readTool1CoordinatesTask.RawCoordinates;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="RawCoordinatesTool2" Id="{0e3a7a7b-f1dd-0d7f-3085-301da4e8e276}" FolderPath="Output\">
+      <Declaration><![CDATA[PROPERTY RawCoordinatesTool2 : REFERENCE TO Coordinates]]></Declaration>
+      <Get Name="Get" Id="{c32e2175-91b5-03c7-3c9d-a4668037ef39}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[RawCoordinatesTool2 REF= _readTool2CoordinatesTask.RawCoordinates;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="RawCoordinatesTool3" Id="{4e0c211f-e6ba-010e-1f01-3f24d4ab4dd6}" FolderPath="Output\">
+      <Declaration><![CDATA[PROPERTY RawCoordinatesTool3 : REFERENCE TO Coordinates]]></Declaration>
+      <Get Name="Get" Id="{5f3aa8fa-602f-0c4c-1e79-dcf4d263fdfa}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[RawCoordinatesTool3 REF= _readTool3CoordinatesTask.RawCoordinates;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="ReadTool1CoordinatesMethod" Id="{04f5c6d8-4ebf-00cf-269a-236b28b43364}" FolderPath="Operations\">
+      <Declaration><![CDATA[METHOD ReadTool1CoordinatesMethod : TcoCore.ITcoTaskStatus
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (ReadTool1CoordinatesTask <> 0) THEN
+    ReadTool1CoordinatesMethod := ReadTool1CoordinatesTask.Invoke();
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="ReadTool1CoordinatesTask" Id="{872e3eb2-9d93-051b-005d-6c8a61bd7931}" FolderPath="Tasks\">
+      <Declaration><![CDATA[PROPERTY ReadTool1CoordinatesTask : TcoCore.ITcoTask
+]]></Declaration>
+      <Get Name="Get" Id="{5ae01884-bf1c-0eb9-17fe-e61d84b630ef}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ReadTool1CoordinatesTask := _readTool1CoordinatesTask;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="ReadTool2CoordinatesMethod" Id="{d908ec00-9575-09fd-2074-5207c89048ab}" FolderPath="Operations\">
+      <Declaration><![CDATA[METHOD ReadTool2CoordinatesMethod : TcoCore.ITcoTaskStatus
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (ReadTool2CoordinatesTask <> 0) THEN
+    ReadTool2CoordinatesMethod := ReadTool2CoordinatesTask.Invoke();
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="ReadTool2CoordinatesTask" Id="{89ab5e87-1f52-0e78-014b-bec9c6ae13bf}" FolderPath="Tasks\">
+      <Declaration><![CDATA[PROPERTY ReadTool2CoordinatesTask : TcoCore.ITcoTask
+]]></Declaration>
+      <Get Name="Get" Id="{48f65169-1fdd-0de1-373f-593e94f76835}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ReadTool2CoordinatesTask := _readTool2CoordinatesTask;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="ReadTool3CoordinatesMethod" Id="{df71fc22-6c97-04d5-344f-cf11b5dd39a6}" FolderPath="Operations\">
+      <Declaration><![CDATA[METHOD ReadTool3CoordinatesMethod : TcoCore.ITcoTaskStatus
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (ReadTool3CoordinatesTask <> 0) THEN
+    ReadTool3CoordinatesMethod := ReadTool3CoordinatesTask.Invoke();
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="ReadTool3CoordinatesTask" Id="{469512cc-7160-0114-27fc-d4485aa6830f}" FolderPath="Tasks\">
+      <Declaration><![CDATA[PROPERTY ReadTool3CoordinatesTask : TcoCore.ITcoTask
+]]></Declaration>
+      <Get Name="Get" Id="{ed2f4a29-0e34-05aa-2354-89c64c99afe7}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ReadTool3CoordinatesTask := _readTool3CoordinatesTask;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Restore" Id="{427fb78b-85fe-0e6b-3852-1dca868a5299}">
+      <Declaration><![CDATA[(*~
+    <docu>
+        <summary>
+            Restore all tasks of this instance into initial state.
+        </summary>
+    </docu>
+~*)
+METHOD Restore : ITcoRestorable
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+IF (TriggerSensorTask <> 0) THEN
+    TriggerSensorTask.Restore();
+END_IF;
+
+IF (ReadTool1CoordinatesTask <> 0) THEN
+    ReadTool1CoordinatesTask.Restore();
+END_IF;
+
+//IF (WriteDataTask) <> 0 THEN
+//    WriteDataTask.Restore();
+//END_IF
+
+//IF (LockTask) <> 0 THEN
+//    LockTask.Restore();
+//END_IF
+
+//IF (ResetTask) <> 0 THEN
+//    ResetTask.Restore();
+//END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ServiceMode" Id="{f169ea65-2ad6-0a5f-2eee-aac69de0c435}">
+      <Declaration><![CDATA[METHOD PROTECTED ServiceMode
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TriggerSensorMethod" Id="{791ded48-1e90-0e0d-2411-1b3167d67647}" FolderPath="Operations\">
+      <Declaration><![CDATA[METHOD TriggerSensorMethod : TcoCore.ITcoTaskStatus
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (TriggerSensorTask <> 0) THEN
+    TriggerSensorMethod := TriggerSensorTask.Invoke();
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="TriggerSensorTask" Id="{cf021286-1fde-0b2d-24d9-ce6b04a60a41}" FolderPath="Tasks\">
+      <Declaration><![CDATA[PROPERTY TriggerSensorTask : TcoCore.ITcoTask
+]]></Declaration>
+      <Get Name="Get" Id="{a2d85624-9917-07dc-32d0-37b07774dd10}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[TriggerSensorTask := _triggerSensorTask;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>
