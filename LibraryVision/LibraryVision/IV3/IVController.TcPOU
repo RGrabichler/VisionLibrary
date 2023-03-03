@@ -43,40 +43,30 @@ VAR
 
     //    //Ethercat Status
     //~
-        StatusOfSystem AT %I* : Status_of_System;
-    //    //PDO Vision Sensor   
-    //    InputResponse1 AT %I* : Iv3InputRequestResponse1;
-    //    InputResponse2 AT %I* : Iv3InputRequestResponse2;
-    //    InputResponse3 AT %I* : Iv3InputRequestResponse3;
-    //    InputResponse4 AT %I* : Iv3InputRequestResponse4;
-    //    InputResponse5 AT %I* : Iv3InputRequestResponse5;
-    //    ID01 AT %I* : DWORD;
-    //    ID02_MatchingRateOfPositionAdujustmentTool_01 AT %I* : DWORD; //value 0..1
-    //    ID03_MatchingRateOfPositionAdujustmentTool_02 AT %I* : DWORD; //value 0..1
-    //    ID04_MatchingRateOfPositionAdujustmentTool_03 AT %I* : DWORD; //value 0..1
-    //    ID05_MatchingRateOfPositionAdujustmentTool_04 AT %I* : DWORD; //value 0..1
-    //    ID06_MatchingRateOfPositionAdujustmentTool_05 AT %I* : DWORD; //value 0..1
-    //    ID07_MatchingRateOfPositionAdujustmentTool_06 AT %I* : DWORD; //value 0..1
-    //    ID08_MatchingRateOfPositionAdujustmentTool_07 AT %I* : DWORD; //value 0..1
-    //    ID01Status AT %I* : WORD;
-    //    ID02Status AT %I* : WORD;
-    //    ID03Status AT %I* : WORD;
-    //    ID04Status AT %I* : WORD;
-    //    ID05Status AT %I* : WORD;
-    //    ID06Status AT %I* : WORD;
-    //    ID07Status AT %I* : WORD;
-    //    ID08Status AT %I* : WORD;
-    //    InputRequest1 AT %Q* : Iv3InputRequestResponse1;
-    //    InputRequest2 AT %Q* : Iv3InputRequestResponse2;
-    //    InputRequest3 AT %Q* : Iv3InputRequestResponse3;
-    //    InputRequest4 AT %Q* : Iv3InputRequestResponse4;
-    //    InputRequest5 AT %Q* : Iv3InputRequestResponse5;
-    //    //    //General Ethercat Data
-    //    WcState AT %I* : WcState;
-    //    InfoData AT %I* : InfoData;
+    StatusOfSystem AT %I* : Status_of_System;
+    //PDO Vision Sensor   
+    InputResponse AT %I* : Input_Response;
+    ID01_CurrentValue AT %I* : ID01_Current_Value;
+    ID02_MatchingRateOfPositionAdujustmentTool_01 AT %I* : ID02_Current_Value; //value 0..1
+    ID03_MatchingRateOfPositionAdujustmentTool_02 AT %I* : ID03_Current_Value; //value 0..1
+    ID04_MatchingRateOfPositionAdujustmentTool_03 AT %I* : ID04_Current_Value; //value 0..1
+    ID05_MatchingRateOfPositionAdujustmentTool_04 AT %I* : ID05_Current_Value; //value 0..1
+    ID06_MatchingRateOfPositionAdujustmentTool_05 AT %I* : ID06_Current_Value; //value 0..1
+    ID07_MatchingRateOfPositionAdujustmentTool_06 AT %I* : ID07_Current_Value; //value 0..1
+    ID08_MatchingRateOfPositionAdujustmentTool_07 AT %I* : ID08_Current_Value; //value 0..1
+    ID01Status AT %I* : ID01_Status;
+    ID02Status AT %I* : ID02_Status;
+    ID03Status AT %I* : ID03_Status;
+    ID04Status AT %I* : ID04_Status;
+    ID05Status AT %I* : ID05_Status;
+    ID06Status AT %I* : ID06_Status;
+    ID07Status AT %I* : ID07_Status;
+    ID08Status AT %I* : ID08_Status;
+    InputRequest AT %Q* : Input_Request;
+    //    //General Ethercat Data
+    WcState AT %I* : WcState_0B2B16F9;
+    InfoData AT %I* :InfoData;
     //~
-
-    Device_2_EtherCAT : Device_2_EtherCAT_3A403830;
 
     _trigger : BOOL;
     _readString : BOOL;
@@ -84,38 +74,50 @@ VAR
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[////////////////////////////////////////////
-_triggerSensorTask(Iv3InputRequest1 := Device_2_EtherCAT.Box_1_DL_EC1A.Input_Request.Request_1,
-    Iv3InputResponse1 := Device_2_EtherCAT.Box_1_DL_EC1A.Input_Response.Response_1,
-    StatusOfSystem := Device_2_EtherCAT.Box_1_DL_EC1A.Status_of_System,
-    ActionDesc := '<#TriggerSensor#>');
+_triggerSensorTask
+(
+    Iv3InputRequest1    := THIS^.InputRequest.Request_1
+    , Iv3InputResponse1 := THIS^.InputResponse.Response_1
+    , StatusOfSystem    := THIS^.StatusOfSystem
+    , ActionDesc        := '<#TriggerSensor#>'
+);
 
-_readTool1CoordinatesTask(InfoData := Device_2_EtherCAT.Box_1_DL_EC1A.InfoData,
-    StatusOfSystem := Device_2_EtherCAT.Box_1_DL_EC1A.Status_of_System,
-    ResultValue := Device_2_EtherCAT.Box_1_DL_EC1A.ID02_Current_Value.Tool_00_Score,
-    ActionDesc := '<#ReadCoordinates Tool1#>');
+_readTool1CoordinatesTask
+(
+    InfoData         := THIS^.InfoData
+    , StatusOfSystem := THIS^.StatusOfSystem
+    , ResultValue    := THIS^.ID02_MatchingRateOfPositionAdujustmentTool_01.Tool_00_Score
+    , ActionDesc     := '<#ReadCoordinates Tool1#>'
+);
 
-_readTool2CoordinatesTask(InfoData := Device_2_EtherCAT.Box_1_DL_EC1A.InfoData,
-    StatusOfSystem := Device_2_EtherCAT.Box_1_DL_EC1A.Status_of_System,
-    ResultValue := Device_2_EtherCAT.Box_1_DL_EC1A.ID03_Current_Value.Tool_01_Score,
-    ActionDesc := '<#ReadCoordinates Tool2#>');
+_readTool2CoordinatesTask
+(
+    InfoData         := THIS^.InfoData
+    , StatusOfSystem := THIS^.StatusOfSystem
+    , ResultValue    := THIS^.ID03_MatchingRateOfPositionAdujustmentTool_02.Tool_01_Score
+    , ActionDesc     := '<#ReadCoordinates Tool2#>'
+);
 
-_readTool3CoordinatesTask(InfoData := Device_2_EtherCAT.Box_1_DL_EC1A.InfoData,
-    StatusOfSystem := Device_2_EtherCAT.Box_1_DL_EC1A.Status_of_System,
-    ResultValue := Device_2_EtherCAT.Box_1_DL_EC1A.ID04_Current_Value.Tool_02_Score,
-    ActionDesc := '<#ReadCoordinates Tool3#>');
+_readTool3CoordinatesTask
+(
+    InfoData         := THIS^.InfoData
+    , StatusOfSystem := THIS^.StatusOfSystem
+    , ResultValue    := THIS^.ID04_MatchingRateOfPositionAdujustmentTool_03.Tool_02_Score
+    , ActionDesc     := '<#ReadCoordinates Tool3#>'
+);
 
 /////////////////////////////////////////////
 
 IF _trigger THEN
-    Device_2_EtherCAT.Box_1_DL_EC1A.Input_Request.Request_1.Trigger := TRUE;
+    THIS^.InputRequest.Request_1.Trigger := TRUE;
 
-    IF Device_2_EtherCAT.Box_1_DL_EC1A.Input_Response.Response_1.Trigger THEN
-        _trigger := FALSE;
-        Device_2_EtherCAT.Box_1_DL_EC1A.Input_Request.Request_1.Trigger := FALSE;
+    IF THIS^.InputResponse.Response_1.Trigger THEN
+        _trigger                             := FALSE;
+        THIS^.InputRequest.Request_1.Trigger := FALSE;
     end_if
 END_IF
 
-userNetId := Tc2_System.F_CreateAmsNetId(Device_2_EtherCAT.Box_1_DL_EC1A.InfoData.AdsAddr.netId);
+userNetId := Tc2_System.F_CreateAmsNetId(THIS^.InfoData.AdsAddr.netId);
 
 IF _readString THEN
     _stringBuffer := CoeReadString(_index := _index, _subIndex := _subIndex);
@@ -319,7 +321,7 @@ PROPERTY ErrorId : UINT]]></Declaration>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[ErrorId := THIS^.statusOfSystem.ErrorId or _readTool1CoordinatesTask.ErrorId or _triggerSensorTask.ErrorId;]]></ST>
+          <ST><![CDATA[ErrorId := THIS^.StatusOfSystem.Error_Code or _readTool1CoordinatesTask.ErrorId or _triggerSensorTask.ErrorId;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -396,7 +398,7 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[//collected Error from Tasks
-IsError := statusOfSystem.Error OR TriggerSensorTask.Error or ReadTool1CoordinatesTask.Error;]]></ST>
+IsError := statusOfSystem.Error_Status OR TriggerSensorTask.Error or ReadTool1CoordinatesTask.Error;]]></ST>
         </Implementation>
       </Get>
     </Property>

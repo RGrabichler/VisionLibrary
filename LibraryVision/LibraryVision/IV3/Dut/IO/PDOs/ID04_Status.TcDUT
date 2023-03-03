@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ID04_Status" Id="{94dab724-d495-0f57-260b-f87b9e8b69e7}">
+    <Declaration><![CDATA[{attribute 'GeneratedUsingTerminal: DL-EC1A-0000'}
+{attribute addProperty BoxType "DL-EC1A-0000"}
+{attribute addProperty Id "SD_Save_Stop_AckAT %I*BOOL1SD_Card_DetectedAT %I*BOOL1Logic_01AT %I*BOOL1Tool_02_StatusAT %I*BOOL1Program_Num_03AT %I*BOOL1Tool_02_InvalidAT %I*BOOL1"}
+{attribute addProperty CRC "922163961"}
+{attribute addProperty Size "6"}
+TYPE ID04_Status EXTENDS InputBase_8311D824 :
+STRUCT
+	{attribute addProperty Name "SD_Save_Stop_Ack"}
+	SD_Save_Stop_Ack AT %I* : BOOL;
+	{attribute addProperty Name "SD_Card_Detected"}
+	SD_Card_Detected AT %I* : BOOL;
+	{attribute addProperty Name "Logic_01"}
+	Logic_01 AT %I* : BOOL;
+	{attribute addProperty Name "Tool_02_Status"}
+	Tool_02_Status AT %I* : BOOL;
+	{attribute addProperty Name "Program_Num_03"}
+	Program_Num_03 AT %I* : BOOL;
+	{attribute addProperty Name "Tool_02_Invalid"}
+	Tool_02_Invalid AT %I* : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

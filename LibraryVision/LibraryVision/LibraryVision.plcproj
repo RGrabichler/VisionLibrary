@@ -102,9 +102,6 @@
     <Compile Include="IV3\Dut\IO\Base\SyncUnitTasksBase_7C8711EB.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\Boxes\DL_0DFC6FD0.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="IV3\Dut\IO\Devices\SyncUnits_67D36DDA.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -129,55 +126,55 @@
     <Compile Include="IV3\Dut\IO\PDOs\BitValues\Iv3InputRequestResponse5.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\ID01_Current_Value_77FC57FC.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\ID01_Current_Value.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\ID01_Status_E1C6FBA3.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\ID01_Status.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\ID02_Current_Value_2029C75E.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\ID02_Current_Value.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\ID02_Status_C7C2AD88.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\ID02_Status.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\ID03_Current_Value_A14E112B.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\ID03_Current_Value.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\ID03_Status_297167A2.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\ID03_Status.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\ID04_Current_Value_26277603.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\ID04_Current_Value.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\ID04_Status_36F71AF9.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\ID04_Status.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\ID05_Current_Value_A740A076.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\ID05_Current_Value.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\ID05_Status_AEA1C467.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\ID05_Status.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\ID06_Current_Value_2C34A5E4.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\ID06_Current_Value.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\ID06_Status_53654560.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\ID06_Status.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\ID07_Current_Value_AD537391.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\ID07_Current_Value.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\ID07_Status_5D844829.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\ID07_Status.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\ID08_Current_Value_2A3A14B9.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\ID08_Current_Value.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\ID08_Status_2F63DDED.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\ID08_Status.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\InfoData_32EB74EA.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\InfoData.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IV3\Dut\IO\PDOs\InfoData_8649EEEB.TcDUT">
@@ -186,7 +183,7 @@
     <Compile Include="IV3\Dut\IO\PDOs\InfoData_E68C61CD.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\Inputs_A65FACA4.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\Inputs.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IV3\Dut\IO\PDOs\Input_Request.TcDUT">
@@ -195,7 +192,7 @@
     <Compile Include="IV3\Dut\IO\PDOs\Input_Response.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\Dut\IO\PDOs\Outputs_23C0ED1D.TcDUT">
+    <Compile Include="IV3\Dut\IO\PDOs\Outputs.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IV3\Dut\IO\PDOs\Status_of_System.TcDUT">
@@ -205,9 +202,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IV3\Dut\IO\PDOs\WcState_9091E0EB.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IV3\Dut\IO\Topology\Device_2_EtherCAT_3A403830.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IV3\IVController.TcPOU">

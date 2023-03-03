@@ -12,7 +12,7 @@
 		<Image Id="1" AddrType="9" ImageType="3">
 			<Name>Image</Name>
 		</Image>
-		<Box File="Box 1 (DL-EC1A).xti" Id="1">
+		<Box File="IV3_Sensor1(DL-EC1A).xti" Id="1">
 			<EtherCAT PortABoxInfo="#x00ffffff"/>
 		</Box>
 		<EtherCAT/>

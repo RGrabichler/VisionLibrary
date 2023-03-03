@@ -3,7 +3,7 @@
   <POU Name="ReadCoordinates" Id="{d83738c9-7cff-0c4f-1efe-086a22bcf87d}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ReadCoordinates EXTENDS TcoCore.TcoTask
 VAR_IN_OUT
-    InfoData       : InfoData_32EB74EA;
+    InfoData       : InfoData;
     StatusOfSystem : Status_of_System;
     ResultValue    : DINT;
 END_VAR
@@ -76,13 +76,17 @@ IF (THIS^.Execute()) THEN
             (
                 Resolution    := ResolutionY
                 , Pixel       := _rawCoordinates.variableValue
-                , Height      := THIS^.ResultValue 
+                , Height      := THIS^.ResultValue
                 , FieldOfView => _fieldOfView
                 , Distance    => _distanceFromHeight
             );
 
-            _state := 50;
-        50:
+            _state := 80;
+
+        50: // Calculate the Position in mm with FOV and Distance
+		
+
+        80:
 
             THIS^.DoneWhen(TRUE);
         99:

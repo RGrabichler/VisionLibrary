@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ID05_Current_Value" Id="{2980a0bf-c3d5-0762-18d0-b4736e3a9b93}">
+    <Declaration><![CDATA[{attribute 'GeneratedUsingTerminal: DL-EC1A-0000'}
+{attribute addProperty BoxType "DL-EC1A-0000"}
+{attribute addProperty Id "Tool_03_ScoreAT %I*DINT4"}
+{attribute addProperty CRC "2806030454"}
+{attribute addProperty Size "4"}
+TYPE ID05_Current_Value EXTENDS InputBase_8311D824 :
+STRUCT
+	{attribute addProperty Name "Tool_03_Score"}
+	Tool_03_Score AT %I* : DINT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

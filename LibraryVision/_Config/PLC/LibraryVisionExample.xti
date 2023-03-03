@@ -2,69 +2,43 @@
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.40" ClassName="CNestedPlcProjDef">
 	<DataTypes>
 		<DataType>
-			<Name GUID="{28E56850-CA44-B008-4066-A6C65E76CF80}" Namespace="LibraryVision" AutoDeleteType="true">StatusOfSystem</Name>
-			<Comment><![CDATA[Entspricht 0x6000 in COE]]></Comment>
+			<Name GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision" AutoDeleteType="true">InputBase_8311D824</Name>
+			<BitSize>0</BitSize>
+			<BaseType GUID="{FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF}"/>
+		</DataType>
+		<DataType>
+			<Name GUID="{8A5AB2EA-E77C-8054-DC32-7ED4473438FC}" Namespace="LibraryVision" AutoDeleteType="true">Status_of_System</Name>
 			<BitSize>32</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
 			<SubItem>
-				<Name>Error</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<BitSize>1</BitSize>
+				<Name>Error_Status</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
 				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
 			</SubItem>
 			<SubItem>
-				<Name>Warning</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<BitSize>1</BitSize>
-				<BitOffs>1</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Reserved</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<BitSize>1</BitSize>
-				<BitOffs>2</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>CurrentValueProperty</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<BitSize>1</BitSize>
-				<BitOffs>3</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Reserved1</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<BitSize>1</BitSize>
-				<BitOffs>4</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Reserved2</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<BitSize>1</BitSize>
-				<BitOffs>5</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Reserved3</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<BitSize>1</BitSize>
-				<BitOffs>6</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Reserved4</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<BitSize>1</BitSize>
-				<BitOffs>7</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Reserved5</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<BitSize>1</BitSize>
-				<BitOffs>8</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>ErrorId</Name>
+				<Name>Error_Code</Name>
 				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
 				<BitSize>16</BitSize>
 				<BitOffs>16</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
 			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
 		</DataType>
 		<DataType>
 			<Name GUID="{84C3317A-DCE9-AAAE-942B-9EDC9FB1F78C}" Namespace="LibraryVision" AutoDeleteType="true">Iv3InputRequestResponse1</Name>
@@ -572,21 +546,879 @@
 			</SubItem>
 		</DataType>
 		<DataType>
-			<Name GUID="{77DB32B7-305E-5AAD-885D-B3EDB6C431B0}" Namespace="LibraryVision" AutoDeleteType="true">WcState</Name>
+			<Name GUID="{9BE0A4E8-25D9-DD6F-EFD2-2FB88583ADE8}" Namespace="LibraryVision" AutoDeleteType="true">Input_Response</Name>
+			<BitSize>80</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
+			<SubItem>
+				<Name>Response_1</Name>
+				<Type GUID="{84C3317A-DCE9-AAAE-942B-9EDC9FB1F78C}" Namespace="LibraryVision">Iv3InputRequestResponse1</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Output</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Response_2</Name>
+				<Type GUID="{1F00A5A4-B6F4-5D44-664B-9EB5A7058780}" Namespace="LibraryVision">Iv3InputRequestResponse2</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>16</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Output</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Response_3</Name>
+				<Type GUID="{84514B7D-B118-A0BF-8667-2426CC9465A2}" Namespace="LibraryVision">Iv3InputRequestResponse3</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>32</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Output</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Response_4</Name>
+				<Type GUID="{F4D22A11-E049-15F1-7269-B633B8DEB7FE}" Namespace="LibraryVision">Iv3InputRequestResponse4</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>48</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Output</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Response_5</Name>
+				<Type GUID="{33E3EDEE-19AC-D467-5E07-D52501CC7F94}" Namespace="LibraryVision">Iv3InputRequestResponse5</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>64</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Output</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{F19AAC2D-5D13-0291-75E5-F8B94C15E45E}" Namespace="LibraryVision" AutoDeleteType="true">ID01_Current_Value</Name>
+			<BitSize>32</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
+			<SubItem>
+				<Name>Reserved</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000009}">DINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{95493D33-E220-C882-DCE0-6DB35757C518}" Namespace="LibraryVision" AutoDeleteType="true">ID02_Current_Value</Name>
+			<BitSize>32</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
+			<SubItem>
+				<Name>Tool_00_Score</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000009}">DINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{0EC0C487-9D37-B161-8B80-747F261C8B26}" Namespace="LibraryVision" AutoDeleteType="true">ID03_Current_Value</Name>
+			<BitSize>32</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
+			<SubItem>
+				<Name>Tool_01_Score</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000009}">DINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{E15B3402-6384-5A0F-1593-41CF3EE6F4B5}" Namespace="LibraryVision" AutoDeleteType="true">ID04_Current_Value</Name>
+			<BitSize>32</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
+			<SubItem>
+				<Name>Tool_02_Score</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000009}">DINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{AA599EF9-6574-EEA9-97A9-2C8784491769}" Namespace="LibraryVision" AutoDeleteType="true">ID05_Current_Value</Name>
+			<BitSize>32</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
+			<SubItem>
+				<Name>Tool_03_Score</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000009}">DINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{12BEF411-0BA3-51C0-760C-AC396B0E47F3}" Namespace="LibraryVision" AutoDeleteType="true">ID06_Current_Value</Name>
+			<BitSize>32</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
+			<SubItem>
+				<Name>Tool_04_Score</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000009}">DINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{E28A5587-E414-0E6D-E1ED-18828D0796F4}" Namespace="LibraryVision" AutoDeleteType="true">ID07_Current_Value</Name>
+			<BitSize>32</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
+			<SubItem>
+				<Name>Tool_05_Score</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000009}">DINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{E5865C3F-0837-6935-8664-82996E2DF93F}" Namespace="LibraryVision" AutoDeleteType="true">ID08_Current_Value</Name>
+			<BitSize>32</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
+			<SubItem>
+				<Name>Tool_06_Score</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000009}">DINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{BCC4DBE9-7A89-090C-EEED-051D57E8BA5A}" Namespace="LibraryVision" AutoDeleteType="true">ID01_Status</Name>
+			<BitSize>48</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
+			<SubItem>
+				<Name>Change_Program_Ack</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Change_Program_Failed</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Result_Valid</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>16</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Total_Status_OK</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>24</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Program_Num_00</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>32</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Error_status</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>40</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{216D3AF6-6CBE-4B44-4C86-579F0ABDBBFB}" Namespace="LibraryVision" AutoDeleteType="true">ID02_Status</Name>
+			<BitSize>48</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
+			<SubItem>
+				<Name>Trigger_Ack</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Trigger_Failed</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Result_Updated_Toggle</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>16</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Tool_00_Status</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>24</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Program_Num_01</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>32</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Tool_00_Invalid</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>40</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{CCC7E458-CA48-A727-D0CA-347CC4AF2312}" Namespace="LibraryVision" AutoDeleteType="true">ID03_Status</Name>
+			<BitSize>48</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
+			<SubItem>
+				<Name>Regist_Master_Image_Ack</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Regist_Master_Image_Failed</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Total_Status_OK</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>16</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Tool_01_Status</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>24</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Program_Num_02</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>32</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Tool_01_Invalid</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>40</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{62360FEC-ADCE-6335-98F4-94D141CA8C4A}" Namespace="LibraryVision" AutoDeleteType="true">ID04_Status</Name>
+			<BitSize>48</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
+			<SubItem>
+				<Name>SD_Save_Stop_Ack</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>SD_Card_Detected</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Logic_01</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>16</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Tool_02_Status</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>24</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Program_Num_03</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>32</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Tool_02_Invalid</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>40</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{76FD45CA-264F-4C5F-A6F8-C610CF1E7B1C}" Namespace="LibraryVision" AutoDeleteType="true">ID05_Status</Name>
+			<BitSize>48</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
+			<SubItem>
+				<Name>Reset_Statistics_Ack</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Run</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Logic_02</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>16</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Tool_03_Status</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>24</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Program_Num_04</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>32</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Tool_03_Invalid</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>40</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{A700D83E-C1CF-0635-0E8B-3151A5BA85EF}" Namespace="LibraryVision" AutoDeleteType="true">ID06_Status</Name>
+			<BitSize>48</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
+			<SubItem>
+				<Name>Clear_Error_Ack</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Busy</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Logic_03</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>16</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Tool_04_Status</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>24</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Program_Num_05</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>32</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Tool_04_Invalid</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>40</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{F1912714-2DA7-5071-ECF0-EA2EEDDBE861}" Namespace="LibraryVision" AutoDeleteType="true">ID07_Status</Name>
+			<BitSize>32</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
+			<SubItem>
+				<Name>Logic_04</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Tool_05_Status</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Program_Num_06</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>16</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Tool_05_Invalid</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>24</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{558A7DA2-339D-670B-84C1-45DD13F0AC0B}" Namespace="LibraryVision" AutoDeleteType="true">ID08_Status</Name>
+			<BitSize>32</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
+			<SubItem>
+				<Name>SD_Card_No_Space</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Total_Status_NG</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Tool_06_Status</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>16</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Tool_06_Invalid</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>24</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{06B1EEBD-02EE-F474-9A43-6E41A9EE6F54}" Namespace="LibraryVision" AutoDeleteType="true">WcState_0B2B16F9</Name>
 			<BitSize>8</BitSize>
 			<SubItem>
 				<Name>WcState</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ 0 valid]]></Comment>
-				<BitSize>1</BitSize>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
 				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
 			</SubItem>
-			<SubItem>
-				<Name>InputToggle</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<BitSize>1</BitSize>
-				<BitOffs>1</BitOffs>
-			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: IODEVICETYPE_ETHERCATPROT</Name>
+				</Property>
+			</Properties>
 		</DataType>
 		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-000000000041}" TcBaseType="true" HideSubItems="true" CName="AmsNetId">AMSNETID</Name>
@@ -643,37 +1475,117 @@
 			</Format>
 		</DataType>
 		<DataType>
-			<Name GUID="{2F52267C-E757-7833-C11B-0EA8DA86284E}" Namespace="LibraryVision" AutoDeleteType="true">InfoData</Name>
-			<BitSize>160</BitSize>
-			<SubItem>
-				<Name>State</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
-				<Comment><![CDATA[ 0 valid]]></Comment>
-				<BitSize>16</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
+			<Name GUID="{1C69341F-6738-EE05-43E9-1B11B2FC922F}" Namespace="LibraryVision" AutoDeleteType="true">InfoData</Name>
+			<BitSize>80</BitSize>
+			<ExtendsType GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision">InputBase_8311D824</ExtendsType>
 			<SubItem>
 				<Name>AdsAddr</Name>
 				<Type GUID="{18071995-0000-0000-0000-000000000042}">AMSADDR</Type>
 				<BitSize>64</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>State</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>64</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{96ACF3F7-2781-855E-F621-B2A0D173ACF0}" Namespace="LibraryVision" AutoDeleteType="true">OutputBase_10CEE7DE</Name>
+			<BitSize>0</BitSize>
+			<BaseType GUID="{FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF}"/>
+		</DataType>
+		<DataType>
+			<Name GUID="{30FEB1C4-91A1-90C9-C696-11555795DDE8}" Namespace="LibraryVision" AutoDeleteType="true">Input_Request</Name>
+			<BitSize>80</BitSize>
+			<ExtendsType GUID="{96ACF3F7-2781-855E-F621-B2A0D173ACF0}" Namespace="LibraryVision">OutputBase_10CEE7DE</ExtendsType>
+			<SubItem>
+				<Name>Request_1</Name>
+				<Type GUID="{84C3317A-DCE9-AAAE-942B-9EDC9FB1F78C}" Namespace="LibraryVision">Iv3InputRequestResponse1</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Output</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Request_2</Name>
+				<Type GUID="{1F00A5A4-B6F4-5D44-664B-9EB5A7058780}" Namespace="LibraryVision">Iv3InputRequestResponse2</Type>
+				<BitSize>16</BitSize>
 				<BitOffs>16</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Output</Value>
+					</Property>
+				</Properties>
 			</SubItem>
 			<SubItem>
-				<Name>DcOutputShift</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000009}">DINT</Type>
-				<BitSize>32</BitSize>
-				<BitOffs>96</BitOffs>
+				<Name>Request_3</Name>
+				<Type GUID="{84514B7D-B118-A0BF-8667-2426CC9465A2}" Namespace="LibraryVision">Iv3InputRequestResponse3</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>32</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Output</Value>
+					</Property>
+				</Properties>
 			</SubItem>
 			<SubItem>
-				<Name>DcInputShift</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000009}">DINT</Type>
-				<BitSize>32</BitSize>
-				<BitOffs>128</BitOffs>
+				<Name>Request_4</Name>
+				<Type GUID="{F4D22A11-E049-15F1-7269-B633B8DEB7FE}" Namespace="LibraryVision">Iv3InputRequestResponse4</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>48</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Output</Value>
+					</Property>
+				</Properties>
 			</SubItem>
+			<SubItem>
+				<Name>Request_5</Name>
+				<Type GUID="{33E3EDEE-19AC-D467-5E07-D52501CC7F94}" Namespace="LibraryVision">Iv3InputRequestResponse5</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>64</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcAddressType</Name>
+						<Value>Output</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>GeneratedUsingTerminal: DL-EC1A-0000</Name>
+				</Property>
+			</Properties>
 		</DataType>
 	</DataTypes>
 	<Project GUID="{DAF59FAF-F042-4C35-9613-F65BC51AD6A6}" Name="LibraryVisionExample" PrjFilePath="..\..\LibraryVisionExample\LibraryVisionExample.plcproj" TmcFilePath="..\..\LibraryVisionExample\LibraryVisionExample.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LibraryVisionExample\LibraryVisionExample.tmc" TmcHash="{F4C790BE-F817-940A-6122-FA7EFB208C79}">
+		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LibraryVisionExample\LibraryVisionExample.tmc" TmcHash="{D176A141-1EF2-B693-5192-EE6CA52100B7}">
 			<Name>LibraryVisionExample Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
@@ -687,493 +1599,111 @@
 					<Name>MAIN._app._mainStation._IvController.StatusOfSystem</Name>
 					<Comment><![CDATA[    //Ethercat Status
 ~]]></Comment>
-					<Type GUID="{28E56850-CA44-B008-4066-A6C65E76CF80}" Namespace="LibraryVision">StatusOfSystem</Type>
+					<Type GUID="{8A5AB2EA-E77C-8054-DC32-7ED4473438FC}" Namespace="LibraryVision">Status_of_System</Type>
 				</Var>
 				<Var>
-					<Name>MAIN._app._mainStation._IvController.InputResponse1</Name>
+					<Name>MAIN._app._mainStation._IvController.InputResponse</Name>
 					<Comment><![CDATA[PDO Vision Sensor   ]]></Comment>
-					<Type GUID="{84C3317A-DCE9-AAAE-942B-9EDC9FB1F78C}" Namespace="LibraryVision">Iv3InputRequestResponse1</Type>
+					<Type GUID="{9BE0A4E8-25D9-DD6F-EFD2-2FB88583ADE8}" Namespace="LibraryVision">Input_Response</Type>
 				</Var>
 				<Var>
-					<Name>MAIN._app._mainStation._IvController.InputResponse2</Name>
-					<Type GUID="{1F00A5A4-B6F4-5D44-664B-9EB5A7058780}" Namespace="LibraryVision">Iv3InputRequestResponse2</Type>
-				</Var>
-				<Var>
-					<Name>MAIN._app._mainStation._IvController.InputResponse3</Name>
-					<Type GUID="{84514B7D-B118-A0BF-8667-2426CC9465A2}" Namespace="LibraryVision">Iv3InputRequestResponse3</Type>
-				</Var>
-				<Var>
-					<Name>MAIN._app._mainStation._IvController.InputResponse4</Name>
-					<Type GUID="{F4D22A11-E049-15F1-7269-B633B8DEB7FE}" Namespace="LibraryVision">Iv3InputRequestResponse4</Type>
-				</Var>
-				<Var>
-					<Name>MAIN._app._mainStation._IvController.InputResponse5</Name>
-					<Type GUID="{33E3EDEE-19AC-D467-5E07-D52501CC7F94}" Namespace="LibraryVision">Iv3InputRequestResponse5</Type>
-				</Var>
-				<Var>
-					<Name>MAIN._app._mainStation._IvController.ID01</Name>
-					<Type>DWORD</Type>
+					<Name>MAIN._app._mainStation._IvController.ID01_CurrentValue</Name>
+					<Type GUID="{F19AAC2D-5D13-0291-75E5-F8B94C15E45E}" Namespace="LibraryVision">ID01_Current_Value</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.ID02_MatchingRateOfPositionAdujustmentTool_01</Name>
 					<Comment><![CDATA[value 0..1]]></Comment>
-					<Type>DWORD</Type>
+					<Type GUID="{95493D33-E220-C882-DCE0-6DB35757C518}" Namespace="LibraryVision">ID02_Current_Value</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.ID03_MatchingRateOfPositionAdujustmentTool_02</Name>
 					<Comment><![CDATA[value 0..1]]></Comment>
-					<Type>DWORD</Type>
+					<Type GUID="{0EC0C487-9D37-B161-8B80-747F261C8B26}" Namespace="LibraryVision">ID03_Current_Value</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.ID04_MatchingRateOfPositionAdujustmentTool_03</Name>
 					<Comment><![CDATA[value 0..1]]></Comment>
-					<Type>DWORD</Type>
+					<Type GUID="{E15B3402-6384-5A0F-1593-41CF3EE6F4B5}" Namespace="LibraryVision">ID04_Current_Value</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.ID05_MatchingRateOfPositionAdujustmentTool_04</Name>
 					<Comment><![CDATA[value 0..1]]></Comment>
-					<Type>DWORD</Type>
+					<Type GUID="{AA599EF9-6574-EEA9-97A9-2C8784491769}" Namespace="LibraryVision">ID05_Current_Value</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.ID06_MatchingRateOfPositionAdujustmentTool_05</Name>
 					<Comment><![CDATA[value 0..1]]></Comment>
-					<Type>DWORD</Type>
+					<Type GUID="{12BEF411-0BA3-51C0-760C-AC396B0E47F3}" Namespace="LibraryVision">ID06_Current_Value</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.ID07_MatchingRateOfPositionAdujustmentTool_06</Name>
 					<Comment><![CDATA[value 0..1]]></Comment>
-					<Type>DWORD</Type>
+					<Type GUID="{E28A5587-E414-0E6D-E1ED-18828D0796F4}" Namespace="LibraryVision">ID07_Current_Value</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.ID08_MatchingRateOfPositionAdujustmentTool_07</Name>
 					<Comment><![CDATA[value 0..1]]></Comment>
-					<Type>DWORD</Type>
+					<Type GUID="{E5865C3F-0837-6935-8664-82996E2DF93F}" Namespace="LibraryVision">ID08_Current_Value</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.ID01Status</Name>
-					<Type>WORD</Type>
+					<Type GUID="{BCC4DBE9-7A89-090C-EEED-051D57E8BA5A}" Namespace="LibraryVision">ID01_Status</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.ID02Status</Name>
-					<Type>WORD</Type>
+					<Type GUID="{216D3AF6-6CBE-4B44-4C86-579F0ABDBBFB}" Namespace="LibraryVision">ID02_Status</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.ID03Status</Name>
-					<Type>WORD</Type>
+					<Type GUID="{CCC7E458-CA48-A727-D0CA-347CC4AF2312}" Namespace="LibraryVision">ID03_Status</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.ID04Status</Name>
-					<Type>WORD</Type>
+					<Type GUID="{62360FEC-ADCE-6335-98F4-94D141CA8C4A}" Namespace="LibraryVision">ID04_Status</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.ID05Status</Name>
-					<Type>WORD</Type>
+					<Type GUID="{76FD45CA-264F-4C5F-A6F8-C610CF1E7B1C}" Namespace="LibraryVision">ID05_Status</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.ID06Status</Name>
-					<Type>WORD</Type>
+					<Type GUID="{A700D83E-C1CF-0635-0E8B-3151A5BA85EF}" Namespace="LibraryVision">ID06_Status</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.ID07Status</Name>
-					<Type>WORD</Type>
+					<Type GUID="{F1912714-2DA7-5071-ECF0-EA2EEDDBE861}" Namespace="LibraryVision">ID07_Status</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.ID08Status</Name>
-					<Type>WORD</Type>
+					<Type GUID="{558A7DA2-339D-670B-84C1-45DD13F0AC0B}" Namespace="LibraryVision">ID08_Status</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.WcState</Name>
 					<Comment><![CDATA[    //General Ethercat Data]]></Comment>
-					<Type GUID="{77DB32B7-305E-5AAD-885D-B3EDB6C431B0}" Namespace="LibraryVision">WcState</Type>
+					<Type GUID="{06B1EEBD-02EE-F474-9A43-6E41A9EE6F54}" Namespace="LibraryVision">WcState_0B2B16F9</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.InfoData</Name>
-					<Type GUID="{2F52267C-E757-7833-C11B-0EA8DA86284E}" Namespace="LibraryVision">InfoData</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Status_of_System.Error_Status</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Status_of_System.Error_Code</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Response_1.Reserved</Name>
-					<Type>DWORD</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Response_2.Reserved</Name>
-					<Type>DWORD</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Response_3.Reserved</Name>
-					<Type>DWORD</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Response_4.Reserved</Name>
-					<Type>DWORD</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Response_5.Reserved</Name>
-					<Type>DWORD</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID01_Current_Value.Reserved</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID02_Current_Value.Tool_00_Score</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID03_Current_Value.Tool_01_Score</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID04_Current_Value.Tool_02_Score</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID05_Current_Value.Tool_03_Score</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID06_Current_Value.Tool_04_Score</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID07_Current_Value.Tool_05_Score</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID08_Current_Value.Tool_06_Score</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID01_Status.Change_Program_Ack</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID01_Status.Change_Program_Failed</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID01_Status.Result_Valid</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID01_Status.Total_Status_OK</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID01_Status.Program_Num_00</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID01_Status.Error_status</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID02_Status.Trigger_Ack</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID02_Status.Trigger_Failed</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID02_Status.Result_Updated_Toggle</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID02_Status.Tool_00_Status</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID02_Status.Program_Num_01</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID02_Status.Tool_00_Invalid</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID03_Status.Regist_Master_Image_Ack</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID03_Status.Regist_Master_Image_Failed</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID03_Status.Total_Status_OK</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID03_Status.Tool_01_Status</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID03_Status.Program_Num_02</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID03_Status.Tool_01_Invalid</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID04_Status.SD_Save_Stop_Ack</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID04_Status.SD_Card_Detected</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID04_Status.Logic_01</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID04_Status.Tool_02_Status</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID04_Status.Program_Num_03</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID04_Status.Tool_02_Invalid</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID05_Status.Reset_Statistics_Ack</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID05_Status.Run</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID05_Status.Logic_02</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID05_Status.Tool_03_Status</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID05_Status.Program_Num_04</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID05_Status.Tool_03_Invalid</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID06_Status.Clear_Error_Ack</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID06_Status.Busy</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID06_Status.Logic_03</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID06_Status.Tool_04_Status</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID06_Status.Program_Num_05</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID06_Status.Tool_04_Invalid</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID07_Status.Logic_04</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID07_Status.Tool_05_Status</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID07_Status.Program_Num_06</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID07_Status.Tool_05_Invalid</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID08_Status.SD_Card_No_Space</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID08_Status.Total_Status_NG</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID08_Status.Tool_06_Status</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID08_Status.Tool_06_Invalid</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.WcState.WcState</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.WcState.InputToggle</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.InfoData.AdsAddr</Name>
-					<Type GUID="{18071995-0000-0000-0000-000000000042}">AMSADDR</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.InfoData.State</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.SyncUnits._default.unreferenced.WcState.WcState</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.SyncUnits._default.unreferenced.InfoData.ObjectId</Name>
-					<Type>DWORD</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.SyncUnits._default.unreferenced.InfoData.State</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.SyncUnits._default.unreferenced.InfoData.SlaveCount</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.SyncUnits._default.PlcTask.WcState.WcState</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.SyncUnits._default.PlcTask.InfoData.ObjectId</Name>
-					<Type>DWORD</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.SyncUnits._default.PlcTask.InfoData.State</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.SyncUnits._default.PlcTask.InfoData.SlaveCount</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Inputs.SlaveCount</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Inputs.DevState</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Inputs.Frm0State</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Inputs.Frm0WcState</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Inputs.Frm0InputToggle</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.InfoData.ChangeCount</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.InfoData.DevId</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.InfoData.AmsNetId</Name>
-					<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.InfoData.CfgSlaveCount</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.InfoData.DcToTcTimeOffset</Name>
-					<Type>LINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.InfoData.DcToExtTimeOffset</Name>
-					<Type>LINT</Type>
+					<Type GUID="{1C69341F-6738-EE05-43E9-1B11B2FC922F}" Namespace="LibraryVision">InfoData</Type>
 				</Var>
 			</Vars>
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
 				<Var>
-					<Name>MAIN._app._mainStation._IvController.InputRequest1</Name>
-					<Type GUID="{84C3317A-DCE9-AAAE-942B-9EDC9FB1F78C}" Namespace="LibraryVision">Iv3InputRequestResponse1</Type>
-				</Var>
-				<Var>
-					<Name>MAIN._app._mainStation._IvController.InputRequest2</Name>
-					<Type GUID="{1F00A5A4-B6F4-5D44-664B-9EB5A7058780}" Namespace="LibraryVision">Iv3InputRequestResponse2</Type>
-				</Var>
-				<Var>
-					<Name>MAIN._app._mainStation._IvController.InputRequest3</Name>
-					<Type GUID="{84514B7D-B118-A0BF-8667-2426CC9465A2}" Namespace="LibraryVision">Iv3InputRequestResponse3</Type>
-				</Var>
-				<Var>
-					<Name>MAIN._app._mainStation._IvController.InputRequest4</Name>
-					<Type GUID="{F4D22A11-E049-15F1-7269-B633B8DEB7FE}" Namespace="LibraryVision">Iv3InputRequestResponse4</Type>
-				</Var>
-				<Var>
-					<Name>MAIN._app._mainStation._IvController.InputRequest5</Name>
-					<Type GUID="{33E3EDEE-19AC-D467-5E07-D52501CC7F94}" Namespace="LibraryVision">Iv3InputRequestResponse5</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Request_1.Request_1</Name>
-					<Type>DWORD</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Request_2.Request_2</Name>
-					<Type>DWORD</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Request_3.Request_3</Name>
-					<Type>DWORD</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Request_4.Request_4</Name>
-					<Type>DWORD</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Request_5.Request_5</Name>
-					<Type>DWORD</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Outputs.DevCtrl</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Outputs.Frm0Ctrl</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_iXlinker.Device_2_EtherCAT.Outputs.Frm0WcCtrl</Name>
-					<Type>UINT</Type>
+					<Name>MAIN._app._mainStation._IvController.InputRequest</Name>
+					<Type GUID="{30FEB1C4-91A1-90C9-C696-11555795DDE8}" Namespace="LibraryVision">Input_Request</Type>
 				</Var>
 			</Vars>
+			<UnrestoredVarLinks ImportTime="2023-03-03T12:13:44">
+				<OwnerA Name="InputDst" Prefix="TIPC^LibraryVisionExample^LibraryVisionExample Instance" Type="1">
+					<OwnerB Name="TIID^Device 2 (EtherCAT)">
+						<Link VarA="MAIN._app._mainStation._IvController.Device_2_EtherCAT.InfoData.AmsNetId" TypeA="AMSNETID" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000041}" VarB="InfoData^AmsNetId" RestoreInfo="ANotFound"/>
+						<Link VarA="MAIN._app._mainStation._IvController.Device_2_EtherCAT.InfoData.CfgSlaveCount" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="InfoData^CfgSlaveCount" RestoreInfo="ANotFound"/>
+						<Link VarA="MAIN._app._mainStation._IvController.Device_2_EtherCAT.InfoData.ChangeCount" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="InfoData^ChangeCount" RestoreInfo="ANotFound"/>
+						<Link VarA="MAIN._app._mainStation._IvController.Device_2_EtherCAT.InfoData.DevId" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="InfoData^DevId" RestoreInfo="ANotFound"/>
+					</OwnerB>
+				</OwnerA>
+			</UnrestoredVarLinks>
 			<Contexts>
 				<Context>
 					<Id NeedCalleeCall="true">0</Id>
@@ -1190,4 +1720,77 @@
 			</TaskPouOids>
 		</Instance>
 	</Project>
+	<Mappings>
+		<OwnerA Name="LibraryVisionExample Instance">
+			<OwnerB Name="TIID^Device 2 (EtherCAT)^IV3_Sensor1(DL-EC1A)">
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID01Status^Change_Program_Ack" VarB="ID01 Status^Change Program Ack" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID01Status^Change_Program_Failed" VarB="ID01 Status^Change Program Failed" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID01Status^Error_status" VarB="ID01 Status^Error status" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID01Status^Program_Num_00" VarB="ID01 Status^Program Num 00" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID01Status^Result_Valid" VarB="ID01 Status^Result Valid" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID01Status^Total_Status_OK" VarB="ID01 Status^Total Status OK" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID01_CurrentValue^Reserved" VarB="ID01 Current Value^Reserved"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID02Status^Program_Num_01" VarB="ID02 Status^Program Num 01" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID02Status^Result_Updated_Toggle" VarB="ID02 Status^Result Updated Toggle" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID02Status^Tool_00_Invalid" VarB="ID02 Status^Tool 00 Invalid" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID02Status^Tool_00_Status" VarB="ID02 Status^Tool 00 Status" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID02Status^Trigger_Ack" VarB="ID02 Status^Trigger Ack" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID02Status^Trigger_Failed" VarB="ID02 Status^Trigger Failed" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID02_MatchingRateOfPositionAdujustmentTool_01^Tool_00_Score" VarB="ID02 Current Value^Tool 00 Score"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID03Status^Program_Num_02" VarB="ID03 Status^Program Num 02" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID03Status^Regist_Master_Image_Ack" VarB="ID03 Status^Regist Master Image Ack" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID03Status^Regist_Master_Image_Failed" VarB="ID03 Status^Regist Master Image Failed" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID03Status^Tool_01_Invalid" VarB="ID03 Status^Tool 01 Invalid" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID03Status^Tool_01_Status" VarB="ID03 Status^Tool 01 Status" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID03Status^Total_Status_OK" VarB="ID03 Status^Total Status OK" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID03_MatchingRateOfPositionAdujustmentTool_02^Tool_01_Score" VarB="ID03 Current Value^Tool 01 Score"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID04Status^Logic_01" VarB="ID04 Status^Logic 01" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID04Status^Program_Num_03" VarB="ID04 Status^Program Num 03" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID04Status^SD_Card_Detected" VarB="ID04 Status^SD Card Detected" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID04Status^SD_Save_Stop_Ack" VarB="ID04 Status^SD Save Stop Ack" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID04Status^Tool_02_Invalid" VarB="ID04 Status^Tool 02 Invalid" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID04Status^Tool_02_Status" VarB="ID04 Status^Tool 02 Status" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID04_MatchingRateOfPositionAdujustmentTool_03^Tool_02_Score" VarB="ID04 Current Value^Tool 02 Score"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID05Status^Logic_02" VarB="ID05 Status^Logic 02" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID05Status^Program_Num_04" VarB="ID05 Status^Program Num 04" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID05Status^Reset_Statistics_Ack" VarB="ID05 Status^Reset Statistics Ack" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID05Status^Run" VarB="ID05 Status^Run" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID05Status^Tool_03_Invalid" VarB="ID05 Status^Tool 03 Invalid" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID05Status^Tool_03_Status" VarB="ID05 Status^Tool 03 Status" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID05_MatchingRateOfPositionAdujustmentTool_04^Tool_03_Score" VarB="ID05 Current Value^Tool 03 Score"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID06Status^Busy" VarB="ID06 Status^Busy" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID06Status^Clear_Error_Ack" VarB="ID06 Status^Clear Error Ack" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID06Status^Logic_03" VarB="ID06 Status^Logic 03" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID06Status^Program_Num_05" VarB="ID06 Status^Program Num 05" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID06Status^Tool_04_Invalid" VarB="ID06 Status^Tool 04 Invalid" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID06Status^Tool_04_Status" VarB="ID06 Status^Tool 04 Status" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID06_MatchingRateOfPositionAdujustmentTool_05^Tool_04_Score" VarB="ID06 Current Value^Tool 04 Score"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID07Status^Logic_04" VarB="ID07 Status^Logic 04" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID07Status^Program_Num_06" VarB="ID07 Status^Program Num 06" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID07Status^Tool_05_Invalid" VarB="ID07 Status^Tool 05 Invalid" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID07Status^Tool_05_Status" VarB="ID07 Status^Tool 05 Status" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID07_MatchingRateOfPositionAdujustmentTool_06^Tool_05_Score" VarB="ID07 Current Value^Tool 05 Score"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID08Status^SD_Card_No_Space" VarB="ID08 Status^SD Card No Space" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID08Status^Tool_06_Invalid" VarB="ID08 Status^Tool 06 Invalid" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID08Status^Tool_06_Status" VarB="ID08 Status^Tool 06 Status" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID08Status^Total_Status_NG" VarB="ID08 Status^Total Status NG" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.ID08_MatchingRateOfPositionAdujustmentTool_07^Tool_06_Score" VarB="ID08 Current Value^Tool 06 Score"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.InfoData^AdsAddr" VarB="InfoData^AdsAddr"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.InfoData^State" VarB="InfoData^State"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.InputResponse^Response_1" VarB="Input Response 1^Reserved" Size="16"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.InputResponse^Response_2" VarB="Input Response 2^Reserved" Size="16"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.InputResponse^Response_3" VarB="Input Response 3^Reserved" Size="16"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.InputResponse^Response_4" VarB="Input Response 4^Reserved" Size="16"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.InputResponse^Response_5" VarB="Input Response 5^Reserved" Size="16"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.StatusOfSystem^Error_Code" VarB="Status of System^Error Code"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.StatusOfSystem^Error_Status" VarB="Status of System^Error Status" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN._app._mainStation._IvController.WcState^WcState" VarB="WcState^WcState" Size="1"/>
+				<Link VarA="PlcTask Outputs^MAIN._app._mainStation._IvController.InputRequest^Request_1" VarB="Input Request 1^Request 1" Size="16"/>
+				<Link VarA="PlcTask Outputs^MAIN._app._mainStation._IvController.InputRequest^Request_2" VarB="Input Request 2^Request 2" Size="16"/>
+				<Link VarA="PlcTask Outputs^MAIN._app._mainStation._IvController.InputRequest^Request_3" VarB="Input Request 3^Request 3" Size="16"/>
+				<Link VarA="PlcTask Outputs^MAIN._app._mainStation._IvController.InputRequest^Request_4" VarB="Input Request 4^Request 4" Size="16"/>
+				<Link VarA="PlcTask Outputs^MAIN._app._mainStation._IvController.InputRequest^Request_5" VarB="Input Request 5^Request 5" Size="16"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
 </TcSmItem>
