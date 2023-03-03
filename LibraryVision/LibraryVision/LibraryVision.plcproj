@@ -210,6 +210,9 @@
     <Compile Include="IV3\Tasks\ReadCoordinates.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="IV3\Tasks\CalculationTask.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="IV3\Tasks\TriggerSensor.TcPOU">
       <SubType>Code</SubType>
     </Compile>

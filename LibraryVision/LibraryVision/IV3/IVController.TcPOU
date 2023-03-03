@@ -3,35 +3,36 @@
   <POU Name="IVController" Id="{dc97945e-e484-0055-193f-f0ad3a13ca29}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK IVController EXTENDS TcoCore.TcoComponent
 VAR
-    _triggerSensorTask : TriggerSensor(THIS^);
+    _triggerSensorTask        : TriggerSensor(THIS^);
     _readTool1CoordinatesTask : ReadCoordinates(THIS^, CoeIndex := Tool1CoeIndex);
     _readTool2CoordinatesTask : ReadCoordinates(THIS^, CoeIndex := Tool2CoeIndex);
     _readTool3CoordinatesTask : ReadCoordinates(THIS^, CoeIndex := Tool3CoeIndex);
+    _calculationTask          : CalculationTask(THIS^, ResolutionX := 1280, ResolutionY := 960);
 END_VAR
 
 VAR
-    _fb_coe_write : FB_EcCoESdoWrite; // Function Block for writing in CoE
-    _fb_coe_read : FB_EcCoESdoRead; // Function Block for reading from CoE
-    userNetId : T_AmsNetId; // Have to be entered
-    _startWrite : BOOL := FALSE; // Sign for start writing
-    _startRead : BOOL := FALSE; // Sign for start reading
-    _nState : BYTE := 0; // RW-status
-    _int16Buffer : INT; // Buffer for reading
-    _uint16Buffer : UINT := 22; // Buffer for writing
-    _bTxPDOState AT %I* : BOOL; // (PDO for synchronization)
-    AdsErrId : UDINT;
-    CANopenErrId : UDINT;
+    _fb_coe_write       : FB_EcCoESdoWrite; // Function Block for writing in CoE
+    _fb_coe_read        : FB_EcCoESdoRead;  // Function Block for reading from CoE
+    userNetId           : T_AmsNetId;       // Have to be entered
+    _startWrite         : BOOL := FALSE;    // Sign for start writing
+    _startRead          : BOOL := FALSE;    // Sign for start reading
+    _nState             : BYTE := 0;        // RW-status
+    _int16Buffer        : INT;              // Buffer for reading
+    _uint16Buffer       : UINT := 22;       // Buffer for writing
+    _bTxPDOState AT %I* : BOOL;             // (PDO for synchronization)
+    AdsErrId            : UDINT;
+    CANopenErrId        : UDINT;
 
-    _index : UINT := 16#1008;
-    _subIndex : BYTE := 0;
-    _result : STRING;
-    _stringBuffer : STRING;
-    _numberBuffer : UDINT;
-    _exe : BOOL;
+    _index             : UINT := 16#1008;
+    _subIndex          : BYTE := 0;
+    _result            : STRING;
+    _stringBuffer      : STRING;
+    _numberBuffer      : UDINT;
+    _exe               : BOOL;
     _generalDeviceInfo : GeneralDeviceInformation;
-    _IdentityCoe : IdentityCoe;
-    _coordinates : Coordinates;
-    _readCoordinates : BOOL;
+    _IdentityCoe       : IdentityCoe;
+    _coordinates       : Coordinates;
+    _readCoordinates   : BOOL;
 END_VAR
 VAR CONSTANT
     Tool1CoeIndex : UINT := 16#8015;
@@ -45,8 +46,8 @@ VAR
     //~
     StatusOfSystem AT %I* : Status_of_System;
     //PDO Vision Sensor   
-    InputResponse AT %I* : Input_Response;
-    ID01_CurrentValue AT %I* : ID01_Current_Value;
+    InputResponse                                 AT %I* : Input_Response;
+    ID01_CurrentValue                             AT %I* : ID01_Current_Value;
     ID02_MatchingRateOfPositionAdujustmentTool_01 AT %I* : ID02_Current_Value; //value 0..1
     ID03_MatchingRateOfPositionAdujustmentTool_02 AT %I* : ID03_Current_Value; //value 0..1
     ID04_MatchingRateOfPositionAdujustmentTool_03 AT %I* : ID04_Current_Value; //value 0..1
@@ -54,22 +55,22 @@ VAR
     ID06_MatchingRateOfPositionAdujustmentTool_05 AT %I* : ID06_Current_Value; //value 0..1
     ID07_MatchingRateOfPositionAdujustmentTool_06 AT %I* : ID07_Current_Value; //value 0..1
     ID08_MatchingRateOfPositionAdujustmentTool_07 AT %I* : ID08_Current_Value; //value 0..1
-    ID01Status AT %I* : ID01_Status;
-    ID02Status AT %I* : ID02_Status;
-    ID03Status AT %I* : ID03_Status;
-    ID04Status AT %I* : ID04_Status;
-    ID05Status AT %I* : ID05_Status;
-    ID06Status AT %I* : ID06_Status;
-    ID07Status AT %I* : ID07_Status;
-    ID08Status AT %I* : ID08_Status;
-    InputRequest AT %Q* : Input_Request;
+    ID01Status                                    AT %I* : ID01_Status;
+    ID02Status                                    AT %I* : ID02_Status;
+    ID03Status                                    AT %I* : ID03_Status;
+    ID04Status                                    AT %I* : ID04_Status;
+    ID05Status                                    AT %I* : ID05_Status;
+    ID06Status                                    AT %I* : ID06_Status;
+    ID07Status                                    AT %I* : ID07_Status;
+    ID08Status                                    AT %I* : ID08_Status;
+    InputRequest                                  AT %Q* : Input_Request;
     //    //General Ethercat Data
-    WcState AT %I* : WcState_0B2B16F9;
-    InfoData AT %I* :InfoData;
+    WcState  AT %I* : WcState_0B2B16F9;
+    InfoData AT %I* : InfoData;
     //~
 
-    _trigger : BOOL;
-    _readString : BOOL;
+    _trigger        : BOOL;
+    _readString     : BOOL;
     _readDeviceInfo : BOOL;
 END_VAR]]></Declaration>
     <Implementation>
@@ -106,16 +107,25 @@ _readTool3CoordinatesTask
     , ActionDesc     := '<#ReadCoordinates Tool3#>'
 );
 
+_calculationTask
+(
+    InfoData           := THIS^.InfoData
+    , StatusOfSystem   := THIS^.StatusOfSystem
+    , CoordinatesTool1 := _readTool1CoordinatesTask.RawCoordinates
+    , CoordinatesTool2 := _readTool2CoordinatesTask.RawCoordinates
+    , CoordinatesTool3 := _readTool3CoordinatesTask.RawCoordinates
+    , ActionDesc       := '<#_calculationTask#>'
+);
+
 /////////////////////////////////////////////
+//IF _trigger THEN
+//    THIS^.InputRequest.Request_1.Trigger := TRUE;
 
-IF _trigger THEN
-    THIS^.InputRequest.Request_1.Trigger := TRUE;
-
-    IF THIS^.InputResponse.Response_1.Trigger THEN
-        _trigger                             := FALSE;
-        THIS^.InputRequest.Request_1.Trigger := FALSE;
-    end_if
-END_IF
+//    IF THIS^.InputResponse.Response_1.Trigger THEN
+//        _trigger                             := FALSE;
+//        THIS^.InputRequest.Request_1.Trigger := FALSE;
+//    end_if
+//END_IF
 
 userNetId := Tc2_System.F_CreateAmsNetId(THIS^.InfoData.AdsAddr.netId);
 

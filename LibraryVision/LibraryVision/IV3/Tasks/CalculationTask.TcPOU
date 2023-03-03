@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="CalculationTask" Id="{e4d382f1-2a0b-0e00-0784-d67a58737619}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK CalculationTask EXTENDS TcoCore.TcoTask
+VAR_IN_OUT
+    InfoData         : InfoData;
+    StatusOfSystem   : Status_of_System;
+    CoordinatesTool1 : Coordinates;
+    CoordinatesTool2 : Coordinates;
+    CoordinatesTool3 : Coordinates;
+END_VAR
+VAR_INPUT
+    ActionDesc : STRING(25);
+END_VAR
+VAR
+    _fb_coe_read_ext         : Tc2_EtherCAT.FB_EcCoESdoReadEx;
+    _timeout                 : TIME := Tc2_System.DEFAULT_ADS_TIMEOUT;
+    _state                   : INT  := 10;
+    _data                    : ARRAY[1..31] OF DINT;
+    _errorId                 : UDINT;
+    _rawCoordinates          : Coordinates;
+    _coeIndex                : UINT;
+    _distanceFromHeight      : LREAL;
+    _fieldOfView             : FieldOfView;
+    _coordinatesInMillimeter : Coordinates;
+
+    _resolutionX : UINT;
+    _resolutionY : UINT;
+END_VAR
+VAR CONSTANT
+    SIZE_OF_TWO_BYTES : UINT := 16;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF (THIS^.Execute()) THEN
+    //ERror Case
+
+    THIS^.ThrowWhen(StatusOfSystem.Error_Status);
+
+    CASE _state OF
+        10:
+            _fb_coe_read_ext
+            (
+                sNetId            := Tc2_System.F_CreateAmsNetId(infodata.AdsAddr.netId)
+                , nSlaveAddr      := InfoData.AdsAddr.port
+                , nSubIndex       := 16#0
+                , nIndex          := _coeIndex
+                , pDstBuf         := ADR(_data)
+                , cbBufLen        := SIZEOF(_data) + 2
+                , tTimeout        := _timeout
+                , bCompleteAccess := TRUE
+            );
+
+            _state := 20;
+        20:
+            _fb_coe_read_ext(bExecute := TRUE);
+            _state := 30;
+        30:
+            _fb_coe_read_ext();
+
+            IF _fb_coe_read_ext.bBusy THEN
+                RETURN;
+            END_IF
+
+            IF _fb_coe_read_ext.bError THEN
+                _State := 99; // Error case
+                RETURN;
+            END_IF
+
+            _rawCoordinates.xValue        := SHR(_data[017], SIZE_OF_TWO_BYTES);
+            _rawCoordinates.yValue        := SHR(_data[018], SIZE_OF_TWO_BYTES);
+            _rawCoordinates.variableValue := SHR(_data[019], SIZE_OF_TWO_BYTES);
+
+            _state := 80;
+        40:
+//            Calculating
+//            (
+//                ResolutionY := ReadCoordinates.ResolutionY
+//                , PixelY    := _rawCoordinates.variableValue
+//                , ValueY    := THIS^.ResultValue
+//                , ResolutionX := ReadCoordinates.ResolutionX
+//                , PixelX := _rawCoordinates.
+//                , ValueX
+//                , FieldOfView => _fieldOfView
+//                , Distance    => _distanceFromHeight
+//            );
+
+            _state := 80;
+
+        50: // Calculate the Position in mm with FOV and Distance
+
+        80:
+
+            THIS^.DoneWhen(TRUE);
+        99:
+            THIS^.ThrowWhen(TRUE);
+
+    END_CASE
+END_IF]]></ST>
+    </Implementation>
+    <Folder Name="Calculation" Id="{248b09cb-775e-01e2-2975-aea9950428ea}" />
+    <Folder Name="Data" Id="{83fda28b-a834-0d9d-31c9-81c255f79258}" />
+    <Folder Name="Status" Id="{9f76f991-0662-05f8-2564-dbcff28bbf17}" />
+    <Folder Name="TcOpen" Id="{5bd3be72-46c1-0cb3-0855-b509c2aa875f}" />
+    <Method Name="CalcCoefficientFromResolutionAndPixel" Id="{423b9b00-3656-0a31-2af3-7406fa9f4246}" FolderPath="Calculation\">
+      <Declaration><![CDATA[METHOD PROTECTED CalcCoefficientFromResolutionAndPixel : LREAL
+VAR_INPUT
+    Resolution : LREAL;
+    Pixel      : LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+IF Pixel = 0 THEN
+    THIS^.Messenger.Error('Was ist los mit dir, teile nicht durch 0!');
+    CalcCoefficientFromResolutionAndPixel := 0;
+    RETURN;
+END_IF
+
+CalcCoefficientFromResolutionAndPixel := (Resolution / Pixel) * 10;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CalcFieldOfViewWithCoefficientAndObjectMeasurement" Id="{1863b525-a4c9-0ed9-3ee1-98bfb75f2910}" FolderPath="Calculation\">
+      <Declaration><![CDATA[METHOD PRIVATE CalcFieldOfViewWithCoefficientAndObjectMeasurement : LREAL
+VAR_INPUT
+    Coefficient : LREAL;
+    Height      : DINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CalcFieldOfViewWithCoefficientAndObjectMeasurement := (Coefficient * DWORD_TO_LREAL(Height)) / 100;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Calculating" Id="{b91121bf-3d47-0fad-133f-38fa70c6968b}" FolderPath="Calculation\">
+      <Declaration><![CDATA[METHOD PRIVATE Calculating
+VAR_OUTPUT
+    FieldOfView : FieldOfView;
+    Distance    : LREAL;
+END_VAR
+VAR_INPUT
+    ResolutionY : LREAL;
+    PixelY      : LREAL;
+    ValueY      : DINT;
+    ResolutionX : LREAL;
+    PixelX      : LREAL;
+    ValueX      : DINT;
+END_VAR
+VAR_INST
+    //lineare Regression
+    offsetX      : LREAL := -5.57888;
+    gainX        : LREAL := 3.387877;
+    CoefficientX : LREAL;
+
+    offsetY      : LREAL := -7.0129;
+    gainY        : LREAL := 2.5438;
+    CoefficientY : LREAL;
+END_VAR
+//in mm     Breite
+//50		16,4		
+//100		31,2		
+//200		60,7		
+//300		90,2		
+//400		119,7		
+//500		149,2		
+//600		178,7		
+//700		208,3		
+//800		237,8		
+//900		267,3		
+//1000		296,8	
+//1250		370,6	
+//1500		444,4	
+//1750		518,2	
+//2000		592		
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Resolution / Pixel = Coefficient
+//Coefficient * Length = FieldOfView
+// With FOV calculate the Distance of the Object to the Sensor
+//Distance = (FOV-b)/m
+IF PixelY = 0 OR PixelX = 0 THEN
+    ;
+ELSE
+    CoefficientX := CalcCoefficientFromResolutionAndPixel(Resolution := Calculating.ResolutionY, Pixel := PixelY);
+
+    FieldOfView.yValue := CalcFieldOfViewWithCoefficientAndObjectMeasurement
+    (
+        Coefficient := CoefficientX
+        , Height    := ValueY
+    );
+
+    Distance := (FieldOfView.yValue * gainX) + offsetX;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="CoordinatesInMillimeter" Id="{dba460d6-1093-0ca3-078d-7f6c972bbd77}" FolderPath="Data\">
+      <Declaration><![CDATA[PROPERTY CoordinatesInMillimeter: REFERENCE TO Coordinates]]></Declaration>
+      <Get Name="Get" Id="{e2207b1b-61c4-0080-0666-9dbc1107310c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[CoordinatesInMillimeter Ref= _coordinatesInMillimeter;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="DistanceFromObject" Id="{f312561c-d7ae-0ae0-0fe2-4ddcc1ea4d0c}" FolderPath="Data\">
+      <Declaration><![CDATA[PROPERTY DistanceFromObject : LREAL]]></Declaration>
+      <Get Name="Get" Id="{e1411f34-b7b3-09ae-2b6f-38e2f5850ae2}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[DistanceFromObject := _distanceFromHeight;
+    ]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ErrorId" Id="{1d508d26-d6d8-08b2-2f2f-4c457b84fdd6}" FolderPath="Status\">
+      <Declaration><![CDATA[{attribute 'monitoring' := 'call'}
+PROPERTY ErrorId : UINT]]></Declaration>
+      <Get Name="Get" Id="{e48cf6ff-706d-0f29-18f9-89e1920e6904}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ErrorId := udint_to_uint(_errorId);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="FB_init" Id="{873a52a0-6aca-0112-31d5-a9a916cfa53c}">
+      <Declaration><![CDATA[METHOD PUBLIC FB_init : BOOL
+VAR_INPUT
+    bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+    bInCopyCode  : BOOL; // if TRUE, the instance afterwards gets moved into the copy code (online change)
+    ParentObject : ITcoObject;
+    ResolutionX  : UINT;
+    ResolutionY  : UINT := 960;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// This is not clear to me... I from time to time the consumer code does not see 'FB_init' of 'TcoObject', that's why overridden here with super call...
+{warning disable C0316}
+SUPER^.FB_init(bInitRetains, bInCopyCode, ParentObject);
+
+THIS^._resolutionX := ResolutionX;
+This^._resolutionY := ResolutionY;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="FieldOfView" Id="{57b9f83f-34b0-0ea7-0663-04ccd42988ba}" FolderPath="Data\">
+      <Declaration><![CDATA[PROPERTY FieldOfView : REFERENCE TO FieldOfView]]></Declaration>
+      <Get Name="Get" Id="{208f3778-6745-0e75-38af-441f119323d0}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[FieldOfView REF= _fieldOfView;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="OnDone" Id="{d9d70bf2-57a1-0f50-18d7-e64a3cc4465a}" FolderPath="TcOpen\">
+      <Declaration><![CDATA[(*~
+    <docu>
+        <summary>
+            Executes when task reaches the ```Done``` state .
+        </summary>
+    </docu>
+~*)
+METHOD PROTECTED OnDone
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[{warning disable C0371}
+_fb_coe_read_ext(bExecute := False);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnError" Id="{1b2f2ec7-af0a-0bf8-388f-b0d450213da7}" FolderPath="TcOpen\">
+      <Declaration><![CDATA[(*~
+    <docu>
+        <summary>
+            Executes when task reaches the ```Error``` state.
+            <para>
+                Do not confuse with <see cref="PlcDocu.TcoCore.TcoTask.WhileError()"/>, that is called cyclically until '''Error''' state is left.
+            </para>
+        </summary>
+    </docu>
+~*)
+METHOD PROTECTED OnError
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[{warning disable C0371}
+_fb_coe_read_ext(nErrId => _errorId);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnStart" Id="{e7ce9761-a6b1-018f-2993-eb84164af652}" FolderPath="TcOpen\">
+      <Declaration><![CDATA[(*~
+	<docu>
+		<summary>
+			Executes ones when the task starts (at the moment of transition from the ```Requested``` state into the ```Busy``` state).
+		</summary>			
+	</docu>	
+~*)
+METHOD PROTECTED OnStart
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[{warning disable C0371}
+_fb_coe_read_ext(bExecute := FALSE);
+_state := 10;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="RawCoordinates" Id="{ea2504d8-236b-0b71-3f14-d969d6212ea9}" FolderPath="Data\">
+      <Declaration><![CDATA[PROPERTY RawCoordinates : REFERENCE TO Coordinates]]></Declaration>
+      <Get Name="Get" Id="{57bf78a2-4b8c-017f-284b-ace3d433d19a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[RawCoordinates REF= _rawCoordinates;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Restore" Id="{68818741-ee72-0c26-3fac-52ca55d6aede}" FolderPath="TcOpen\">
+      <Declaration><![CDATA[(*~
+    <docu>
+        <summary>
+            Restores this instance to the Ready state. Can be called explicitly or from within one of the restore mechanisms.
+            <para>
+                See also <see cref="PlcDocu.TcoCore.TcoTask.AutoRestorable()"/>
+            </para>
+        </summary>
+    </docu>
+~*)
+METHOD Restore : ITcoRestorable
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[{warning disable C0371}
+_fb_coe_read_ext(bExecute := FALSE);
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

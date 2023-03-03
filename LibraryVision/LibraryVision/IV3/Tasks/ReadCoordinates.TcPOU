@@ -11,27 +11,18 @@ VAR_INPUT
     ActionDesc : STRING(25);
 END_VAR
 VAR
-    _fb_coe_read_ext         : Tc2_EtherCAT.FB_EcCoESdoReadEx;
-    _timeout                 : TIME := Tc2_System.DEFAULT_ADS_TIMEOUT;
-    _state                   : INT  := 10;
-    _data                    : ARRAY[1..31] OF DINT;
-    _errorId                 : UDINT;
-    _rawCoordinates          : Coordinates;
-    _coeIndex                : UINT;
-    _distanceFromHeight      : LREAL;
-    _fieldOfView             : FieldOfView;
-    _coordinatesInMillimeter : Coordinates;
-END_VAR
-VAR CONSTANT
-    SIZE_OF_TWO_BYTES : UINT := 16;
-    ResolutionX       : UINT := 1280;
-    ResolutionY       : UINT := 960;
+    _fb_coe_read_ext : Tc2_EtherCAT.FB_EcCoESdoReadEx;
+    _timeout         : TIME := Tc2_System.DEFAULT_ADS_TIMEOUT;
+    _state           : INT  := 10;
+    _data            : ARRAY[1..31] OF DINT;
+    _errorId         : UDINT;
+    _rawCoordinates  : Coordinates;
+    _coeIndex        : UINT;
 
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
-IF (THIS^.Execute()) THEN
+      <ST><![CDATA[IF (THIS^.Execute()) THEN
     //ERror Case
 
     THIS^.ThrowWhen(StatusOfSystem.Error_Status);
@@ -70,21 +61,23 @@ IF (THIS^.Execute()) THEN
             _rawCoordinates.yValue        := SHR(_data[018], SIZE_OF_TWO_BYTES);
             _rawCoordinates.variableValue := SHR(_data[019], SIZE_OF_TWO_BYTES);
 
-            _state := 40;
+            _state := 80;
         40:
-            DistanceFromHeight
-            (
-                Resolution    := ResolutionY
-                , Pixel       := _rawCoordinates.variableValue
-                , Height      := THIS^.ResultValue
-                , FieldOfView => _fieldOfView
-                , Distance    => _distanceFromHeight
-            );
+//            Calculating
+//            (
+//                ResolutionY := ReadCoordinates.ResolutionY
+//                , PixelY    := _rawCoordinates.variableValue
+//                , ValueY    := THIS^.ResultValue
+//                , ResolutionX := ReadCoordinates.ResolutionX
+//                , PixelX := _rawCoordinates.
+//                , ValueX
+//                , FieldOfView => _fieldOfView
+//                , Distance    => _distanceFromHeight
+//            );
 
             _state := 80;
 
         50: // Calculate the Position in mm with FOV and Distance
-		
 
         80:
 
@@ -95,117 +88,9 @@ IF (THIS^.Execute()) THEN
     END_CASE
 END_IF]]></ST>
     </Implementation>
-    <Folder Name="Calculation" Id="{96ef91d7-efbb-03c2-2ac3-5a4d4671c693}" />
     <Folder Name="Data" Id="{e0b6aee7-66f0-056b-2996-f7cbb14397ea}" />
     <Folder Name="Status" Id="{4eca030c-7062-0dd6-349a-bd1a1711aa69}" />
     <Folder Name="TcOpen" Id="{40647fab-a281-09f1-3fc9-9c13dbcf1fe1}" />
-    <Method Name="CalcCoefficientFromResolutionAndPixel" Id="{01de50cb-748a-09b1-3db4-d3ed621575b9}" FolderPath="Calculation\">
-      <Declaration><![CDATA[METHOD PROTECTED CalcCoefficientFromResolutionAndPixel : LREAL
-VAR_INPUT
-    Resolution : LREAL;
-    Pixel      : LREAL;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[
-IF Pixel = 0 THEN
-    THIS^.Messenger.Error('Was ist los mit dir, teile nicht durch 0!');
-    CalcCoefficientFromResolutionAndPixel := 0;
-    RETURN;
-END_IF
-
-CalcCoefficientFromResolutionAndPixel := (Resolution / Pixel) * 10;
-]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="CalcFieldOfViewWithCoefficientAndObjectMeasurement" Id="{69ecf6b6-e253-0fc5-1524-20b5423151cb}" FolderPath="Calculation\">
-      <Declaration><![CDATA[METHOD PRIVATE CalcFieldOfViewWithCoefficientAndObjectMeasurement : LREAL
-VAR_INPUT
-    Coefficient : LREAL;
-    Height      : DINT;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[CalcFieldOfViewWithCoefficientAndObjectMeasurement := (Coefficient * DWORD_TO_LREAL(Height)) / 100;]]></ST>
-      </Implementation>
-    </Method>
-    <Property Name="CoordinatesInMillimeter" Id="{458c2b93-c4ce-0390-1b53-59fb42433448}" FolderPath="Data\">
-      <Declaration><![CDATA[PROPERTY CoordinatesInMillimeter: REFERENCE TO Coordinates]]></Declaration>
-      <Get Name="Get" Id="{03d8fcde-5f0a-08ee-0862-eda0d7135881}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[CoordinatesInMillimeter Ref= _coordinatesInMillimeter;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
-    <Method Name="DistanceFromHeight" Id="{dfccd550-8deb-0b1c-0956-40e0bd8ccc01}" FolderPath="Calculation\">
-      <Declaration><![CDATA[METHOD PRIVATE DistanceFromHeight
-VAR_OUTPUT
-    FieldOfView : FieldOfView;
-    Distance    : LREAL;
-END_VAR
-VAR_INPUT
-    Resolution : LREAL;
-    Pixel      : LREAL;
-    Height     : DINT;
-END_VAR
-VAR_INST
-    //lineare Regression
-    offset      : LREAL := -5.57888;
-    gain        : LREAL := 3.387877;
-    Coefficient : LREAL;
-END_VAR
-//in mm     Breite
-//50		16,4		
-//100		31,2		
-//200		60,7		
-//300		90,2		
-//400		119,7		
-//500		149,2		
-//600		178,7		
-//700		208,3		
-//800		237,8		
-//900		267,3		
-//1000		296,8	
-//1250		370,6	
-//1500		444,4	
-//1750		518,2	
-//2000		592		
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[// Resolution / Pixel = Coefficient
-//Coefficient * Length = FieldOfView
-// With FOV calculate the Distance of the Object to the Sensor
-//Distance = (FOV-b)/m
-if Pixel = 0 then
-    ;
-ELSE
-    Coefficient := CalcCoefficientFromResolutionAndPixel(Resolution := Resolution, Pixel := Pixel);
-
-    FieldOfView.yValue := CalcFieldOfViewWithCoefficientAndObjectMeasurement
-    (
-        Coefficient := Coefficient
-        , Height    := Height
-    );
-
-    Distance := (FieldOfView.yValue * gain) + offset;
-END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Property Name="DistanceFromObject" Id="{aee7e2bd-6ce6-0f90-1195-594df40573f1}" FolderPath="Data\">
-      <Declaration><![CDATA[PROPERTY DistanceFromObject : LREAL]]></Declaration>
-      <Get Name="Get" Id="{ffc61c06-81f9-04af-2b60-94384cabd68d}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[DistanceFromObject := _distanceFromHeight;
-    ]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
     <Property Name="ErrorId" Id="{b9119104-ded0-043b-25ee-e9d4629d40a2}" FolderPath="Status\">
       <Declaration><![CDATA[{attribute 'monitoring' := 'call'}
 PROPERTY ErrorId : UINT]]></Declaration>
@@ -235,18 +120,6 @@ SUPER^.FB_init(bInitRetains, bInCopyCode, ParentObject);
 _coeIndex         := CoeIndex;]]></ST>
       </Implementation>
     </Method>
-    <Property Name="FieldOfView" Id="{c2ac5c77-7f0d-00fd-2123-c8e4da7e3178}" FolderPath="Data\">
-      <Declaration><![CDATA[PROPERTY FieldOfView : REFERENCE TO FieldOfView]]></Declaration>
-      <Get Name="Get" Id="{be6ceab3-e4f2-0008-1254-217b6672f55b}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[FieldOfView REF= _fieldOfView;
-]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
     <Method Name="OnDone" Id="{0ddc4aae-67b7-0e6e-3397-57c4de466ff6}" FolderPath="TcOpen\">
       <Declaration><![CDATA[(*~
     <docu>

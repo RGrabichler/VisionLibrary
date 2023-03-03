@@ -10,9 +10,8 @@ VAR
     _coordinate         : BOOL;
     _coordinates        : ARRAY[0..2] OF LibraryVision.Coordinates;
     _distanceFromObject : LREAL;
+    _fieldOfView        : FieldOfView;
 END_VAR
-
-
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[counter := counter + 1;
@@ -37,12 +36,12 @@ IF _coordinate THEN
     IF _IvController.ReadTool1CoordinatesMethod().Done
            and _IvController.ReadTool2CoordinatesMethod().Done
            and _IvController.ReadTool3CoordinatesMethod().Done THEN
-        _coordinate     := FALSE;
-        _coordinates[0] := _IvController.RawCoordinatesTool1;
-        _coordinates[1] := _IvController.RawCoordinatesTool2;
-        _coordinates[2] := _IvController.RawCoordinatesTool3;
-
-        _distanceFromObject := _IvController._readTool2CoordinatesTask.DistanceFromObject;
+        _coordinate         := FALSE;
+        _coordinates[0]     := _IvController.RawCoordinatesTool1;
+        _coordinates[1]     := _IvController.RawCoordinatesTool2;
+        _coordinates[2]     := _IvController.RawCoordinatesTool3;
+//        _distanceFromObject := _IvController._readTool2CoordinatesTask.DistanceFromObject;
+//        _fieldOfView        := _IvController._readTool2CoordinatesTask.FieldOfView;
     END_IF
 END_IF
 
