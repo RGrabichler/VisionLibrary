@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ID06_Status_53654560" Id="{6e3180b6-5c10-0a59-0ecf-8ad19c7d82f1}">
+    <Declaration><![CDATA[{attribute 'GeneratedUsingTerminal: DL-EC1A-0000'}
+{attribute addProperty BoxType "DL-EC1A-0000"}
+{attribute addProperty Id "Clear_Error_AckAT %I*BOOL1BusyAT %I*BOOL1Logic_03AT %I*BOOL1Tool_04_StatusAT %I*BOOL1Program_Num_05AT %I*BOOL1Tool_04_InvalidAT %I*BOOL1"}
+{attribute addProperty CRC "1399145824"}
+{attribute addProperty Size "6"}
+TYPE ID06_Status_53654560 EXTENDS InputBase_8311D824 :
+STRUCT
+	{attribute addProperty Name "Clear_Error_Ack"}
+	Clear_Error_Ack AT %I* : BOOL;
+	{attribute addProperty Name "Busy"}
+	Busy AT %I* : BOOL;
+	{attribute addProperty Name "Logic_03"}
+	Logic_03 AT %I* : BOOL;
+	{attribute addProperty Name "Tool_04_Status"}
+	Tool_04_Status AT %I* : BOOL;
+	{attribute addProperty Name "Program_Num_05"}
+	Program_Num_05 AT %I* : BOOL;
+	{attribute addProperty Name "Tool_04_Invalid"}
+	Tool_04_Invalid AT %I* : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

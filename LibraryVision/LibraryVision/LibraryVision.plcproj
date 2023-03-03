@@ -1,4 +1,5 @@
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <FileVersion>1.0.0.0</FileVersion>
     <SchemaVersion>2.0</SchemaVersion>
@@ -19,21 +20,11 @@
     <Released>false</Released>
     <Title>LibraryVision</Title>
     <ProjectVersion>0.9.9.9</ProjectVersion>
-    <LibraryCategories>
-      <LibraryCategory xmlns="">
-        <Id>{be549c8e-54c2-41a3-bf8e-7f8b7c7453e8}</Id>
-        <Version>1.0.0.0</Version>
-        <DefaultName>RG</DefaultName>
-      </LibraryCategory>
-    </LibraryCategories>
-    <SelectedLibraryCategories>
-      <Id xmlns="">{be549c8e-54c2-41a3-bf8e-7f8b7c7453e8}</Id>
-    </SelectedLibraryCategories>
     <DefaultNamespace>LibraryVision</DefaultNamespace>
     <Placeholder>LibraryVision</Placeholder>
     <Author>RG</Author>
     <CombineIds>true</CombineIds>
-    <CompilerVersion>3.1.4024.0</CompilerVersion>
+    <PreserveCompiledLibComments>false</PreserveCompiledLibComments>
   </PropertyGroup>
   <ItemGroup>
     <None Include="LibraryVision.tmc">
@@ -41,20 +32,23 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Context">
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </Folder>
+    <Folder Include="Context" />
+    <Folder Include="DUTs" />
     <Folder Include="IV3" />
-    <Folder Include="IV3\DUTs" />
-    <Folder Include="IV3\DUTs\CoE" />
-    <Folder Include="IV3\DUTs\General" />
-    <Folder Include="IV3\DUTs\General\InfoEthercat" />
-    <Folder Include="IV3\DUTs\General\InfoEthercat\General" />
-    <Folder Include="IV3\DUTs\ProcessData" />
-    <Folder Include="IV3\DUTs\ProcessData\PDOs" />
+    <Folder Include="IV3\Dut" />
+    <Folder Include="IV3\Dut\CoE" />
+    <Folder Include="IV3\Dut\IO" />
+    <Folder Include="IV3\Dut\IO\Base" />
+    <Folder Include="IV3\Dut\IO\Boxes" />
+    <Folder Include="IV3\Dut\IO\Devices" />
+    <Folder Include="IV3\Dut\IO\PdoEntries" />
+    <Folder Include="IV3\Dut\IO\PDOs" />
+    <Folder Include="IV3\Dut\IO\PDOs\BitValues" />
+    <Folder Include="IV3\Dut\IO\Topology" />
     <Folder Include="IV3\Tasks" />
     <Folder Include="Project Information" />
     <Folder Include="Version" />
+    <Folder Include="GVLs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\MainStation.TcPOU">
@@ -66,43 +60,154 @@
     <Compile Include="Context\TcUnitContext.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\DUTs\CoE\GeneralDeviceInformation.TcDUT">
+    <Compile Include="IV3\Dut\CoE\GeneralDeviceInformation.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\DUTs\CoE\IdentityCoe.TcDUT">
+    <Compile Include="IV3\Dut\CoE\IdentityCoe.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\DUTs\General\InfoEthercat\General\InfoData.TcDUT">
+    <Compile Include="IV3\Dut\Coordinates.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\DUTs\General\InfoEthercat\General\StatusOfSystem.TcDUT">
+    <Compile Include="IV3\Dut\FieldOfView.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\DUTs\General\InfoEthercat\General\WcState.TcDUT">
+    <Compile Include="IV3\Dut\IO\Base\EtcMasterBase_62654B43.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\DUTs\ProcessData\Coordinates.TcDUT">
+    <Compile Include="IV3\Dut\IO\Base\EtcSlaveBase_82538BE2.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\DUTs\ProcessData\FieldOfView.TcDUT">
+    <Compile Include="IV3\Dut\IO\Base\EtcSlaveBoxBase_77A0E4A7.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\DUTs\ProcessData\PDOs\Iv3Id01Status.TcDUT">
+    <Compile Include="IV3\Dut\IO\Base\EtcSlaveEndTerminalBase_866C7F0C.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\DUTs\ProcessData\PDOs\Iv3InputRequestResponse1.TcDUT">
+    <Compile Include="IV3\Dut\IO\Base\EtcSlaveTerminalBase_947E5A46.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\DUTs\ProcessData\PDOs\Iv3InputRequestResponse2.TcDUT">
+    <Compile Include="IV3\Dut\IO\Base\InputBase_8311D824.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\DUTs\ProcessData\PDOs\Iv3InputRequestResponse3.TcDUT">
+    <Compile Include="IV3\Dut\IO\Base\OutputBase_10CEE7DE.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\DUTs\ProcessData\PDOs\Iv3InputRequestResponse4.TcDUT">
+    <Compile Include="IV3\Dut\IO\Base\SyncUnitsBase_AD6C35CE.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IV3\DUTs\ProcessData\PDOs\Iv3InputRequestResponse5.TcDUT">
+    <Compile Include="IV3\Dut\IO\Base\SyncUnitTaskBase_FCD3CBF3.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\Base\SyncUnitTasksBase_7C8711EB.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\Boxes\DL_0DFC6FD0.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\Devices\SyncUnits_67D36DDA.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\Devices\SyncUnitTasks_4BE01469.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\Devices\SyncUnitTask_AB2F5079.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\BitValues\Iv3InputRequestResponse1.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\BitValues\Iv3InputRequestResponse2.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\BitValues\Iv3InputRequestResponse3.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\BitValues\Iv3InputRequestResponse4.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\BitValues\Iv3InputRequestResponse5.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\ID01_Current_Value_77FC57FC.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\ID01_Status_E1C6FBA3.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\ID02_Current_Value_2029C75E.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\ID02_Status_C7C2AD88.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\ID03_Current_Value_A14E112B.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\ID03_Status_297167A2.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\ID04_Current_Value_26277603.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\ID04_Status_36F71AF9.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\ID05_Current_Value_A740A076.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\ID05_Status_AEA1C467.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\ID06_Current_Value_2C34A5E4.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\ID06_Status_53654560.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\ID07_Current_Value_AD537391.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\ID07_Status_5D844829.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\ID08_Current_Value_2A3A14B9.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\ID08_Status_2F63DDED.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\InfoData_32EB74EA.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\InfoData_8649EEEB.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\InfoData_E68C61CD.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\Inputs_A65FACA4.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\Input_Request.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\Input_Response.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\Outputs_23C0ED1D.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\Status_of_System.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\WcState_0B2B16F9.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\PDOs\WcState_9091E0EB.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Dut\IO\Topology\Device_2_EtherCAT_3A403830.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IV3\IVController.TcPOU">
@@ -116,15 +221,12 @@
     </Compile>
     <Compile Include="Project Information\F_GetCompany.TcPOU">
       <SubType>Code</SubType>
-      <SystemCall>true</SystemCall>
     </Compile>
     <Compile Include="Project Information\F_GetTitle.TcPOU">
       <SubType>Code</SubType>
-      <SystemCall>true</SystemCall>
     </Compile>
     <Compile Include="Project Information\F_GetVersion.TcPOU">
       <SubType>Code</SubType>
-      <SystemCall>true</SystemCall>
     </Compile>
     <Compile Include="Version\Global_Version.TcGVL">
       <SubType>Code</SubType>
@@ -182,68 +284,60 @@
       <XmlArchive>
         <Data>
           <o xml:space="preserve" t="OptionKey">
-      <v n="Name">"&lt;ProjectRoot&gt;"</v>
-      <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
-        <v>{192FAD59-8248-4824-A8DE-9177C94C195A}</v>
-        <o>
-          <v n="Name">"{192FAD59-8248-4824-A8DE-9177C94C195A}"</v>
-          <d n="SubKeys" t="Hashtable" />
-          <d n="Values" t="Hashtable" />
-        </o>
-        <v>{8F99A816-E488-41E4-9FA3-846536012284}</v>
-        <o>
-          <v n="Name">"{8F99A816-E488-41E4-9FA3-846536012284}"</v>
-          <d n="SubKeys" t="Hashtable" />
-          <d n="Values" t="Hashtable" />
-        </o>
-        <v>{29BD8D0C-3586-4548-BB48-497B9A01693F}</v>
-        <o>
-          <v n="Name">"{29BD8D0C-3586-4548-BB48-497B9A01693F}"</v>
-          <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
-            <v>Rules</v>
-            <o>
-              <v n="Name">"Rules"</v>
-              <d n="SubKeys" t="Hashtable" />
-              <d n="Values" t="Hashtable" />
-            </o>
-          </d>
-          <d n="Values" t="Hashtable" />
-        </o>
-        <v>{40450F57-0AA3-4216-96F3-5444ECB29763}</v>
-        <o>
-          <v n="Name">"{40450F57-0AA3-4216-96F3-5444ECB29763}"</v>
-          <d n="SubKeys" t="Hashtable" />
-          <d n="Values" t="Hashtable" ckt="String" cvt="String">
-            <v>ActiveVisuProfile</v>
-            <v>IR0whWr8bwfwBwAAiD2qpQAAAABVAgAA37x72QAAAAABAAAAAAAAAAEaUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwACTHsAZgA5ADUAYgBiADQAMgA2AC0ANQA1ADIANAAtADQAYgA0ADUALQA5ADQAMAAwAC0AZgBiADAAZgAyAGUANwA3AGUANQAxAGIAfQADCE4AYQBtAGUABDBUAHcAaQBuAEMAQQBUACAAMwAuADEAIABCAHUAaQBsAGQAIAA0ADAAMgA0AC4ANwAFFlAAcgBvAGYAaQBsAGUARABhAHQAYQAGTHsAMQA2AGUANQA1AGIANgAwAC0ANwAwADQAMwAtADQAYQA2ADMALQBiADYANQBiAC0ANgAxADQANwAxADMAOAA3ADgAZAA0ADIAfQAHEkwAaQBiAHIAYQByAGkAZQBzAAhMewAzAGIAZgBkADUANAA1ADkALQBiADAANwBmAC0ANABkADYAZQAtAGEAZQAxAGEALQBhADgAMwAzADUANgBhADUANQAxADQAMgB9AAlMewA5AGMAOQA1ADgAOQA2ADgALQAyAGMAOAA1AC0ANAAxAGIAYgAtADgAOAA3ADEALQA4ADkANQBmAGYAMQBmAGUAZABlADEAYQB9AAoOVgBlAHIAcwBpAG8AbgALBmkAbgB0AAwKVQBzAGEAZwBlAA0KVABpAHQAbABlAA4aVgBpAHMAdQBFAGwAZQBtAE0AZQB0AGUAcgAPDkMAbwBtAHAAYQBuAHkAEAxTAHkAcwB0AGUAbQARElYAaQBzAHUARQBsAGUAbQBzABIwVgBpAHMAdQBFAGwAZQBtAHMAUwBwAGUAYwBpAGEAbABDAG8AbgB0AHIAbwBsAHMAEyhWAGkAcwB1AEUAbABlAG0AcwBXAGkAbgBDAG8AbgB0AHIAbwBsAHMAFCRWAGkAcwB1AEUAbABlAG0AVABlAHgAdABFAGQAaQB0AG8AcgAVIlYAaQBzAHUATgBhAHQAaQB2AGUAQwBvAG4AdAByAG8AbAAWFHYAaQBzAHUAaQBuAHAAdQB0AHMAFwxzAHkAcwB0AGUAbQAYGFYAaQBzAHUARQBsAGUAbQBCAGEAcwBlABkmRABlAHYAUABsAGEAYwBlAGgAbwBsAGQAZQByAHMAVQBzAGUAZAAaCGIAbwBvAGwAGyJQAGwAdQBnAGkAbgBDAG8AbgBzAHQAcgBhAGkAbgB0AHMAHEx7ADQAMwBkADUAMgBiAGMAZQAtADkANAAyAGMALQA0ADQAZAA3AC0AOQBlADkANAAtADEAYgBmAGQAZgAzADEAMABlADYAMwBjAH0AHRxBAHQATABlAGEAcwB0AFYAZQByAHMAaQBvAG4AHhRQAGwAdQBnAGkAbgBHAHUAaQBkAB8WUwB5AHMAdABlAG0ALgBHAHUAaQBkACBIYQBmAGMAZAA1ADQANAA2AC0ANAA5ADEANAAtADQAZgBlADcALQBiAGIANwA4AC0AOQBiAGYAZgBlAGIANwAwAGYAZAAxADcAIRRVAHAAZABhAHQAZQBJAG4AZgBvACJMewBiADAAMwAzADYANgBhADgALQBiADUAYwAwAC0ANABiADkAYQAtAGEAMAAwAGUALQBlAGIAOAA2ADAAMQAxADEAMAA0AGMAMwB9ACMOVQBwAGQAYQB0AGUAcwAkTHsAMQA4ADYAOABmAGYAYwA5AC0AZQA0AGYAYwAtADQANQAzADIALQBhAGMAMAA2AC0AMQBlADMAOQBiAGIANQA1ADcAYgA2ADkAfQAlTHsAYQA1AGIAZAA0ADgAYwAzAC0AMABkADEANwAtADQAMQBiADUALQBiADEANgA0AC0ANQBmAGMANgBhAGQAMgBiADkANgBiADcAfQAmFk8AYgBqAGUAYwB0AHMAVAB5AHAAZQAnVFUAcABkAGEAdABlAEwAYQBuAGcAdQBhAGcAZQBNAG8AZABlAGwARgBvAHIAQwBvAG4AdgBlAHIAdABpAGIAbABlAEwAaQBiAHIAYQByAGkAZQBzACgQTABpAGIAVABpAHQAbABlACkUTABpAGIAQwBvAG0AcABhAG4AeQAqHlUAcABkAGEAdABlAFAAcgBvAHYAaQBkAGUAcgBzACs4UwB5AHMAdABlAG0ALgBDAG8AbABsAGUAYwB0AGkAbwBuAHMALgBIAGEAcwBoAHQAYQBiAGwAZQAsEnYAaQBzAHUAZQBsAGUAbQBzAC1INgBjAGIAMQBjAGQAZQAxAC0AZAA1AGQAYwAtADQAYQAzAGIALQA5ADAANQA0AC0AMgAxAGYAYQA3ADUANgBhADMAZgBhADQALihJAG4AdABlAHIAZgBhAGMAZQBWAGUAcgBzAGkAbwBuAEkAbgBmAG8AL0x7AGMANgAxADEAZQA0ADAAMAAtADcAZgBiADkALQA0AGMAMwA1AC0AYgA5AGEAYwAtADQAZQAzADEANABiADUAOQA5ADYANAAzAH0AMBhNAGEAagBvAHIAVgBlAHIAcwBpAG8AbgAxGE0AaQBuAG8AcgBWAGUAcgBzAGkAbwBuADIMTABlAGcAYQBjAHkAMzBMAGEAbgBnAHUAYQBnAGUATQBvAGQAZQBsAFYAZQByAHMAaQBvAG4ASQBuAGYAbwA0MEwAbwBhAGQATABpAGIAcgBhAHIAaQBlAHMASQBuAHQAbwBQAHIAbwBqAGUAYwB0ADUaQwBvAG0AcABhAHQAaQBiAGkAbABpAHQAeQDQAAIaA9ADAS0E0AUGGgfQBwgaAUUHCQjQAAkaBEUKCwQDAAAABQAAAA0AAAAAAAAA0AwLrQIAAADQDQEtDtAPAS0Q0AAJGgRFCgsEAwAAAAUAAAANAAAAKAAAANAMC60BAAAA0A0BLRHQDwEtENAACRoERQoLBAMAAAAFAAAADQAAAAAAAADQDAutAgAAANANAS0S0A8BLRDQAAkaBEUKCwQDAAAABQAAAA0AAAAUAAAA0AwLrQIAAADQDQEtE9APAS0Q0AAJGgRFCgsEAwAAAAUAAAANAAAAAAAAANAMC60CAAAA0A0BLRTQDwEtENAACRoERQoLBAMAAAAFAAAADQAAAAAAAADQDAutAgAAANANAS0V0A8BLRDQAAkaBEUKCwQDAAAABQAAAA0AAAAAAAAA0AwLrQIAAADQDQEtFtAPAS0X0AAJGgRFCgsEAwAAAAUAAAANAAAAKAAAANAMC60EAAAA0A0BLRjQDwEtENAZGq0BRRscAdAAHBoCRR0LBAMAAAAFAAAADQAAAAAAAADQHh8tINAhIhoCRSMkAtAAJRoFRQoLBAMAAAADAAAAAAAAAAoAAADQJgutAAAAANADAS0n0CgBLRHQKQEtENAAJRoFRQoLBAMAAAADAAAAAAAAAAoAAADQJgutAQAAANADAS0n0CgBLRHQKQEtEJoqKwFFAAEC0AABLSzQAAEtF9AAHy0t0C4vGgPQMAutAQAAANAxC60XAAAA0DIarQDQMy8aA9AwC60CAAAA0DELrQMAAADQMhqtANA0Gq0A0DUarQA=</v>
-          </d>
-        </o>
-        <v>{535658C0-5AF5-460d-99A4-BFFB984A829A}</v>
-        <o>
-          <v n="Name">"{535658C0-5AF5-460d-99A4-BFFB984A829A}"</v>
-          <d n="SubKeys" t="Hashtable" />
-          <d n="Values" t="Hashtable" ckt="String" cvt="ExactVersionConstraintToSave">
-            <v>VersionConstraint</v>
-            <o>
-              <v n="TheVersion">"3.1.4024.0"</v>
-            </o>
-          </d>
-        </o>
-        <v>{F66C7017-BDD8-4114-926C-81D6D687E35F}</v>
-        <o>
-          <v n="Name">"{F66C7017-BDD8-4114-926C-81D6D687E35F}"</v>
-          <d n="SubKeys" t="Hashtable" />
-          <d n="Values" t="Hashtable" />
-        </o>
-        <v>{246001F4-279D-43AC-B241-948EB31120E1}</v>
-        <o>
-          <v n="Name">"{246001F4-279D-43AC-B241-948EB31120E1}"</v>
-          <d n="SubKeys" t="Hashtable" />
-          <d n="Values" t="Hashtable" />
-        </o>
-      </d>
-      <d n="Values" t="Hashtable" />
-    </o>
+            <v n="Name">"&lt;ProjectRoot&gt;"</v>
+            <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
+              <v>{192FAD59-8248-4824-A8DE-9177C94C195A}</v>
+              <o>
+                <v n="Name">"{192FAD59-8248-4824-A8DE-9177C94C195A}"</v>
+                <d n="SubKeys" t="Hashtable" />
+                <d n="Values" t="Hashtable" />
+              </o>
+              <v>{8F99A816-E488-41E4-9FA3-846536012284}</v>
+              <o>
+                <v n="Name">"{8F99A816-E488-41E4-9FA3-846536012284}"</v>
+                <d n="SubKeys" t="Hashtable" />
+                <d n="Values" t="Hashtable" />
+              </o>
+              <v>{29BD8D0C-3586-4548-BB48-497B9A01693F}</v>
+              <o>
+                <v n="Name">"{29BD8D0C-3586-4548-BB48-497B9A01693F}"</v>
+                <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
+                  <v>Rules</v>
+                </d>
+                <d n="Values" t="Hashtable" />
+              </o>
+              <v>{40450F57-0AA3-4216-96F3-5444ECB29763}</v>
+              <o>
+                <v n="Name">"{40450F57-0AA3-4216-96F3-5444ECB29763}"</v>
+                <d n="SubKeys" t="Hashtable" />
+                <d n="Values" t="Hashtable" ckt="String" cvt="String">
+                  <v>ActiveVisuProfile</v>
+                  <v>IR0whWr8bwfwBwAAiD2qpQAAAABVAgAA37x72QAAAAABAAAAAAAAAAEaUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwACTHsAZgA5ADUAYgBiADQAMgA2AC0ANQA1ADIANAAtADQAYgA0ADUALQA5ADQAMAAwAC0AZgBiADAAZgAyAGUANwA3AGUANQAxAGIAfQADCE4AYQBtAGUABDBUAHcAaQBuAEMAQQBUACAAMwAuADEAIABCAHUAaQBsAGQAIAA0ADAAMgA0AC4ANwAFFlAAcgBvAGYAaQBsAGUARABhAHQAYQAGTHsAMQA2AGUANQA1AGIANgAwAC0ANwAwADQAMwAtADQAYQA2ADMALQBiADYANQBiAC0ANgAxADQANwAxADMAOAA3ADgAZAA0ADIAfQAHEkwAaQBiAHIAYQByAGkAZQBzAAhMewAzAGIAZgBkADUANAA1ADkALQBiADAANwBmAC0ANABkADYAZQAtAGEAZQAxAGEALQBhADgAMwAzADUANgBhADUANQAxADQAMgB9AAlMewA5AGMAOQA1ADgAOQA2ADgALQAyAGMAOAA1AC0ANAAxAGIAYgAtADgAOAA3ADEALQA4ADkANQBmAGYAMQBmAGUAZABlADEAYQB9AAoOVgBlAHIAcwBpAG8AbgALBmkAbgB0AAwKVQBzAGEAZwBlAA0KVABpAHQAbABlAA4aVgBpAHMAdQBFAGwAZQBtAE0AZQB0AGUAcgAPDkMAbwBtAHAAYQBuAHkAEAxTAHkAcwB0AGUAbQARElYAaQBzAHUARQBsAGUAbQBzABIwVgBpAHMAdQBFAGwAZQBtAHMAUwBwAGUAYwBpAGEAbABDAG8AbgB0AHIAbwBsAHMAEyhWAGkAcwB1AEUAbABlAG0AcwBXAGkAbgBDAG8AbgB0AHIAbwBsAHMAFCRWAGkAcwB1AEUAbABlAG0AVABlAHgAdABFAGQAaQB0AG8AcgAVIlYAaQBzAHUATgBhAHQAaQB2AGUAQwBvAG4AdAByAG8AbAAWFHYAaQBzAHUAaQBuAHAAdQB0AHMAFwxzAHkAcwB0AGUAbQAYGFYAaQBzAHUARQBsAGUAbQBCAGEAcwBlABkmRABlAHYAUABsAGEAYwBlAGgAbwBsAGQAZQByAHMAVQBzAGUAZAAaCGIAbwBvAGwAGyJQAGwAdQBnAGkAbgBDAG8AbgBzAHQAcgBhAGkAbgB0AHMAHEx7ADQAMwBkADUAMgBiAGMAZQAtADkANAAyAGMALQA0ADQAZAA3AC0AOQBlADkANAAtADEAYgBmAGQAZgAzADEAMABlADYAMwBjAH0AHRxBAHQATABlAGEAcwB0AFYAZQByAHMAaQBvAG4AHhRQAGwAdQBnAGkAbgBHAHUAaQBkAB8WUwB5AHMAdABlAG0ALgBHAHUAaQBkACBIYQBmAGMAZAA1ADQANAA2AC0ANAA5ADEANAAtADQAZgBlADcALQBiAGIANwA4AC0AOQBiAGYAZgBlAGIANwAwAGYAZAAxADcAIRRVAHAAZABhAHQAZQBJAG4AZgBvACJMewBiADAAMwAzADYANgBhADgALQBiADUAYwAwAC0ANABiADkAYQAtAGEAMAAwAGUALQBlAGIAOAA2ADAAMQAxADEAMAA0AGMAMwB9ACMOVQBwAGQAYQB0AGUAcwAkTHsAMQA4ADYAOABmAGYAYwA5AC0AZQA0AGYAYwAtADQANQAzADIALQBhAGMAMAA2AC0AMQBlADMAOQBiAGIANQA1ADcAYgA2ADkAfQAlTHsAYQA1AGIAZAA0ADgAYwAzAC0AMABkADEANwAtADQAMQBiADUALQBiADEANgA0AC0ANQBmAGMANgBhAGQAMgBiADkANgBiADcAfQAmFk8AYgBqAGUAYwB0AHMAVAB5AHAAZQAnVFUAcABkAGEAdABlAEwAYQBuAGcAdQBhAGcAZQBNAG8AZABlAGwARgBvAHIAQwBvAG4AdgBlAHIAdABpAGIAbABlAEwAaQBiAHIAYQByAGkAZQBzACgQTABpAGIAVABpAHQAbABlACkUTABpAGIAQwBvAG0AcABhAG4AeQAqHlUAcABkAGEAdABlAFAAcgBvAHYAaQBkAGUAcgBzACs4UwB5AHMAdABlAG0ALgBDAG8AbABsAGUAYwB0AGkAbwBuAHMALgBIAGEAcwBoAHQAYQBiAGwAZQAsEnYAaQBzAHUAZQBsAGUAbQBzAC1INgBjAGIAMQBjAGQAZQAxAC0AZAA1AGQAYwAtADQAYQAzAGIALQA5ADAANQA0AC0AMgAxAGYAYQA3ADUANgBhADMAZgBhADQALihJAG4AdABlAHIAZgBhAGMAZQBWAGUAcgBzAGkAbwBuAEkAbgBmAG8AL0x7AGMANgAxADEAZQA0ADAAMAAtADcAZgBiADkALQA0AGMAMwA1AC0AYgA5AGEAYwAtADQAZQAzADEANABiADUAOQA5ADYANAAzAH0AMBhNAGEAagBvAHIAVgBlAHIAcwBpAG8AbgAxGE0AaQBuAG8AcgBWAGUAcgBzAGkAbwBuADIMTABlAGcAYQBjAHkAMzBMAGEAbgBnAHUAYQBnAGUATQBvAGQAZQBsAFYAZQByAHMAaQBvAG4ASQBuAGYAbwA0MEwAbwBhAGQATABpAGIAcgBhAHIAaQBlAHMASQBuAHQAbwBQAHIAbwBqAGUAYwB0ADUaQwBvAG0AcABhAHQAaQBiAGkAbABpAHQAeQDQAAIaA9ADAS0E0AUGGgfQBwgaAUUHCQjQAAkaBEUKCwQDAAAABQAAAA0AAAAAAAAA0AwLrQIAAADQDQEtDtAPAS0Q0AAJGgRFCgsEAwAAAAUAAAANAAAAKAAAANAMC60BAAAA0A0BLRHQDwEtENAACRoERQoLBAMAAAAFAAAADQAAAAAAAADQDAutAgAAANANAS0S0A8BLRDQAAkaBEUKCwQDAAAABQAAAA0AAAAUAAAA0AwLrQIAAADQDQEtE9APAS0Q0AAJGgRFCgsEAwAAAAUAAAANAAAAAAAAANAMC60CAAAA0A0BLRTQDwEtENAACRoERQoLBAMAAAAFAAAADQAAAAAAAADQDAutAgAAANANAS0V0A8BLRDQAAkaBEUKCwQDAAAABQAAAA0AAAAAAAAA0AwLrQIAAADQDQEtFtAPAS0X0AAJGgRFCgsEAwAAAAUAAAANAAAAKAAAANAMC60EAAAA0A0BLRjQDwEtENAZGq0BRRscAdAAHBoCRR0LBAMAAAAFAAAADQAAAAAAAADQHh8tINAhIhoCRSMkAtAAJRoFRQoLBAMAAAADAAAAAAAAAAoAAADQJgutAAAAANADAS0n0CgBLRHQKQEtENAAJRoFRQoLBAMAAAADAAAAAAAAAAoAAADQJgutAQAAANADAS0n0CgBLRHQKQEtEJoqKwFFAAEC0AABLSzQAAEtF9AAHy0t0C4vGgPQMAutAQAAANAxC60XAAAA0DIarQDQMy8aA9AwC60CAAAA0DELrQMAAADQMhqtANA0Gq0A0DUarQA=</v>
+                </d>
+              </o>
+              <v>{535658C0-5AF5-460d-99A4-BFFB984A829A}</v>
+              <o>
+                <v n="Name">"{535658C0-5AF5-460d-99A4-BFFB984A829A}"</v>
+                <d n="SubKeys" t="Hashtable" />
+                <d n="Values" t="Hashtable" ckt="String" cvt="ExactVersionConstraintToSave">
+                  <v>VersionConstraint</v>
+                </d>
+              </o>
+              <v>{F66C7017-BDD8-4114-926C-81D6D687E35F}</v>
+              <o>
+                <v n="Name">"{F66C7017-BDD8-4114-926C-81D6D687E35F}"</v>
+                <d n="SubKeys" t="Hashtable" />
+                <d n="Values" t="Hashtable" />
+              </o>
+              <v>{246001F4-279D-43AC-B241-948EB31120E1}</v>
+              <o>
+                <v n="Name">"{246001F4-279D-43AC-B241-948EB31120E1}"</v>
+                <d n="SubKeys" t="Hashtable" />
+                <d n="Values" t="Hashtable" />
+              </o>
+            </d>
+            <d n="Values" t="Hashtable" />
+          </o>
         </Data>
         <TypeList>
           <Type n="ExactVersionConstraintToSave">{f9079115-a4ba-4f30-bf7c-9e76613146fc}</Type>

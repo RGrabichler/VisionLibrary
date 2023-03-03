@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="IdentityCoe" Id="{8de47be8-4b07-0550-0016-6ee7405156fe}">
+    <Declaration><![CDATA[TYPE
+    IdentityCoe :
+    STRUCT
+        VendorId     : DWORD;
+        ProductKey   : DWORD;
+        Revision     : DWORD;
+        SerialNumber : DWORD;
+    END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

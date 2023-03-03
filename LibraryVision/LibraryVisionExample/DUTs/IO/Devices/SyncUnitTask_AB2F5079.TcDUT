@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.2.0.0" ProductVersion="3.1.4024.12">
+  <DUT Name="SyncUnitTask_AB2F5079" Id="{1bfc7e01-e54f-09dd-210c-4e388e50d3b3}">
+    <Declaration><![CDATA[{attribute 'GeneratedUsingTerminal: IODEVICETYPE_ETHERCATPROT'}
+{attribute addProperty BoxType "IODEVICETYPE_ETHERCATPROT"}
+{attribute addProperty Id "WcStateAT %I*WcState_0B2B16F91InfoDataAT %I*InfoData_8649EEEB8"}
+{attribute addProperty CRC "2872004729"}
+{attribute addProperty Size "9"}
+TYPE SyncUnitTask_AB2F5079 EXTENDS SyncUnitTaskBase_FCD3CBF3 :
+STRUCT
+	{attribute addProperty Name "WcState"}
+	WcState : WcState_0B2B16F9;
+	{attribute addProperty Name "InfoData"}
+	InfoData : InfoData_8649EEEB;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

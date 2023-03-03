@@ -15,5 +15,8 @@
 			<Project File="LibraryVision.xti"/>
 			<Project File="LibraryVisionExample.xti"/>
 		</Plc>
+		<Io>
+			<Device File="Device 2 (EtherCAT).xti" Id="2"/>
+		</Io>
 	</Project>
 </TcSmProject>

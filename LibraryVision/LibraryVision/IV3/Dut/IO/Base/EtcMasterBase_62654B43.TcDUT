@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="EtcMasterBase_62654B43" Id="{d13a95a4-d79f-0603-37d5-c6831f240e9d}">
+    <Declaration><![CDATA[
+TYPE EtcMasterBase_62654B43 :
+STRUCT
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

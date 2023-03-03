@@ -673,7 +673,7 @@
 		</DataType>
 	</DataTypes>
 	<Project GUID="{DAF59FAF-F042-4C35-9613-F65BC51AD6A6}" Name="LibraryVisionExample" PrjFilePath="..\..\LibraryVisionExample\LibraryVisionExample.plcproj" TmcFilePath="..\..\LibraryVisionExample\LibraryVisionExample.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LibraryVisionExample\LibraryVisionExample.tmc" TmcHash="{D6E199A4-9FBB-6D86-6A88-4EFCEC60505F}">
+		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LibraryVisionExample\LibraryVisionExample.tmc" TmcHash="{F4C790BE-F817-940A-6122-FA7EFB208C79}">
 			<Name>LibraryVisionExample Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
@@ -720,32 +720,32 @@
 					<Type>DWORD</Type>
 				</Var>
 				<Var>
-					<Name>MAIN._app._mainStation._IvController.ID02_MatchingRateOfPositionAdujustmentTool_02</Name>
+					<Name>MAIN._app._mainStation._IvController.ID03_MatchingRateOfPositionAdujustmentTool_02</Name>
 					<Comment><![CDATA[value 0..1]]></Comment>
 					<Type>DWORD</Type>
 				</Var>
 				<Var>
-					<Name>MAIN._app._mainStation._IvController.ID02_MatchingRateOfPositionAdujustmentTool_03</Name>
+					<Name>MAIN._app._mainStation._IvController.ID04_MatchingRateOfPositionAdujustmentTool_03</Name>
 					<Comment><![CDATA[value 0..1]]></Comment>
 					<Type>DWORD</Type>
 				</Var>
 				<Var>
-					<Name>MAIN._app._mainStation._IvController.ID02_MatchingRateOfPositionAdujustmentTool_04</Name>
+					<Name>MAIN._app._mainStation._IvController.ID05_MatchingRateOfPositionAdujustmentTool_04</Name>
 					<Comment><![CDATA[value 0..1]]></Comment>
 					<Type>DWORD</Type>
 				</Var>
 				<Var>
-					<Name>MAIN._app._mainStation._IvController.ID02_MatchingRateOfPositionAdujustmentTool_05</Name>
+					<Name>MAIN._app._mainStation._IvController.ID06_MatchingRateOfPositionAdujustmentTool_05</Name>
 					<Comment><![CDATA[value 0..1]]></Comment>
 					<Type>DWORD</Type>
 				</Var>
 				<Var>
-					<Name>MAIN._app._mainStation._IvController.ID02_MatchingRateOfPositionAdujustmentTool_06</Name>
+					<Name>MAIN._app._mainStation._IvController.ID07_MatchingRateOfPositionAdujustmentTool_06</Name>
 					<Comment><![CDATA[value 0..1]]></Comment>
 					<Type>DWORD</Type>
 				</Var>
 				<Var>
-					<Name>MAIN._app._mainStation._IvController.ID02_MatchingRateOfPositionAdujustmentTool_07</Name>
+					<Name>MAIN._app._mainStation._IvController.ID08_MatchingRateOfPositionAdujustmentTool_07</Name>
 					<Comment><![CDATA[value 0..1]]></Comment>
 					<Type>DWORD</Type>
 				</Var>
@@ -790,6 +790,334 @@
 					<Name>MAIN._app._mainStation._IvController.InfoData</Name>
 					<Type GUID="{2F52267C-E757-7833-C11B-0EA8DA86284E}" Namespace="LibraryVision">InfoData</Type>
 				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Status_of_System.Error_Status</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Status_of_System.Error_Code</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Response_1.Reserved</Name>
+					<Type>DWORD</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Response_2.Reserved</Name>
+					<Type>DWORD</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Response_3.Reserved</Name>
+					<Type>DWORD</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Response_4.Reserved</Name>
+					<Type>DWORD</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Response_5.Reserved</Name>
+					<Type>DWORD</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID01_Current_Value.Reserved</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID02_Current_Value.Tool_00_Score</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID03_Current_Value.Tool_01_Score</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID04_Current_Value.Tool_02_Score</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID05_Current_Value.Tool_03_Score</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID06_Current_Value.Tool_04_Score</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID07_Current_Value.Tool_05_Score</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID08_Current_Value.Tool_06_Score</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID01_Status.Change_Program_Ack</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID01_Status.Change_Program_Failed</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID01_Status.Result_Valid</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID01_Status.Total_Status_OK</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID01_Status.Program_Num_00</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID01_Status.Error_status</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID02_Status.Trigger_Ack</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID02_Status.Trigger_Failed</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID02_Status.Result_Updated_Toggle</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID02_Status.Tool_00_Status</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID02_Status.Program_Num_01</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID02_Status.Tool_00_Invalid</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID03_Status.Regist_Master_Image_Ack</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID03_Status.Regist_Master_Image_Failed</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID03_Status.Total_Status_OK</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID03_Status.Tool_01_Status</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID03_Status.Program_Num_02</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID03_Status.Tool_01_Invalid</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID04_Status.SD_Save_Stop_Ack</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID04_Status.SD_Card_Detected</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID04_Status.Logic_01</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID04_Status.Tool_02_Status</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID04_Status.Program_Num_03</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID04_Status.Tool_02_Invalid</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID05_Status.Reset_Statistics_Ack</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID05_Status.Run</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID05_Status.Logic_02</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID05_Status.Tool_03_Status</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID05_Status.Program_Num_04</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID05_Status.Tool_03_Invalid</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID06_Status.Clear_Error_Ack</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID06_Status.Busy</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID06_Status.Logic_03</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID06_Status.Tool_04_Status</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID06_Status.Program_Num_05</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID06_Status.Tool_04_Invalid</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID07_Status.Logic_04</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID07_Status.Tool_05_Status</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID07_Status.Program_Num_06</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID07_Status.Tool_05_Invalid</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID08_Status.SD_Card_No_Space</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID08_Status.Total_Status_NG</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID08_Status.Tool_06_Status</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.ID08_Status.Tool_06_Invalid</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.WcState.WcState</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.WcState.InputToggle</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.InfoData.AdsAddr</Name>
+					<Type GUID="{18071995-0000-0000-0000-000000000042}">AMSADDR</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.InfoData.State</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.SyncUnits._default.unreferenced.WcState.WcState</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.SyncUnits._default.unreferenced.InfoData.ObjectId</Name>
+					<Type>DWORD</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.SyncUnits._default.unreferenced.InfoData.State</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.SyncUnits._default.unreferenced.InfoData.SlaveCount</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.SyncUnits._default.PlcTask.WcState.WcState</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.SyncUnits._default.PlcTask.InfoData.ObjectId</Name>
+					<Type>DWORD</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.SyncUnits._default.PlcTask.InfoData.State</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.SyncUnits._default.PlcTask.InfoData.SlaveCount</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Inputs.SlaveCount</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Inputs.DevState</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Inputs.Frm0State</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Inputs.Frm0WcState</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Inputs.Frm0InputToggle</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.InfoData.ChangeCount</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.InfoData.DevId</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.InfoData.AmsNetId</Name>
+					<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.InfoData.CfgSlaveCount</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.InfoData.DcToTcTimeOffset</Name>
+					<Type>LINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.InfoData.DcToExtTimeOffset</Name>
+					<Type>LINT</Type>
+				</Var>
 			</Vars>
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
@@ -812,6 +1140,38 @@
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.InputRequest5</Name>
 					<Type GUID="{33E3EDEE-19AC-D467-5E07-D52501CC7F94}" Namespace="LibraryVision">Iv3InputRequestResponse5</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Request_1.Request_1</Name>
+					<Type>DWORD</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Request_2.Request_2</Name>
+					<Type>DWORD</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Request_3.Request_3</Name>
+					<Type>DWORD</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Request_4.Request_4</Name>
+					<Type>DWORD</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Box_1_DL_EC1A.Input_Request_5.Request_5</Name>
+					<Type>DWORD</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Outputs.DevCtrl</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Outputs.Frm0Ctrl</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_iXlinker.Device_2_EtherCAT.Outputs.Frm0WcCtrl</Name>
+					<Type>UINT</Type>
 				</Var>
 			</Vars>
 			<Contexts>

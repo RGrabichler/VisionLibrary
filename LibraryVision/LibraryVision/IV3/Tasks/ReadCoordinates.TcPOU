@@ -3,16 +3,16 @@
   <POU Name="ReadCoordinates" Id="{d83738c9-7cff-0c4f-1efe-086a22bcf87d}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ReadCoordinates EXTENDS TcoCore.TcoTask
 VAR_IN_OUT
-    InfoData       : InfoData;
-    StatusOfSystem : StatusOfSystem;
-    ResultValue    : DWORD;
+    InfoData       : InfoData_32EB74EA;
+    StatusOfSystem : Status_of_System;
+    ResultValue    : DINT;
 END_VAR
 VAR_INPUT
     ActionDesc : STRING(25);
 END_VAR
 VAR
     _fb_coe_read_ext         : Tc2_EtherCAT.FB_EcCoESdoReadEx;
-    _timeout                 : TIME := DEFAULT_ADS_TIMEOUT;
+    _timeout                 : TIME := Tc2_System.DEFAULT_ADS_TIMEOUT;
     _state                   : INT  := 10;
     _data                    : ARRAY[1..31] OF DINT;
     _errorId                 : UDINT;
@@ -34,7 +34,7 @@ END_VAR
 IF (THIS^.Execute()) THEN
     //ERror Case
 
-    THIS^.ThrowWhen(StatusOfSystem.Error);
+    THIS^.ThrowWhen(StatusOfSystem.Error_Status);
 
     CASE _state OF
         10:
@@ -118,7 +118,7 @@ CalcCoefficientFromResolutionAndPixel := (Resolution / Pixel) * 10;
       <Declaration><![CDATA[METHOD PRIVATE CalcFieldOfViewWithCoefficientAndObjectMeasurement : LREAL
 VAR_INPUT
     Coefficient : LREAL;
-    Height      : DWORD;
+    Height      : DINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -145,7 +145,7 @@ END_VAR
 VAR_INPUT
     Resolution : LREAL;
     Pixel      : LREAL;
-    Height     : DWORD;
+    Height     : DINT;
 END_VAR
 VAR_INST
     //lineare Regression

@@ -1,0 +1,255 @@
+MSG | 2/22/2023 1:47:54 PM 109 ms | 'TwinCAT XAE': device 'EL3356-0030-0025' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff EL3xxx-0030.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff EL33xx.xml'
+MSG | 2/22/2023 1:47:54 PM 110 ms | 'TwinCAT XAE': device 'ELM3102-0000-0016' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM31xx.xml'
+MSG | 2/22/2023 1:47:54 PM 111 ms | 'TwinCAT XAE': device 'ELM3102-0000-0017' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM31xx.xml'
+MSG | 2/22/2023 1:47:54 PM 111 ms | 'TwinCAT XAE': device 'ELM3104-0000-0016' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM31xx.xml'
+MSG | 2/22/2023 1:47:54 PM 112 ms | 'TwinCAT XAE': device 'ELM3104-0000-0017' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM31xx.xml'
+MSG | 2/22/2023 1:47:54 PM 114 ms | 'TwinCAT XAE': device 'ELM3502-0000-0016' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM35xx.xml'
+MSG | 2/22/2023 1:47:54 PM 114 ms | 'TwinCAT XAE': device 'ELM3504-0000-0016' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM35xx.xml'
+MSG | 2/22/2023 1:47:54 PM 114 ms | 'TwinCAT XAE': device 'CTEU-EtherCAT 16Byte (0x0008BC8C|0x00000001)' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Festo CTEU-EtherCAT Fix - USINT - 20151019.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Festo CTEU-EtherCAT Fix - BITARR8 - 20151019.xml'
+MSG | 2/22/2023 1:47:54 PM 115 ms | 'TwinCAT XAE': device 'TBEC-LL-4RFID-8DXP (0x05F5EC6D|0x00000001)' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Turck_TBEC-LL-4RFID-8DXP_R1_ESI_V1-3_Omron_20210930_8303.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Turck_TBEC-LL-4RFID-8DXP_R1_ESI_V1-3_20210930_8303.xml'
+MSG | 2/22/2023 1:47:54 PM 115 ms | 'TwinCAT XAE': device 'TBEC-LL-8IOL (0x05F5F306|0x00000001)' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Turck_TBEC-LL-8IOL_R1_ESI_V1-3_omron_20210325_8110.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Turck_TBEC-LL-8IOL_R1_ESI_V1-3_20210325_8110.xml'
+Time Elapsed: 00:00:00.0539665
+========== Finished ==========
+
+
+Build started...
+1>------ Build started: Project: LibraryVisionConnector, Configuration: Debug Any CPU ------
+2>------ Build started: Project: LibraryVision (LibraryVision\LibraryVision), Configuration: Debug TwinCAT RT (x64) ------
+1>RunIxlinkerCopyAndInstall: True
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinker.exe to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinker.pdb to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\Community.VisualStudio.Toolkit.dll to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\extension.vsixmanifest to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExt.dll to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExt.pdb to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExt.pkgdef to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExt.vsix to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\Resources\iXlinkerExt256.png to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker\Resources
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExtInstaller.exe to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExtInstaller.pdb to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Install iXlinker extension:
+1>"C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker\iXlinkerExtInstaller.exe" -e "C:\Users\Grabichler\AppData\Local\Microsoft\VisualStudio\16.0_5a73fe17\Extensions" -i "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE" -v "C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker"
+1>iXlinker extension already installed with Id:iXlinkerExt.7b1c681c-e091-42c4-87de-d34de60e509a and version: 1.0.0.4
+1>iXlinkerExtInstaller:Done
+------ Build started: Application: LibraryVision.LibraryVision -------
+typify code ...
+generate code...
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainTriggerSensor.g.cs(66,66,66,81): warning CS0108: 'PlainTriggerSensor.PropertyChanged' hides inherited member 'PlainTcoTask.PropertyChanged'. Use the new keyword if hiding was intended.
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainTcUnitContext.g.cs(48,66,48,81): warning CS0108: 'PlainTcUnitContext.PropertyChanged' hides inherited member 'PlainTcoContext.PropertyChanged'. Use the new keyword if hiding was intended.
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainIVController.g.cs(516,66,516,81): warning CS0108: 'PlainIVController.PropertyChanged' hides inherited member 'PlainTcoComponent.PropertyChanged'. Use the new keyword if hiding was intended.
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainReadCoordinates.g.cs(231,66,231,81): warning CS0108: 'PlainReadCoordinates.PropertyChanged' hides inherited member 'PlainTcoTask.PropertyChanged'. Use the new keyword if hiding was intended.
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainMainStation.g.cs(12,66,12,81): warning CS0108: 'PlainMainStation.PropertyChanged' hides inherited member 'PlainTcoObject.PropertyChanged'. Use the new keyword if hiding was intended.
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainIv3InputRequestResponse3.g.cs(12,66,12,81): warning CS0067: The event 'PlainIv3InputRequestResponse3.PropertyChanged' is never used
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainIv3Id01Status.g.cs(12,66,12,81): warning CS0067: The event 'PlainIv3Id01Status.PropertyChanged' is never used
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainIv3InputRequestResponse1.g.cs(12,66,12,81): warning CS0067: The event 'PlainIv3InputRequestResponse1.PropertyChanged' is never used
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainIv3InputRequestResponse5.g.cs(12,66,12,81): warning CS0067: The event 'PlainIv3InputRequestResponse5.PropertyChanged' is never used
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainIv3InputRequestResponse4.g.cs(12,66,12,81): warning CS0067: The event 'PlainIv3InputRequestResponse4.PropertyChanged' is never used
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainWcState.g.cs(12,66,12,81): warning CS0067: The event 'PlainWcState.PropertyChanged' is never used
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainIv3InputRequestResponse2.g.cs(12,66,12,81): warning CS0067: The event 'PlainIv3InputRequestResponse2.PropertyChanged' is never used
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainGlobal_Version.g.cs(12,66,12,81): warning CS0067: The event 'PlainGlobal_Version.PropertyChanged' is never used
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainMainStation.g.cs(12,66,12,81): warning CS0067: The event 'PlainMainStation.PropertyChanged' is never used
+generate global initializations ...
+1>LibraryVisionConnector -> C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\bin\Debug\net5.0\LibraryVisionConnector.dll
+1>Done building project "LibraryVisionConnector.csproj".
+generate code initialization ...
+generate relocations ...
+Size of generated code: 54744 bytes
+Size of global data: 13701 bytes
+Total allocated memory size for code and data: 452328 bytes
+Memory area 0 contains  Data, Input, Output, Memory, Code, Persistent Data and Nonsafe Data: size: 1048576 bytes, highest used address: 452328, largest contiguous memory gap: 596248 bytes (56 %)
+Build complete -- 0 errors, 0 warnings : ready for download!
+Generate TMC information ...
+Import symbol information ...
+PLC.LibraryVision : message: generate boot information...
+3>------ Build started: Project: LibraryVisionExampleConnector, Configuration: Debug Any CPU ------
+4>------ Build started: Project: LibraryVisionExample, Configuration: Debug TwinCAT RT (x64) ------
+------ Build started: Application: LibraryVision.LibraryVisionExample -------
+typify code ...
+3>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionExampleConnector\_generated\Plain\PlainAppContext.g.cs(48,66,48,81): warning CS0108: 'PlainAppContext.PropertyChanged' hides inherited member 'PlainTcoContext.PropertyChanged'. Use the new keyword if hiding was intended.
+3>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionExampleConnector\_generated\Plain\PlainMainStation.g.cs(84,66,84,81): warning CS0108: 'PlainMainStation.PropertyChanged' hides inherited member 'PlainTcoObject.PropertyChanged'. Use the new keyword if hiding was intended.
+3>LibraryVisionExampleConnector -> C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionExampleConnector\bin\Debug\net5.0\LibraryVisionExampleConnector.dll
+3>Done building project "LibraryVisionExampleConnector.csproj".
+generate code...
+generate global initializations ...
+generate code initialization ...
+generate relocations ...
+IVController.CoeReadCoordinates(12) : warning: Implicit conversion from unsigned Type 'UDINT' to signed Type 'DINT' : possible change of sign [libraryvision, 0.9.9.9 (gema)]
+IVController.CoeReadCoordinates(22) : warning: Implicit conversion from unsigned Type 'UDINT' to signed Type 'DINT' : possible change of sign [libraryvision, 0.9.9.9 (gema)]
+IVController.CoeReadCoordinates(32) : warning: Implicit conversion from unsigned Type 'UDINT' to signed Type 'DINT' : possible change of sign [libraryvision, 0.9.9.9 (gema)]
+Size of generated code: 227268 bytes
+Size of global data: 271231 bytes
+Total allocated memory size for code and data: 891400 bytes
+Memory area 0 contains  Data, Input, Output, Memory, Code, Persistent Data and Nonsafe Data: size: 1158820 bytes, highest used address: 891400, largest contiguous memory gap: 267420 bytes (23 %)
+Build complete -- 0 errors, 3 warnings : ready for download!
+Generate TMC information ...
+Import symbol information ...
+PLC.LibraryVisionExample : message: generate boot information...
+5>------ Build started: Project: BlazorHmi, Configuration: Debug Any CPU ------
+6>------ Build started: Project: LibraryVision, Configuration: Debug TwinCAT RT (x64) ------
+5>BlazorHmi -> C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\BlazorHmi\bin\Debug\net5.0\BlazorHmi.dll
+5>BlazorHmi -> C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\BlazorHmi\bin\Debug\net5.0\BlazorHmi.Views.dll
+========== Build: 6 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+
+MSG | 2/22/2023 1:56:56 PM 447 ms | 'TwinCAT XAE': device 'EL3356-0030-0025' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff EL3xxx-0030.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff EL33xx.xml'
+MSG | 2/22/2023 1:56:56 PM 447 ms | 'TwinCAT XAE': device 'ELM3102-0000-0016' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM31xx.xml'
+MSG | 2/22/2023 1:56:56 PM 449 ms | 'TwinCAT XAE': device 'ELM3102-0000-0017' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM31xx.xml'
+MSG | 2/22/2023 1:56:56 PM 449 ms | 'TwinCAT XAE': device 'ELM3104-0000-0016' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM31xx.xml'
+MSG | 2/22/2023 1:56:56 PM 450 ms | 'TwinCAT XAE': device 'ELM3104-0000-0017' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM31xx.xml'
+MSG | 2/22/2023 1:56:56 PM 450 ms | 'TwinCAT XAE': device 'ELM3502-0000-0016' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM35xx.xml'
+MSG | 2/22/2023 1:56:56 PM 451 ms | 'TwinCAT XAE': device 'ELM3504-0000-0016' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM35xx.xml'
+MSG | 2/22/2023 1:56:56 PM 452 ms | 'TwinCAT XAE': device 'CTEU-EtherCAT 16Byte (0x0008BC8C|0x00000001)' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Festo CTEU-EtherCAT Fix - USINT - 20151019.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Festo CTEU-EtherCAT Fix - BITARR8 - 20151019.xml'
+MSG | 2/22/2023 1:56:56 PM 452 ms | 'TwinCAT XAE': device 'TBEC-LL-4RFID-8DXP (0x05F5EC6D|0x00000001)' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Turck_TBEC-LL-4RFID-8DXP_R1_ESI_V1-3_Omron_20210930_8303.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Turck_TBEC-LL-4RFID-8DXP_R1_ESI_V1-3_20210930_8303.xml'
+MSG | 2/22/2023 1:56:56 PM 453 ms | 'TwinCAT XAE': device 'TBEC-LL-8IOL (0x05F5F306|0x00000001)' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Turck_TBEC-LL-8IOL_R1_ESI_V1-3_omron_20210325_8110.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Turck_TBEC-LL-8IOL_R1_ESI_V1-3_20210325_8110.xml'
+Build started...
+1>------ Build started: Project: LibraryVisionConnector, Configuration: Debug Any CPU ------
+2>------ Build started: Project: LibraryVisionExample, Configuration: Debug TwinCAT RT (x64) ------
+1>RunIxlinkerCopyAndInstall: True
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinker.exe to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinker.pdb to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\Community.VisualStudio.Toolkit.dll to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\extension.vsixmanifest to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExt.dll to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExt.pdb to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExt.pkgdef to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExt.vsix to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\Resources\iXlinkerExt256.png to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker\Resources
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExtInstaller.exe to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExtInstaller.pdb to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Install iXlinker extension:
+1>"C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker\iXlinkerExtInstaller.exe" -e "C:\Users\Grabichler\AppData\Local\Microsoft\VisualStudio\16.0_5a73fe17\Extensions" -i "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE" -v "C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker"
+1>iXlinker extension already installed with Id:iXlinkerExt.7b1c681c-e091-42c4-87de-d34de60e509a and version: 1.0.0.4
+1>iXlinkerExtInstaller:Done
+1>LibraryVisionConnector -> C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\bin\Debug\net5.0\LibraryVisionConnector.dll
+------ Build started: Application: LibraryVision.LibraryVisionExample -------
+Time Elapsed: 00:00:00.0716116
+========== Finished ==========
+
+
+typify code ...
+generate code...
+generate global initializations ...
+generate code initialization ...
+generate relocations ...
+3>------ Build started: Project: LibraryVisionExampleConnector, Configuration: Debug Any CPU ------
+IVController.CoeReadCoordinates(12) : warning: Implicit conversion from unsigned Type 'UDINT' to signed Type 'DINT' : possible change of sign [libraryvision, 0.9.9.9 (gema)]
+IVController.CoeReadCoordinates(22) : warning: Implicit conversion from unsigned Type 'UDINT' to signed Type 'DINT' : possible change of sign [libraryvision, 0.9.9.9 (gema)]
+IVController.CoeReadCoordinates(32) : warning: Implicit conversion from unsigned Type 'UDINT' to signed Type 'DINT' : possible change of sign [libraryvision, 0.9.9.9 (gema)]
+Size of generated code: 233518 bytes
+Size of global data: 273471 bytes
+Total allocated memory size for code and data: 899880 bytes
+Memory area 0 contains  Data, Input, Output, Memory, Code, Persistent Data and Nonsafe Data: size: 1169844 bytes, highest used address: 899880, largest contiguous memory gap: 269964 bytes (23 %)
+Build complete -- 0 errors, 3 warnings : ready for download!
+Generate TMC information ...
+3>LibraryVisionExampleConnector -> C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionExampleConnector\bin\Debug\net5.0\LibraryVisionExampleConnector.dll
+Import symbol information ...
+PLC.LibraryVisionExample : message: generate boot information...
+4>------ Build started: Project: BlazorHmi, Configuration: Debug Any CPU ------
+5>------ Build started: Project: LibraryVision (LibraryVision\LibraryVision), Configuration: Debug TwinCAT RT (x64) ------
+------ Build started: Application: LibraryVision.LibraryVision -------
+typify code ...
+generate code...
+generate global initializations ...
+generate code initialization ...
+generate relocations ...
+Size of generated code: 54744 bytes
+Size of global data: 13701 bytes
+Total allocated memory size for code and data: 452328 bytes
+Memory area 0 contains  Data, Input, Output, Memory, Code, Persistent Data and Nonsafe Data: size: 1048576 bytes, highest used address: 452328, largest contiguous memory gap: 596248 bytes (56 %)
+Build complete -- 0 errors, 3 warnings : ready for download!
+4>BlazorHmi -> C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\BlazorHmi\bin\Debug\net5.0\BlazorHmi.dll
+4>BlazorHmi -> C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\BlazorHmi\bin\Debug\net5.0\BlazorHmi.Views.dll
+Generate TMC information ...
+Import symbol information ...
+PLC.LibraryVision : message: generate boot information...
+6>------ Build started: Project: LibraryVision, Configuration: Debug TwinCAT RT (x64) ------
+========== Build: 6 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+
+MSG | 2/22/2023 2:02:47 PM 492 ms | 'TwinCAT XAE': device 'EL3356-0030-0025' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff EL3xxx-0030.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff EL33xx.xml'
+MSG | 2/22/2023 2:02:47 PM 493 ms | 'TwinCAT XAE': device 'ELM3102-0000-0016' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM31xx.xml'
+MSG | 2/22/2023 2:02:47 PM 495 ms | 'TwinCAT XAE': device 'ELM3102-0000-0017' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM31xx.xml'
+MSG | 2/22/2023 2:02:47 PM 496 ms | 'TwinCAT XAE': device 'ELM3104-0000-0016' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM31xx.xml'
+MSG | 2/22/2023 2:02:47 PM 497 ms | 'TwinCAT XAE': device 'ELM3104-0000-0017' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM31xx.xml'
+MSG | 2/22/2023 2:02:47 PM 497 ms | 'TwinCAT XAE': device 'ELM3502-0000-0016' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM35xx.xml'
+MSG | 2/22/2023 2:02:47 PM 498 ms | 'TwinCAT XAE': device 'ELM3504-0000-0016' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM3xxx.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Beckhoff ELM35xx.xml'
+MSG | 2/22/2023 2:02:47 PM 498 ms | 'TwinCAT XAE': device 'CTEU-EtherCAT 16Byte (0x0008BC8C|0x00000001)' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Festo CTEU-EtherCAT Fix - USINT - 20151019.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Festo CTEU-EtherCAT Fix - BITARR8 - 20151019.xml'
+MSG | 2/22/2023 2:02:47 PM 499 ms | 'TwinCAT XAE': device 'TBEC-LL-4RFID-8DXP (0x05F5EC6D|0x00000001)' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Turck_TBEC-LL-4RFID-8DXP_R1_ESI_V1-3_Omron_20210930_8303.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Turck_TBEC-LL-4RFID-8DXP_R1_ESI_V1-3_20210930_8303.xml'
+MSG | 2/22/2023 2:02:47 PM 499 ms | 'TwinCAT XAE': device 'TBEC-LL-8IOL (0x05F5F306|0x00000001)' (file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Turck_TBEC-LL-8IOL_R1_ESI_V1-3_omron_20210325_8110.xml') already exists in file 'C:\TwinCAT\3.1\Config\Io\EtherCAT\Turck_TBEC-LL-8IOL_R1_ESI_V1-3_20210325_8110.xml'
+Build started...
+1>------ Build started: Project: LibraryVisionConnector, Configuration: Debug Any CPU ------
+2>------ Build started: Project: LibraryVisionExample, Configuration: Debug TwinCAT RT (x64) ------
+------ Build started: Application: LibraryVision.LibraryVisionExample -------
+1>RunIxlinkerCopyAndInstall: True
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinker.exe to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinker.pdb to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\Community.VisualStudio.Toolkit.dll to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\extension.vsixmanifest to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExt.dll to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExt.pdb to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExt.pkgdef to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExt.vsix to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\Resources\iXlinkerExt256.png to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker\Resources
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExtInstaller.exe to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Copy C:\Users\Grabichler\.nuget\packages\inxton.ixlinker\0.1.4-alpha.100\build\..\tools\iXlinkerExtInstaller.pdb to C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker
+1>Install iXlinker extension:
+1>"C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker\iXlinkerExtInstaller.exe" -e "C:\Users\Grabichler\AppData\Local\Microsoft\VisualStudio\16.0_5a73fe17\Extensions" -i "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE" -v "C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\_Vortex\iXlinker"
+1>iXlinker extension already installed with Id:iXlinkerExt.7b1c681c-e091-42c4-87de-d34de60e509a and version: 1.0.0.4
+1>iXlinkerExtInstaller:Done
+typify code ...
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainReadCoordinates.g.cs(231,66,231,81): warning CS0108: 'PlainReadCoordinates.PropertyChanged' hides inherited member 'PlainTcoTask.PropertyChanged'. Use the new keyword if hiding was intended.
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainTriggerSensor.g.cs(66,66,66,81): warning CS0108: 'PlainTriggerSensor.PropertyChanged' hides inherited member 'PlainTcoTask.PropertyChanged'. Use the new keyword if hiding was intended.
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainIVController.g.cs(516,66,516,81): warning CS0108: 'PlainIVController.PropertyChanged' hides inherited member 'PlainTcoComponent.PropertyChanged'. Use the new keyword if hiding was intended.
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainTcUnitContext.g.cs(48,66,48,81): warning CS0108: 'PlainTcUnitContext.PropertyChanged' hides inherited member 'PlainTcoContext.PropertyChanged'. Use the new keyword if hiding was intended.
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainMainStation.g.cs(12,66,12,81): warning CS0108: 'PlainMainStation.PropertyChanged' hides inherited member 'PlainTcoObject.PropertyChanged'. Use the new keyword if hiding was intended.
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainIv3InputRequestResponse5.g.cs(12,66,12,81): warning CS0067: The event 'PlainIv3InputRequestResponse5.PropertyChanged' is never used
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainGlobal_Version.g.cs(12,66,12,81): warning CS0067: The event 'PlainGlobal_Version.PropertyChanged' is never used
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainIv3InputRequestResponse1.g.cs(12,66,12,81): warning CS0067: The event 'PlainIv3InputRequestResponse1.PropertyChanged' is never used
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainMainStation.g.cs(12,66,12,81): warning CS0067: The event 'PlainMainStation.PropertyChanged' is never used
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainIv3Id01Status.g.cs(12,66,12,81): warning CS0067: The event 'PlainIv3Id01Status.PropertyChanged' is never used
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainWcState.g.cs(12,66,12,81): warning CS0067: The event 'PlainWcState.PropertyChanged' is never used
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainIv3InputRequestResponse4.g.cs(12,66,12,81): warning CS0067: The event 'PlainIv3InputRequestResponse4.PropertyChanged' is never used
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainIv3InputRequestResponse3.g.cs(12,66,12,81): warning CS0067: The event 'PlainIv3InputRequestResponse3.PropertyChanged' is never used
+1>C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\_generated\Plain\PlainIv3InputRequestResponse2.g.cs(12,66,12,81): warning CS0067: The event 'PlainIv3InputRequestResponse2.PropertyChanged' is never used
+1>LibraryVisionConnector -> C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionConnector\bin\Debug\net5.0\LibraryVisionConnector.dll
+1>Done building project "LibraryVisionConnector.csproj".
+Time Elapsed: 00:00:00.0599411
+========== Finished ==========
+
+
+generate code...
+3>------ Build started: Project: LibraryVisionExampleConnector, Configuration: Debug Any CPU ------
+generate global initializations ...
+generate code initialization ...
+generate relocations ...
+IVController.CoeReadCoordinates(12) : warning: Implicit conversion from unsigned Type 'UDINT' to signed Type 'DINT' : possible change of sign [libraryvision, 0.9.9.9 (gema)]
+IVController.CoeReadCoordinates(22) : warning: Implicit conversion from unsigned Type 'UDINT' to signed Type 'DINT' : possible change of sign [libraryvision, 0.9.9.9 (gema)]
+IVController.CoeReadCoordinates(32) : warning: Implicit conversion from unsigned Type 'UDINT' to signed Type 'DINT' : possible change of sign [libraryvision, 0.9.9.9 (gema)]
+Size of generated code: 233518 bytes
+Size of global data: 273471 bytes
+Total allocated memory size for code and data: 899880 bytes
+Memory area 0 contains  Data, Input, Output, Memory, Code, Persistent Data and Nonsafe Data: size: 1169844 bytes, highest used address: 899880, largest contiguous memory gap: 269964 bytes (23 %)
+Build complete -- 0 errors, 3 warnings : ready for download!
+3>LibraryVisionExampleConnector -> C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\LibraryVisionExampleConnector\bin\Debug\net5.0\LibraryVisionExampleConnector.dll
+Generate TMC information ...
+Import symbol information ...
+PLC.LibraryVisionExample : message: generate boot information...
+4>------ Build started: Project: BlazorHmi, Configuration: Debug Any CPU ------
+5>------ Build started: Project: LibraryVision (LibraryVision\LibraryVision), Configuration: Debug TwinCAT RT (x64) ------
+------ Build started: Application: LibraryVision.LibraryVision -------
+typify code ...
+generate code...
+generate global initializations ...
+generate code initialization ...
+generate relocations ...
+Size of generated code: 54744 bytes
+Size of global data: 13701 bytes
+Total allocated memory size for code and data: 452328 bytes
+Memory area 0 contains  Data, Input, Output, Memory, Code, Persistent Data and Nonsafe Data: size: 1048576 bytes, highest used address: 452328, largest contiguous memory gap: 596248 bytes (56 %)
+Build complete -- 0 errors, 3 warnings : ready for download!
+Generate TMC information ...
+Import symbol information ...
+PLC.LibraryVision : message: generate boot information...
+6>------ Build started: Project: LibraryVision, Configuration: Debug TwinCAT RT (x64) ------
+4>BlazorHmi -> C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\BlazorHmi\bin\Debug\net5.0\BlazorHmi.dll
+4>BlazorHmi -> C:\Users\Grabichler\Documents\projects\Libs\TwinCat\LibraryVision\BlazorHmi\bin\Debug\net5.0\BlazorHmi.Views.dll
+========== Build: 6 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+

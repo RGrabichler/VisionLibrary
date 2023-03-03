@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="WcState_0B2B16F9" Id="{d1a78651-b7d1-03d5-172f-cfe3d5ab5934}">
+    <Declaration><![CDATA[{attribute 'GeneratedUsingTerminal: IODEVICETYPE_ETHERCATPROT'}
+{attribute addProperty BoxType "IODEVICETYPE_ETHERCATPROT"}
+{attribute addProperty Id "WcStateAT %I*BOOL1"}
+{attribute addProperty CRC "187373305"}
+{attribute addProperty Size "1"}
+TYPE WcState_0B2B16F9 :
+STRUCT
+	{attribute addProperty Name "WcState"}
+	WcState AT %I* : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

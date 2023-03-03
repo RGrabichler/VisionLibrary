@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="Status_of_System" Id="{80ffec96-f71e-0ec4-1268-6992979a0a25}">
+    <Declaration><![CDATA[{attribute 'GeneratedUsingTerminal: DL-EC1A-0000'}
+{attribute addProperty BoxType "DL-EC1A-0000"}
+{attribute addProperty Id "Error_StatusAT %I*BOOL1Error_CodeAT %I*UINT2"}
+{attribute addProperty CRC "3460174704"}
+{attribute addProperty Size "3"}
+TYPE Status_of_System EXTENDS InputBase_8311D824 :
+STRUCT
+	{attribute addProperty Name "Error_Status"}
+	Error_Status AT %I* : BOOL;
+	{attribute addProperty Name "Error_Code"}
+	Error_Code AT %I* : UINT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

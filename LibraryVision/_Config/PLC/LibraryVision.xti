@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.40" ClassName="CNestedPlcProjDef">
 	<Project GUID="{22971ACA-8CC8-4636-B9A6-B98B4F87B7D1}" Name="LibraryVision" PrjFilePath="..\..\LibraryVision\LibraryVision.plcproj" TmcFilePath="..\..\LibraryVision\LibraryVision.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LibraryVision\LibraryVision.tmc" TmcHash="{4700219D-E0E4-5650-087E-1A9E50F1DCB3}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LibraryVision\LibraryVision.tmc" TmcHash="{2904A92F-8B66-3598-CD85-4585943343BE}">
 			<Name>LibraryVision Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Contexts>

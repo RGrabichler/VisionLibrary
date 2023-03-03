@@ -1,0 +1,1002 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.40" ClassName="CDevEtherCATDef" SubType="111">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
+			<BitSize>1</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>1</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000008}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BYTE</Name>
+			<BitSize>8</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>1</Elements>
+			</ArrayInfo>
+		</DataType>
+	</DataTypes>
+	<ImageDatas>
+		<ImageData Id="1000">424de8000000000000007600000028000000100000000e000000010004000000000072000000120b0000120b00000000000000000000464646003333330012121200999999008080800044444400706262005e4545005252520000007a002d2d2d000000ab00008a2200b8b8b80045454500ff00ff00ff0ffff0ffffffff11112111121112ff134524345267722f18952889524772a218b5288b526772a21b9528b9524772a21cb528cb528d42a218952889528dd2a218e5238e528882a218852488828d42a254442444428dd2a2f544424444888822ff55552555533382fffffffffff888880000</ImageData>
+	</ImageDatas>
+	<Device Id="2" DevType="111" DevFlags="#x0003" AmsPort="28674" AmsNetId="192.168.1.8.3.1" RemoteName="Device 2 (EtherCAT)" InfoImageId="2">
+		<Name>__FILENAME__</Name>
+		<AddressInfo>
+			<Pnp>
+				<DeviceDesc>Ethernet 2 (TwinCAT-Intel PCI Ethernet Adapter (Gig</DeviceDesc>
+				<DeviceName>\DEVICE\{A0E9652B-DFEB-46B6-A416-4754ADFC7A5F}</DeviceName>
+				<DeviceData>0001057067d2</DeviceData>
+			</Pnp>
+		</AddressInfo>
+		<Image Id="1" AddrType="9" ImageType="3">
+			<Name>Image</Name>
+		</Image>
+		<Box SaveInOwnFile="true" Id="1" BoxType="9099" BoxFlags="#x00000020">
+			<Name>Box 1 (DL-EC1A)</Name>
+			<ImageId>1000</ImageId>
+			<EtherCAT SlaveType="2" PdiType="#x0c08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="39" VendorId="#x00000541" ProductCode="#x00001194" RevisionNo="#x00000002" InfoDataAddr="true" TimeoutMailbox2="20000" PortPhys="17" IdentificationAdo="308" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="DL-EC1A" Desc="DL-EC1A" PortABoxInfo="#x00ffffff">
+				<SyncMan>0010800026000100010000002000c0008000001026010000</SyncMan>
+				<SyncMan>0012800022000100020000002000c0008000001222010000</SyncMan>
+				<SyncMan>001c14002400010003000000000000000000001c24010000</SyncMan>
+				<SyncMan>001848002000010004000000000000000000001820010000</SyncMan>
+				<Fmmu>0000000000000000001c00020100000001000000020000000200000000000000</Fmmu>
+				<Fmmu>0000000000000000001800010100000002000000020000000300000000000000</Fmmu>
+				<DcMode>4672656552756e0000000000000000004672656552756e00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DcMode>
+				<DcMode>4443000000000000000000000000000044432d53796e6368726f6e6f7573000000000000000000000000000000000000000000000000000000000000000000030100000000000000000000000000000000000000000000000000000000000000</DcMode>
+				<Pdo Name="Status of System" Index="#x1a00" Flags="#x0011" SyncMan="3">
+					<Entry Name="Error Status" Index="#x6000" Sub="#x01">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+					</Entry>
+					<Entry Name="Error Code" Index="#x6000" Sub="#x0a">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Reserved" Index="#x1a01" Flags="#x0010">
+					<Entry Name="Reserved" Index="#x9800" Sub="#x03">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Reserved" Index="#x9800" Sub="#x04">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Input Response 1" Index="#x1a10" Flags="#x0010" SyncMan="3">
+					<Entry Name="Reserved" Index="#x6010" Sub="#x01">
+						<Type>DWORD</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Input Response 2" Index="#x1a11" Flags="#x0010" SyncMan="3">
+					<Entry Name="Reserved" Index="#x6010" Sub="#x02">
+						<Type>DWORD</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Input Response 3" Index="#x1a12" Flags="#x0010" SyncMan="3">
+					<Entry Name="Reserved" Index="#x6010" Sub="#x03">
+						<Type>DWORD</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Input Response 4" Index="#x1a13" Flags="#x0010" SyncMan="3">
+					<Entry Name="Reserved" Index="#x6010" Sub="#x04">
+						<Type>DWORD</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Input Response 5" Index="#x1a14" Flags="#x0010" SyncMan="3">
+					<Entry Name="Reserved" Index="#x6010" Sub="#x05">
+						<Type>DWORD</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID01 Current Value" Index="#x1a20" Flags="#x0010" SyncMan="3">
+					<Entry Name="Reserved" Index="#x6100" Sub="#x01">
+						<Type>DINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID02 Current Value" Index="#x1a21" Flags="#x0010" SyncMan="3">
+					<Entry Name="Tool 00 Score" Index="#x6110" Sub="#x01">
+						<Type>DINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID03 Current Value" Index="#x1a22" Flags="#x0010" SyncMan="3">
+					<Entry Name="Tool 01 Score" Index="#x6120" Sub="#x01">
+						<Type>DINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID04 Current Value" Index="#x1a23" Flags="#x0010" SyncMan="3">
+					<Entry Name="Tool 02 Score" Index="#x6130" Sub="#x01">
+						<Type>DINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID05 Current Value" Index="#x1a24" Flags="#x0010" SyncMan="3">
+					<Entry Name="Tool 03 Score" Index="#x6140" Sub="#x01">
+						<Type>DINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID06 Current Value" Index="#x1a25" Flags="#x0010" SyncMan="3">
+					<Entry Name="Tool 04 Score" Index="#x6150" Sub="#x01">
+						<Type>DINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID07 Current Value" Index="#x1a26" Flags="#x0010" SyncMan="3">
+					<Entry Name="Tool 05 Score" Index="#x6160" Sub="#x01">
+						<Type>DINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID08 Current Value" Index="#x1a27" Flags="#x0010" SyncMan="3">
+					<Entry Name="Tool 06 Score" Index="#x6170" Sub="#x01">
+						<Type>DINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID09 Current Value" Index="#x1a28" Flags="#x0010">
+					<Entry Name="Tool 07 Score" Index="#x6180" Sub="#x01">
+						<Type>DINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID10 Current Value" Index="#x1a29" Flags="#x0010">
+					<Entry Name="Tool 08 Score" Index="#x6190" Sub="#x01">
+						<Type>DINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID11 Current Value" Index="#x1a2a" Flags="#x0010">
+					<Entry Name="Tool 09 Score" Index="#x61a0" Sub="#x01">
+						<Type>DINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID12 Current Value" Index="#x1a2b" Flags="#x0010">
+					<Entry Name="Tool 10 Score" Index="#x61b0" Sub="#x01">
+						<Type>DINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID13 Current Value" Index="#x1a2c" Flags="#x0010">
+					<Entry Name="Tool 11 Score" Index="#x61c0" Sub="#x01">
+						<Type>DINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID14 Current Value" Index="#x1a2d" Flags="#x0010">
+					<Entry Name="Tool 12 Score" Index="#x61d0" Sub="#x01">
+						<Type>DINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID15 Current Value" Index="#x1a2e" Flags="#x0010">
+					<Entry Name="Tool 13 Score" Index="#x61e0" Sub="#x01">
+						<Type>DINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID01 Status" Index="#x1a30" Flags="#x0010" SyncMan="3">
+					<Entry Name="Change Program Ack" Index="#x6100" Sub="#x02">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Change Program Failed" Index="#x6100" Sub="#x03">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Result Valid" Index="#x6100" Sub="#x04">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Total Status OK" Index="#x6100" Sub="#x05">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Program Num 00" Index="#x6100" Sub="#x06">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Error status" Index="#x6100" Sub="#x11">
+						<Type>BIT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID02 Status" Index="#x1a31" Flags="#x0010" SyncMan="3">
+					<Entry Name="Trigger Ack" Index="#x6110" Sub="#x02">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Trigger Failed" Index="#x6110" Sub="#x03">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Result Updated Toggle" Index="#x6110" Sub="#x04">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Tool 00 Status" Index="#x6110" Sub="#x05">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Program Num 01" Index="#x6110" Sub="#x06">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 00 Invalid" Index="#x6110" Sub="#x0b">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID03 Status" Index="#x1a32" Flags="#x0010" SyncMan="3">
+					<Entry Name="Regist Master Image Ack" Index="#x6120" Sub="#x02">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Regist Master Image Failed" Index="#x6120" Sub="#x03">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Total Status OK" Index="#x6120" Sub="#x04">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Tool 01 Status" Index="#x6120" Sub="#x05">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Program Num 02" Index="#x6120" Sub="#x06">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 01 Invalid" Index="#x6120" Sub="#x0b">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID04 Status" Index="#x1a33" Flags="#x0010" SyncMan="3">
+					<Entry Name="SD Save Stop Ack" Index="#x6130" Sub="#x02">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="SD Card Detected" Index="#x6130" Sub="#x03">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Logic 01" Index="#x6130" Sub="#x04">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Tool 02 Status" Index="#x6130" Sub="#x05">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Program Num 03" Index="#x6130" Sub="#x06">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 02 Invalid" Index="#x6130" Sub="#x0b">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID05 Status" Index="#x1a34" Flags="#x0010" SyncMan="3">
+					<Entry Name="Reset Statistics Ack" Index="#x6140" Sub="#x02">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Run" Index="#x6140" Sub="#x03">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Logic 02" Index="#x6140" Sub="#x04">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Tool 03 Status" Index="#x6140" Sub="#x05">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Program Num 04" Index="#x6140" Sub="#x06">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 03 Invalid" Index="#x6140" Sub="#x0b">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID06 Status" Index="#x1a35" Flags="#x0010" SyncMan="3">
+					<Entry Name="Clear Error Ack" Index="#x6150" Sub="#x02">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Busy" Index="#x6150" Sub="#x03">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Logic 03" Index="#x6150" Sub="#x04">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Tool 04 Status" Index="#x6150" Sub="#x05">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Program Num 05" Index="#x6150" Sub="#x06">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 04 Invalid" Index="#x6150" Sub="#x0b">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID07 Status" Index="#x1a36" Flags="#x0010" SyncMan="3">
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Logic 04" Index="#x6160" Sub="#x04">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Tool 05 Status" Index="#x6160" Sub="#x05">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Program Num 06" Index="#x6160" Sub="#x06">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 05 Invalid" Index="#x6160" Sub="#x0b">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID08 Status" Index="#x1a37" Flags="#x0010" SyncMan="3">
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="SD Card No Space" Index="#x6170" Sub="#x03">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Total Status NG" Index="#x6170" Sub="#x04">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Tool 06 Status" Index="#x6170" Sub="#x05">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 06 Invalid" Index="#x6170" Sub="#x0b">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID09 Status" Index="#x1a38" Flags="#x0010">
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Classification Result bit0" Index="#x6180" Sub="#x04">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Tool 07 Status" Index="#x6180" Sub="#x05">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 07 Invalid" Index="#x6180" Sub="#x0b">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID10 Status" Index="#x1a39" Flags="#x0010">
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Classification Result bit1" Index="#x6190" Sub="#x04">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Tool 08 Status" Index="#x6190" Sub="#x05">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 08 Invalid" Index="#x6190" Sub="#x0b">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID11 Status" Index="#x1a3a" Flags="#x0010">
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Classification Result bit2" Index="#x61a0" Sub="#x04">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Tool 09 Status" Index="#x61a0" Sub="#x05">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 09 Invalid" Index="#x61a0" Sub="#x0b">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID12 Status" Index="#x1a3b" Flags="#x0010">
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 10 Status" Index="#x61b0" Sub="#x05">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 10 Invalid" Index="#x61b0" Sub="#x0b">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID13 Status" Index="#x1a3c" Flags="#x0010">
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 11 Status" Index="#x61c0" Sub="#x05">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 11 Invalid" Index="#x61c0" Sub="#x0b">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID14 Status" Index="#x1a3d" Flags="#x0010">
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 12 Status" Index="#x61d0" Sub="#x05">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 12 Invalid" Index="#x61d0" Sub="#x0b">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ID15 Status" Index="#x1a3e" Flags="#x0010">
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 13 Status" Index="#x61e0" Sub="#x05">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Tool 13 Invalid" Index="#x61e0" Sub="#x0b">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+					<Entry Name="Reserved">
+						<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Input Request 1" Index="#x1600" InOut="1" Flags="#x0010" SyncMan="2">
+					<Entry Name="Request 1" Index="#x7000" Sub="#x01">
+						<Type>DWORD</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Input Request 2" Index="#x1601" InOut="1" Flags="#x0010" SyncMan="2">
+					<Entry Name="Request 2" Index="#x7000" Sub="#x02">
+						<Type>DWORD</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Input Request 3" Index="#x1602" InOut="1" Flags="#x0010" SyncMan="2">
+					<Entry Name="Request 3" Index="#x7000" Sub="#x03">
+						<Type>DWORD</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Input Request 4" Index="#x1603" InOut="1" Flags="#x0010" SyncMan="2">
+					<Entry Name="Request 4" Index="#x7000" Sub="#x04">
+						<Type>DWORD</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Input Request 5" Index="#x1604" InOut="1" Flags="#x0010" SyncMan="2">
+					<Entry Name="Request 5" Index="#x7000" Sub="#x05">
+						<Type>DWORD</Type>
+					</Entry>
+				</Pdo>
+			</EtherCAT>
+		</Box>
+		<EtherCAT/>
+	</Device>
+	<Mappings>
+		<OwnerA Name="__THIS__">
+			<OwnerB Name="TIPC^LibraryVisionExample^LibraryVisionExample Instance">
+				<Link VarA="Box 1 (DL-EC1A)^ID01 Current Value^Reserved" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.ID01"/>
+				<Link VarA="Box 1 (DL-EC1A)^ID02 Current Value^Tool 00 Score" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.ID02_MatchingRateOfPositionAdujustmentTool_01"/>
+				<Link VarA="Box 1 (DL-EC1A)^ID03 Current Value^Tool 01 Score" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.ID03_MatchingRateOfPositionAdujustmentTool_02"/>
+				<Link VarA="Box 1 (DL-EC1A)^ID03 Status^Tool 01 Status" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.ID01Status"/>
+				<Link VarA="Box 1 (DL-EC1A)^ID04 Current Value^Tool 02 Score" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.ID04_MatchingRateOfPositionAdujustmentTool_03"/>
+				<Link VarA="Box 1 (DL-EC1A)^ID04 Status^Tool 02 Status" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.ID02Status"/>
+				<Link VarA="Box 1 (DL-EC1A)^ID05 Current Value^Tool 03 Score" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.ID05_MatchingRateOfPositionAdujustmentTool_04"/>
+				<Link VarA="Box 1 (DL-EC1A)^ID05 Status^Tool 03 Status" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.ID03Status"/>
+				<Link VarA="Box 1 (DL-EC1A)^ID06 Current Value^Tool 04 Score" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.ID06_MatchingRateOfPositionAdujustmentTool_05"/>
+				<Link VarA="Box 1 (DL-EC1A)^ID06 Status^Tool 04 Status" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.ID04Status"/>
+				<Link VarA="Box 1 (DL-EC1A)^ID07 Current Value^Tool 05 Score" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.ID07_MatchingRateOfPositionAdujustmentTool_06"/>
+				<Link VarA="Box 1 (DL-EC1A)^ID07 Status^Tool 05 Status" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.ID05Status"/>
+				<Link VarA="Box 1 (DL-EC1A)^ID08 Current Value^Tool 06 Score" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.ID08_MatchingRateOfPositionAdujustmentTool_07"/>
+				<Link VarA="Box 1 (DL-EC1A)^ID08 Status^Tool 06 Status" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.ID06Status"/>
+				<Link VarA="Box 1 (DL-EC1A)^Input Request 1^Request 1" VarB="PlcTask Outputs^MAIN._app._mainStation._IvController.InputRequest1"/>
+				<Link VarA="Box 1 (DL-EC1A)^Input Request 2^Request 2" VarB="PlcTask Outputs^MAIN._app._mainStation._IvController.InputRequest2"/>
+				<Link VarA="Box 1 (DL-EC1A)^Input Request 3^Request 3" VarB="PlcTask Outputs^MAIN._app._mainStation._IvController.InputRequest3"/>
+				<Link VarA="Box 1 (DL-EC1A)^Input Request 4^Request 4" VarB="PlcTask Outputs^MAIN._app._mainStation._IvController.InputRequest4"/>
+				<Link VarA="Box 1 (DL-EC1A)^Input Request 5^Request 5" VarB="PlcTask Outputs^MAIN._app._mainStation._IvController.InputRequest5"/>
+				<Link VarA="Box 1 (DL-EC1A)^Input Response 1^Reserved" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.InputResponse1"/>
+				<Link VarA="Box 1 (DL-EC1A)^Input Response 2^Reserved" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.InputResponse2"/>
+				<Link VarA="Box 1 (DL-EC1A)^Input Response 3^Reserved" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.InputResponse3"/>
+				<Link VarA="Box 1 (DL-EC1A)^Input Response 4^Reserved" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.InputResponse4"/>
+				<Link VarA="Box 1 (DL-EC1A)^Input Response 5^Reserved" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.InputResponse5"/>
+				<Link VarA="Box 1 (DL-EC1A)^Status of System^Error Code" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.StatusOfSystem^ErrorId"/>
+				<Link VarA="Box 1 (DL-EC1A)^Status of System^Error Status" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.StatusOfSystem^Error"/>
+				<Link VarA="Box 1 (DL-EC1A)^WcState^WcState" VarB="PlcTask Inputs^MAIN._app._mainStation._IvController.WcState"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
+</TcSmItem>

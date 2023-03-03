@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.2.0.0" ProductVersion="3.1.4024.12">
+  <DUT Name="Input_Request_E81F8DC0" Id="{e864870d-3b1f-01ce-2d35-e5bc5b3aa591}">
+    <Declaration><![CDATA[{attribute 'GeneratedUsingTerminal: DL-EC1A-0000'}
+{attribute addProperty BoxType "DL-EC1A-0000"}
+{attribute addProperty Id "Request_3AT %Q*DWORD4"}
+{attribute addProperty CRC "3894382016"}
+{attribute addProperty Size "4"}
+TYPE Input_Request_E81F8DC0 EXTENDS OutputBase_10CEE7DE :
+STRUCT
+	{attribute addProperty Name "Request_3"}
+	Request_3 AT %Q* : DWORD;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

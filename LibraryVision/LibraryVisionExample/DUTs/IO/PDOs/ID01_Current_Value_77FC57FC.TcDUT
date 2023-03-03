@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.2.0.0" ProductVersion="3.1.4024.12">
+  <DUT Name="ID01_Current_Value_77FC57FC" Id="{5e746204-0cf4-093f-1a6b-fbff778a1c5c}">
+    <Declaration><![CDATA[{attribute 'GeneratedUsingTerminal: DL-EC1A-0000'}
+{attribute addProperty BoxType "DL-EC1A-0000"}
+{attribute addProperty Id "ReservedAT %I*DINT4"}
+{attribute addProperty CRC "2013026300"}
+{attribute addProperty Size "4"}
+TYPE ID01_Current_Value_77FC57FC EXTENDS InputBase_8311D824 :
+STRUCT
+	{attribute addProperty Name "Reserved"}
+	Reserved AT %I* : DINT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
