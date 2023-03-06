@@ -129,4 +129,7 @@
   <data name="___ReadCoordinates_Tool3__" xml:space="preserve">
     <value>ReadCoordinates Tool3</value>
   </data>
+  <data name="____calculationTask__" xml:space="preserve">
+    <value>_calculationTask</value>
+  </data>
 </root>
