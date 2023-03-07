@@ -1,11 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BlazorHmi
 {
@@ -21,7 +15,7 @@ namespace BlazorHmi
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseStaticWebAssets();                    webBuilder.UseUrls("http://localhost:5001");
+                    webBuilder.UseStaticWebAssets();                    webBuilder.UseUrls("http://localhost:5003");
                 });
     }
 }
