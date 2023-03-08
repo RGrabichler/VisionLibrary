@@ -20,6 +20,9 @@ VAR
     _coeIndex        : UINT;
 
 END_VAR
+VAR CONSTANT
+    SIZE_OF_TWO_BYTES : UINT := 16;
+END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF (THIS^.Execute()) THEN

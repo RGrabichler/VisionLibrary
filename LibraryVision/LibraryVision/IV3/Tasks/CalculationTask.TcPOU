@@ -13,23 +13,47 @@ VAR_INPUT
     ActionDesc : STRING(25);
 END_VAR
 VAR
-    _fb_coe_read_ext         : Tc2_EtherCAT.FB_EcCoESdoReadEx;
-    _timeout                 : TIME := Tc2_System.DEFAULT_ADS_TIMEOUT;
-    _state                   : INT  := 10;
     _data                    : ARRAY[1..31] OF DINT;
     _errorId                 : UDINT;
-    _rawCoordinates          : Coordinates;
     _coeIndex                : UINT;
-    _distanceFromHeight      : LREAL;
+    _distanceFromX           : LREAL;
+    _distanceFromY           : LREAL;
     _fieldOfView             : FieldOfView;
     _coordinatesInMillimeter : Coordinates;
 
     _resolutionX : UINT;
     _resolutionY : UINT;
+
+    _states : (CalculatingCoefficientState
+        , CalculatingFieldOfViewState
+        , CalculationDistanceState,
+DoneState, ErrorState);
+
+    //lineare Regression
+    _offsetX      : LREAL;
+    _gainX        : LREAL;
+    _coefficientX : LREAL;
+
+    _offsetY      : LREAL;
+    _gainY        : LREAL;
+    _coefficientY : LREAL;
 END_VAR
-VAR CONSTANT
-    SIZE_OF_TWO_BYTES : UINT := 16;
-END_VAR
+//in mm     Breite			
+//50		16,4		   22,4 
+//100		31,2		   42,1 
+//200		60,7		   81,4 
+//300		90,2		   120,7
+//400		119,7		   160,0
+//500		149,2		   199,3
+//600		178,7		   238,6
+//700		208,3		   277,9
+//800		237,8		   317,2
+//900		267,3		   356,6
+//1000		296,8	       395,9
+//1250		370,6	       494,2
+//1500		444,4	       592,4
+//1750		518,2	       690,7
+//2000		592		       789  
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF (THIS^.Execute()) THEN
@@ -37,62 +61,49 @@ END_VAR
 
     THIS^.ThrowWhen(StatusOfSystem.Error_Status);
 
-    CASE _state OF
-        10:
-            _fb_coe_read_ext
+    CASE _states OF
+        CalculatingCoefficientState:
+            _coefficientX := CalcCoefficientFromResolutionAndPixel
             (
-                sNetId            := Tc2_System.F_CreateAmsNetId(infodata.AdsAddr.netId)
-                , nSlaveAddr      := InfoData.AdsAddr.port
-                , nSubIndex       := 16#0
-                , nIndex          := _coeIndex
-                , pDstBuf         := ADR(_data)
-                , cbBufLen        := SIZEOF(_data) + 2
-                , tTimeout        := _timeout
-                , bCompleteAccess := TRUE
+                Resolution := _resolutionX
+                , Pixel    := CoordinatesTool3.variableValue
             );
 
-            _state := 20;
-        20:
-            _fb_coe_read_ext(bExecute := TRUE);
-            _state := 30;
-        30:
-            _fb_coe_read_ext();
+            _coefficientY := CalcCoefficientFromResolutionAndPixel
+            (
+                Resolution := _resolutionY
+                , Pixel    := CoordinatesTool2.variableValue
+            );
 
-            IF _fb_coe_read_ext.bBusy THEN
-                RETURN;
-            END_IF
+            _states := CalculatingFieldOfViewState;
 
-            IF _fb_coe_read_ext.bError THEN
-                _State := 99; // Error case
-                RETURN;
-            END_IF
+        CalculatingFieldOfViewState:
 
-            _rawCoordinates.xValue        := SHR(_data[017], SIZE_OF_TWO_BYTES);
-            _rawCoordinates.yValue        := SHR(_data[018], SIZE_OF_TWO_BYTES);
-            _rawCoordinates.variableValue := SHR(_data[019], SIZE_OF_TWO_BYTES);
+            FieldOfView.xValue := CalcFieldOfViewWithCoefficientAndObjectMeasurement
+            (
+                Coefficient  := _coefficientX
+                , Value := _resolutionX
+            );
 
-            _state := 80;
-        40:
-//            Calculating
-//            (
-//                ResolutionY := ReadCoordinates.ResolutionY
-//                , PixelY    := _rawCoordinates.variableValue
-//                , ValueY    := THIS^.ResultValue
-//                , ResolutionX := ReadCoordinates.ResolutionX
-//                , PixelX := _rawCoordinates.
-//                , ValueX
-//                , FieldOfView => _fieldOfView
-//                , Distance    => _distanceFromHeight
-//            );
+            FieldOfView.yValue := CalcFieldOfViewWithCoefficientAndObjectMeasurement
+            (
+                Coefficient  := _coefficientY
+                , Value := _resolutionY
+            );
 
-            _state := 80;
+            _states := CalculationDistanceState;
 
-        50: // Calculate the Position in mm with FOV and Distance
+        CalculationDistanceState:
 
-        80:
+            _distanceFromX := (FieldOfView.xValue * _gainX) + _offsetX;
+            _distanceFromY := (FieldOfView.yValue * _gainY) + _offsetY;
+
+            _states := DoneState;
+
+        DoneState:
 
             THIS^.DoneWhen(TRUE);
-        99:
+        ErrorState:
             THIS^.ThrowWhen(TRUE);
 
     END_CASE
@@ -125,72 +136,11 @@ CalcCoefficientFromResolutionAndPixel := (Resolution / Pixel) * 10;
       <Declaration><![CDATA[METHOD PRIVATE CalcFieldOfViewWithCoefficientAndObjectMeasurement : LREAL
 VAR_INPUT
     Coefficient : LREAL;
-    Height      : DINT;
+    Value      : DINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[CalcFieldOfViewWithCoefficientAndObjectMeasurement := (Coefficient * DWORD_TO_LREAL(Height)) / 100;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="Calculating" Id="{b91121bf-3d47-0fad-133f-38fa70c6968b}" FolderPath="Calculation\">
-      <Declaration><![CDATA[METHOD PRIVATE Calculating
-VAR_OUTPUT
-    FieldOfView : FieldOfView;
-    Distance    : LREAL;
-END_VAR
-VAR_INPUT
-    ResolutionY : LREAL;
-    PixelY      : LREAL;
-    ValueY      : DINT;
-    ResolutionX : LREAL;
-    PixelX      : LREAL;
-    ValueX      : DINT;
-END_VAR
-VAR_INST
-    //lineare Regression
-    offsetX      : LREAL := -5.57888;
-    gainX        : LREAL := 3.387877;
-    CoefficientX : LREAL;
-
-    offsetY      : LREAL := -7.0129;
-    gainY        : LREAL := 2.5438;
-    CoefficientY : LREAL;
-END_VAR
-//in mm     Breite
-//50		16,4		
-//100		31,2		
-//200		60,7		
-//300		90,2		
-//400		119,7		
-//500		149,2		
-//600		178,7		
-//700		208,3		
-//800		237,8		
-//900		267,3		
-//1000		296,8	
-//1250		370,6	
-//1500		444,4	
-//1750		518,2	
-//2000		592		
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[// Resolution / Pixel = Coefficient
-//Coefficient * Length = FieldOfView
-// With FOV calculate the Distance of the Object to the Sensor
-//Distance = (FOV-b)/m
-IF PixelY = 0 OR PixelX = 0 THEN
-    ;
-ELSE
-    CoefficientX := CalcCoefficientFromResolutionAndPixel(Resolution := Calculating.ResolutionY, Pixel := PixelY);
-
-    FieldOfView.yValue := CalcFieldOfViewWithCoefficientAndObjectMeasurement
-    (
-        Coefficient := CoefficientX
-        , Height    := ValueY
-    );
-
-    Distance := (FieldOfView.yValue * gainX) + offsetX;
-END_IF]]></ST>
+        <ST><![CDATA[CalcFieldOfViewWithCoefficientAndObjectMeasurement := (Coefficient * DWORD_TO_LREAL(Value)) / 100;]]></ST>
       </Implementation>
     </Method>
     <Property Name="CoordinatesInMillimeter" Id="{dba460d6-1093-0ca3-078d-7f6c972bbd77}" FolderPath="Data\">
@@ -211,8 +161,8 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[DistanceFromObject := _distanceFromHeight;
-    ]]></ST>
+          <ST><![CDATA[DistanceFromObject := (_distanceFromX + _distanceFromY) / 2;
+]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -235,7 +185,12 @@ VAR_INPUT
     bInCopyCode  : BOOL; // if TRUE, the instance afterwards gets moved into the copy code (online change)
     ParentObject : ITcoObject;
     ResolutionX  : UINT;
-    ResolutionY  : UINT := 960;
+    ResolutionY  : UINT;
+    OffsetX      : LREAL;
+    GainX        : LREAL;
+    OffsetY      : LREAL;
+    GainY        : LREAL;
+
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -244,7 +199,12 @@ END_VAR
 SUPER^.FB_init(bInitRetains, bInCopyCode, ParentObject);
 
 THIS^._resolutionX := ResolutionX;
-This^._resolutionY := ResolutionY;]]></ST>
+THIS^._resolutionY := ResolutionY;
+
+_offsetX := OffsetX;
+_gainX := GainX;
+_offsetY := OffsetY;
+_gainY := GainY;]]></ST>
       </Implementation>
     </Method>
     <Property Name="FieldOfView" Id="{57b9f83f-34b0-0ea7-0663-04ccd42988ba}" FolderPath="Data\">
@@ -270,8 +230,7 @@ END_VAR
 METHOD PROTECTED OnDone
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[{warning disable C0371}
-_fb_coe_read_ext(bExecute := False);]]></ST>
+        <ST><![CDATA[{warning disable C0371}]]></ST>
       </Implementation>
     </Method>
     <Method Name="OnError" Id="{1b2f2ec7-af0a-0bf8-388f-b0d450213da7}" FolderPath="TcOpen\">
@@ -288,8 +247,7 @@ _fb_coe_read_ext(bExecute := False);]]></ST>
 METHOD PROTECTED OnError
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[{warning disable C0371}
-_fb_coe_read_ext(nErrId => _errorId);]]></ST>
+        <ST><![CDATA[{warning disable C0371}]]></ST>
       </Implementation>
     </Method>
     <Method Name="OnStart" Id="{e7ce9761-a6b1-018f-2993-eb84164af652}" FolderPath="TcOpen\">
@@ -304,21 +262,9 @@ METHOD PROTECTED OnStart
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[{warning disable C0371}
-_fb_coe_read_ext(bExecute := FALSE);
-_state := 10;]]></ST>
+_states := CalculatingCoefficientState;]]></ST>
       </Implementation>
     </Method>
-    <Property Name="RawCoordinates" Id="{ea2504d8-236b-0b71-3f14-d969d6212ea9}" FolderPath="Data\">
-      <Declaration><![CDATA[PROPERTY RawCoordinates : REFERENCE TO Coordinates]]></Declaration>
-      <Get Name="Get" Id="{57bf78a2-4b8c-017f-284b-ace3d433d19a}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[RawCoordinates REF= _rawCoordinates;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
     <Method Name="Restore" Id="{68818741-ee72-0c26-3fac-52ca55d6aede}" FolderPath="TcOpen\">
       <Declaration><![CDATA[(*~
     <docu>
@@ -334,7 +280,6 @@ METHOD Restore : ITcoRestorable
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[{warning disable C0371}
-_fb_coe_read_ext(bExecute := FALSE);
 ]]></ST>
       </Implementation>
     </Method>

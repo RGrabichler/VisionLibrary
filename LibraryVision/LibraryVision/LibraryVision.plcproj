@@ -260,6 +260,7 @@
     </PlaceholderReference>
     <PlaceholderReference Include="TcoPneumatics">
       <DefaultResolution>TcoPneumatics, 0.11.0.19 (Vortex.Library)</DefaultResolution>
+      <Namespace>TcoPneumatics</Namespace>
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>

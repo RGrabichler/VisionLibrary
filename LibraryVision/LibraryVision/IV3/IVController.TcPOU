@@ -7,7 +7,16 @@ VAR
     _readTool1CoordinatesTask : ReadCoordinates(THIS^, CoeIndex := Tool1CoeIndex);
     _readTool2CoordinatesTask : ReadCoordinates(THIS^, CoeIndex := Tool2CoeIndex);
     _readTool3CoordinatesTask : ReadCoordinates(THIS^, CoeIndex := Tool3CoeIndex);
-    _calculationTask          : CalculationTask(THIS^, ResolutionX := 1280, ResolutionY := 960);
+    _calculationTask          : CalculationTask
+    (
+        THIS^
+        , ResolutionX := 1280
+        , ResolutionY := 960
+        , OffsetX     := -5.57888
+        , GainX       := 3.387877
+        , OffsetY     := -70129
+        , GainY       := 2.5438
+    );
 END_VAR
 
 VAR
@@ -157,6 +166,29 @@ END_IF
     <Folder Name="Output" Id="{49e001ad-6d3b-0279-17e3-1e208771d9e3}" />
     <Folder Name="Status" Id="{88295d5c-9c9f-0625-38a0-8dbfe52d7dab}" />
     <Folder Name="Tasks" Id="{d55a3cef-ea3c-0d2c-34c4-7b3b367731a4}" />
+    <Method Name="CalculationMethod" Id="{0c486270-ab06-0bd5-3aa6-e130a635c996}" FolderPath="Operations\">
+      <Declaration><![CDATA[METHOD CalculationMethod : TcoCore.ITcoTaskStatus
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (CalculationTask <> 0) THEN
+    CalculationMethod := CalculationTask.Invoke();
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="CalculationTask" Id="{24e151f0-b3a5-0a0b-1f50-ff4b657074db}" FolderPath="Tasks\">
+      <Declaration><![CDATA[PROPERTY CalculationTask : TcoCore.ITcoTask
+]]></Declaration>
+      <Get Name="Get" Id="{ad343cd0-a479-02bc-0b06-57d2460bd6fd}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[CalculationTask := _calculationTask;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="CoeReadCoordinates" Id="{d69b9830-585e-0540-3a8c-20a136c13133}" FolderPath="old\">
       <Declaration><![CDATA[METHOD CoeReadCoordinates : BOOL
 VAR_INST
