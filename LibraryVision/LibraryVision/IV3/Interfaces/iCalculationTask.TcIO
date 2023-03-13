@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="iCalculationTask" Id="{8b6b9015-5792-0ecb-107e-395b86bf073d}">
+    <Declaration><![CDATA[INTERFACE iCalculationTask EXTENDS TcoCore.ITcoTask
+]]></Declaration>
+    <Folder Name="Data" Id="{8228426c-ab5b-0602-2da6-6b33d8775a71}" />
+    <Property Name="CoordinatesInMillimeter" Id="{04b3ef71-22c7-0d43-37ae-9edd28b36a9f}" FolderPath="Data\">
+      <Declaration><![CDATA[PROPERTY CoordinatesInMillimeter: REFERENCE TO Coordinates]]></Declaration>
+      <Get Name="Get" Id="{48266f35-de7f-0b7d-02d7-3afdded76614}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="DistanceFromObject" Id="{cfbed818-91b8-094a-1fca-feb1779430ec}" FolderPath="Data\">
+      <Declaration><![CDATA[PROPERTY DistanceFromObject : LREAL]]></Declaration>
+      <Get Name="Get" Id="{6193bb55-0e72-0afb-16cc-5511227aeb88}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="FieldOfView" Id="{c468fd7f-5bc5-0760-0090-ce1e45411134}" FolderPath="Data\">
+      <Declaration><![CDATA[PROPERTY FieldOfView : REFERENCE TO FieldOfView]]></Declaration>
+      <Get Name="Get" Id="{1eda54fb-ecb2-0b7f-280f-019eee84e5a3}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+  </Itf>
+</TcPlcObject>

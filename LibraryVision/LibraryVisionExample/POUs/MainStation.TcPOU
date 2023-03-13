@@ -5,13 +5,14 @@
 VAR
     counter : INT;
 
-    _IvController       : LibraryVision.IVController(THIS^);
-    _trigger            : BOOL;
-    _coordinate         : BOOL;
-    _coordinates        : ARRAY[0..2] OF LibraryVision.Coordinates;
-    _distanceFromObject : LREAL;
-    _fieldOfView        : FieldOfView;
-	_calculate: BOOL;
+    _IvController            : LibraryVision.IVController(THIS^);
+    _trigger                 : BOOL;
+    _coordinate              : BOOL;
+    _coordinates             : ARRAY[0..2] OF LibraryVision.Coordinates;
+    _distanceFromObject      : LREAL;
+    _fieldOfView             : FieldOfView;
+    _coordinatesInMillimeter : LREAL;
+    _calculate               : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -41,17 +42,14 @@ IF _coordinate THEN
         _coordinates[0] := _IvController.RawCoordinatesTool1;
         _coordinates[1] := _IvController.RawCoordinatesTool2;
         _coordinates[2] := _IvController.RawCoordinatesTool3;
-        //        _distanceFromObject := _IvController._readTool2CoordinatesTask.DistanceFromObject;
-        //        _fieldOfView        := _IvController._readTool2CoordinatesTask.FieldOfView;
     END_IF
 END_IF
 
 IF _calculate THEN
     IF _IvController.CalculationMethod().Done THEN
-        _calculate := FALSE;
-
-        //        _distanceFromObject := _IvController._readTool2CoordinatesTask.DistanceFromObject;
-        //        _fieldOfView        := _IvController._readTool2CoordinatesTask.FieldOfView;
+        _calculate               := FALSE;
+        _distanceFromObject      := _IvController.CalculationTask.DistanceFromObject;
+        _fieldOfView             := _IvController.CalculationTask.FieldOfView;
     END_IF
 END_IF
 

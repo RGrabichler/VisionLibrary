@@ -45,6 +45,7 @@
     <Folder Include="IV3\Dut\IO\PDOs" />
     <Folder Include="IV3\Dut\IO\PDOs\BitValues" />
     <Folder Include="IV3\Dut\IO\Topology" />
+    <Folder Include="IV3\Interfaces" />
     <Folder Include="IV3\Tasks" />
     <Folder Include="Project Information" />
     <Folder Include="Version" />
@@ -202,6 +203,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IV3\Dut\IO\PDOs\WcState_9091E0EB.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IV3\Interfaces\iCalculationTask.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IV3\IVController.TcPOU">

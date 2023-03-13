@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="CalculationTask" Id="{e4d382f1-2a0b-0e00-0784-d67a58737619}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK CalculationTask EXTENDS TcoCore.TcoTask
+    <Declaration><![CDATA[FUNCTION_BLOCK CalculationTask EXTENDS TcoCore.TcoTask IMPLEMENTS iCalculationTask
 VAR_IN_OUT
     InfoData         : InfoData;
     StatusOfSystem   : Status_of_System;
@@ -26,8 +26,9 @@ VAR
 
     _states : (CalculatingCoefficientState
         , CalculatingFieldOfViewState
-        , CalculationDistanceState,
-DoneState, ErrorState);
+        , CalculationDistanceState
+        , DoneState
+        , ErrorState);
 
     //lineare Regression
     _offsetX      : LREAL;
@@ -82,13 +83,13 @@ END_VAR
             FieldOfView.xValue := CalcFieldOfViewWithCoefficientAndObjectMeasurement
             (
                 Coefficient  := _coefficientX
-                , Value := _resolutionX
+                , Value := THIS^.ControllerRef.ScoreToolWidth
             );
 
             FieldOfView.yValue := CalcFieldOfViewWithCoefficientAndObjectMeasurement
             (
                 Coefficient  := _coefficientY
-                , Value := _resolutionY
+                , Value := THIS^.ControllerRef.ScoreToolHeight
             );
 
             _states := CalculationDistanceState;
@@ -143,6 +144,20 @@ END_VAR
         <ST><![CDATA[CalcFieldOfViewWithCoefficientAndObjectMeasurement := (Coefficient * DWORD_TO_LREAL(Value)) / 100;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="ControllerRef" Id="{f35729a5-2dd1-0cdc-3c68-16d871dfe3ca}">
+      <Declaration><![CDATA[PROPERTY ControllerRef : REFERENCE TO IVController]]></Declaration>
+      <Get Name="Get" Id="{4f09edc7-6f53-0e4d-269d-265d2b2c1d25}">
+        <Declaration><![CDATA[VAR
+	_controllerRef : POINTER TO IVController;
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IF __QUERYPOINTER(_ParentObject, _controllerRef) THEN // Check if _Parent is Station001
+    ControllerRef REF= _controllerRef^;                     // If the check is successful dereference a pointer. simlar to THIS^ or SUPER^
+END_IF]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="CoordinatesInMillimeter" Id="{dba460d6-1093-0ca3-078d-7f6c972bbd77}" FolderPath="Data\">
       <Declaration><![CDATA[PROPERTY CoordinatesInMillimeter: REFERENCE TO Coordinates]]></Declaration>
       <Get Name="Get" Id="{e2207b1b-61c4-0080-0666-9dbc1107310c}">

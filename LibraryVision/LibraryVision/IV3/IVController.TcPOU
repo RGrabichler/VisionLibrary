@@ -7,15 +7,16 @@ VAR
     _readTool1CoordinatesTask : ReadCoordinates(THIS^, CoeIndex := Tool1CoeIndex);
     _readTool2CoordinatesTask : ReadCoordinates(THIS^, CoeIndex := Tool2CoeIndex);
     _readTool3CoordinatesTask : ReadCoordinates(THIS^, CoeIndex := Tool3CoeIndex);
-    _calculationTask          : CalculationTask
+
+    _calculationTask : CalculationTask
     (
         THIS^
         , ResolutionX := 1280
         , ResolutionY := 960
+        , OffsetY     := -7.0129
+        , GainY       := 2.5438
         , OffsetX     := -5.57888
         , GainX       := 3.387877
-        , OffsetY     := -70129
-        , GainY       := 2.5438
     );
 END_VAR
 
@@ -177,7 +178,7 @@ END_IF
       </Implementation>
     </Method>
     <Property Name="CalculationTask" Id="{24e151f0-b3a5-0a0b-1f50-ff4b657074db}" FolderPath="Tasks\">
-      <Declaration><![CDATA[PROPERTY CalculationTask : TcoCore.ITcoTask
+      <Declaration><![CDATA[PROPERTY CalculationTask : iCalculationTask
 ]]></Declaration>
       <Get Name="Get" Id="{ad343cd0-a479-02bc-0b06-57d2460bd6fd}">
         <Declaration><![CDATA[VAR
@@ -579,6 +580,39 @@ END_IF;
 //END_IF]]></ST>
       </Implementation>
     </Method>
+    <Property Name="ScoreToolHeight" Id="{72550853-1ce2-05b9-10f8-21295b442303}" FolderPath="Output\">
+      <Declaration><![CDATA[PROPERTY ScoreToolHeight : DINT]]></Declaration>
+      <Get Name="Get" Id="{a1d74672-638d-05b1-2b72-bb3f67edbc08}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ScoreToolHeight := ID03_MatchingRateOfPositionAdujustmentTool_02.Tool_01_Score;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ScoreToolPositionCorrector" Id="{4f888394-3441-0152-3760-0b4f89902670}" FolderPath="Output\">
+      <Declaration><![CDATA[PROPERTY ScoreToolPositionCorrector : DINT]]></Declaration>
+      <Get Name="Get" Id="{804f4ed0-a795-08d9-247f-e2108c1f0846}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ScoreToolPositionCorrector := ID02_MatchingRateOfPositionAdujustmentTool_01.Tool_00_Score;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ScoreToolWidth" Id="{642c2181-39c4-0639-032d-c3b4cccae83d}" FolderPath="Output\">
+      <Declaration><![CDATA[PROPERTY ScoreToolWidth : DINT]]></Declaration>
+      <Get Name="Get" Id="{10235bf1-ec78-015e-3d58-09e07d7fb327}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ScoreToolWidth := ID04_MatchingRateOfPositionAdujustmentTool_03.Tool_02_Score;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="ServiceMode" Id="{f169ea65-2ad6-0a5f-2eee-aac69de0c435}">
       <Declaration><![CDATA[METHOD PROTECTED ServiceMode
 ]]></Declaration>
