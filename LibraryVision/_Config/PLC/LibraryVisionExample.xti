@@ -1585,7 +1585,7 @@
 		</DataType>
 	</DataTypes>
 	<Project GUID="{DAF59FAF-F042-4C35-9613-F65BC51AD6A6}" Name="LibraryVisionExample" PrjFilePath="..\..\LibraryVisionExample\LibraryVisionExample.plcproj" TmcFilePath="..\..\LibraryVisionExample\LibraryVisionExample.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LibraryVisionExample\LibraryVisionExample.tmc" TmcHash="{FDCE74CE-0BE0-1905-65C6-D7270395CBF4}">
+		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LibraryVisionExample\LibraryVisionExample.tmc" TmcHash="{079EAAA6-0E15-76DC-0977-2843AD883C67}">
 			<Name>LibraryVisionExample Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">

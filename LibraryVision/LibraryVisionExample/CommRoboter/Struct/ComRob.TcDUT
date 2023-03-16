@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ComRob" Id="{b418db13-0369-097f-0768-871f402724e3}">
+    <Declaration><![CDATA[TYPE ComRob :
+STRUCT
+	in		: ComRobIn;
+	out		: ComRobOut;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

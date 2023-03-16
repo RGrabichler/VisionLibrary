@@ -14,7 +14,35 @@ VAR
     _coordinatesInMillimeter : LREAL;
     _calculate               : BOOL;
 END_VAR
-]]></Declaration>
+
+VAR
+    fbTcpClient   : TcpClient;
+    SrvNetId      : STRING := '';
+    ServerAddress : STRING := '192.168.3.208';
+    ServerPort    : UDINT  := 7000;
+
+    sReceive : STRING;
+    bBusy    : BOOL;
+    err      : BOOL;
+    errid    : UDINT;
+
+    bVar1  : BOOL;
+    bVar2  : BOOL;
+    ToSend : STRING := '11134';
+
+    fbSocketCloseAll : FB_SocketCloseAll := (sSrvNetID := '', tTimeout := DEFAULT_ADS_TIMEOUT);
+    bCloseAll        : BOOL              := TRUE;
+    _connect         : BOOL;
+END_VAR
+
+var
+    _comRob : ComRobo;
+
+    _communicationStruct : ComRob;
+    _msgToSend           : uTelegrammTCP;
+    _msgReceive          : uTelegrammTCP;
+
+END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[counter := counter + 1;
 
@@ -53,10 +81,93 @@ IF _calculate THEN
     END_IF
 END_IF
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-//==============================================================================================
-///////////////////////////////////////////////////////////////////////////////////////////////
+RunCommunication();
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////==============================================================================================
+//fbTcpClient
+//(
+//    NetId        := SrvNetId
+//    , ServerAdr  := ServerAddress
+//    , ServerPort := ServerPort
+//    , sSend      := ToSend
+//    , sReceive   => sReceive
+//    , bBusy      => bBusy
+//    , err        => err
+//    , errid      => errid
+//);
+
+//IF bCloseAll THEN (*On PLC reset or program download close all old connections *)
+//    bCloseAll := FALSE;
+//    fbSocketCloseAll(bExecute := TRUE);
+//ELSE
+//    fbSocketCloseAll(bExecute := FALSE);
+//END_IF
+
+//IF NOT fbSocketCloseAll.bBusy THEN
+//    fbTcpClient(bConnect := _connect);
+//END_IF
 ]]></ST>
     </Implementation>
+    <Folder Name="Communication" Id="{3b8326c8-7cba-0687-047d-2ad57cbc88e9}" />
+    <Method Name="MapComRob" Id="{d90f86a2-9d57-012a-105a-09ac3b799b31}" FolderPath="Communication\">
+      <Declaration><![CDATA[METHOD PRIVATE MapComRob : BOOL
+VAR_INST
+    _start :BOOL;
+    n : INT;
+
+    _powerOn : BOOL;
+    _powerOnTr : Tc2_Standard.R_TRIG;
+    _powerOffTr : Tc2_Standard.R_TRIG;
+    sigTimer : Tc2_Standard.TON;
+    sigTime : TIME := T#1000MS;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//TCP IP Komm
+////==========in
+_communicationStruct.in.SectionClearCA    := INT_TO_BOOL(_msgReceive.stTel.myBool[1]);
+_communicationStruct.in.Fault             := INT_TO_BOOL(_msgReceive.stTel.myBool[2]);
+_communicationStruct.in.HomePosReached    := INT_TO_BOOL(_msgReceive.stTel.myBool[3]);
+_communicationStruct.in.contactReq        := INT_TO_BOOL(_msgReceive.stTel.myBool[4]);
+_communicationStruct.in.StatusRunning     := INT_TO_BOOL(_msgReceive.stTel.myBool[5]);
+_communicationStruct.in.PowerOn           := INT_TO_BOOL(_msgReceive.stTel.myBool[6]);
+_communicationStruct.in.Estop             := INT_TO_BOOL(_msgReceive.stTel.myBool[7]);
+_communicationStruct.in.ContactGrasped    := INT_TO_BOOL(_msgReceive.stTel.myBool[8]);
+_communicationStruct.in.SectionClearTable := INT_TO_BOOL(_msgReceive.stTel.myBool[9]);
+_communicationStruct.in.CoilDone          := INT_TO_BOOL(_msgReceive.stTel.myBool[10]);
+_communicationStruct.in.FaultID           := _msgReceive.stTel.myInt[1];
+///==================== OUT
+_msgToSend.stTel.myBool[1]  := BOOL_TO_INT(_communicationStruct.out.ModeAuto);
+_msgToSend.stTel.myBool[2]  := BOOL_TO_INT(_communicationStruct.out.stopRun);
+_msgToSend.stTel.myBool[3]  := BOOL_TO_INT(_communicationStruct.out.reset);
+_msgToSend.stTel.myBool[4]  := BOOL_TO_INT(_communicationStruct.out.contactReady);
+_msgToSend.stTel.myBool[5]  := BOOL_TO_INT(_communicationStruct.out.contactPunched);
+_msgToSend.stTel.myBool[6]  := BOOL_TO_INT(_communicationStruct.out.homePosReq);
+_msgToSend.stTel.myBool[7]  := BOOL_TO_INT(_communicationStruct.out.tableInPos);
+_msgToSend.stTel.myBool[8]  := BOOL_TO_INT(_communicationStruct.out.HighPowerOn);
+_msgToSend.stTel.myBool[9]  := BOOL_TO_INT(_communicationStruct.out.HighPowerOff);
+_msgToSend.stTel.myBool[11] := BOOL_TO_INT(_communicationStruct.out.RowDone);
+_msgToSend.stTel.myInt[1]   := _communicationStruct.out.CoilIndex;
+
+//TEsten, start darf nur einmal ausgeführt werden
+IF _start THEN
+    _start := FALSE;
+    n      := n + 1;
+END_IF
+
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RunCommunication" Id="{12f7af0b-cc56-027d-0c46-2e2d628f4c9d}" FolderPath="Communication\">
+      <Declaration><![CDATA[METHOD PRIVATE RunCommunication
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ _comRob(_msgSend:= _msgToSend, _msgRcv:= _msgReceive);
+ 
+ MapComRob();]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

@@ -27,6 +27,36 @@
     <PreserveCompiledLibComments>false</PreserveCompiledLibComments>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CommRoboter\ComRobo.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommRoboter\Struct\ComRob.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommRoboter\Struct\ComRobIn.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommRoboter\Struct\ComRobOut.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommRoboter\Struct\E_ConnectionSteps.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommRoboter\Struct\FaultHandling.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommRoboter\Struct\stTelegrammTCP.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommRoboter\Struct\uTelegrammTCP.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Comm\TcpClient.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Comm\TcpServer.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
@@ -41,8 +71,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Comm" />
+    <Folder Include="CommRoboter\Struct" />
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
+    <Folder Include="CommRoboter" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
@@ -62,6 +95,10 @@
     <PlaceholderReference Include="Tc2_System">
       <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_System</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_TcpIp">
+      <DefaultResolution>Tc2_TcpIp, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_TcpIp</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
@@ -89,6 +126,7 @@
     </PlaceholderReference>
     <PlaceholderReference Include="TcoPneumatics">
       <DefaultResolution>TcoPneumatics, 0.11.0.19 (Vortex.Library)</DefaultResolution>
+      <Namespace>TcoPneumatics</Namespace>
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>

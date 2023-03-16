@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="uTelegrammTCP" Id="{cc6b07e8-60ea-0ed2-0101-cb3b920d87df}">
+    <Declaration><![CDATA[TYPE uTelegrammTCP :
+UNION
+    stTel       : stTelegrammTCP;
+    aTel        : ARRAY[1..SIZEOF(stTelegrammTCP)] OF BYTE;
+    sTel        : STRING(SIZEOF(stTelegrammTCP));
+END_UNION
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

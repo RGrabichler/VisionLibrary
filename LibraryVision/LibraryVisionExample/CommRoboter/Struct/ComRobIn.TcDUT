@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ComRobIn" Id="{e3ddf2c1-df9f-0e60-14b1-1487ccd4cb19}">
+    <Declaration><![CDATA[TYPE ComRobIn :
+    STRUCT
+        SectionClearCA    : BOOL;
+        HomePosReached    : BOOL;
+        FaultID           : INT;
+        StatusRunning     : BOOL;
+        Fault             : BOOL;
+        PowerOn           : BOOL;
+        Estop             : BOOL;
+        ContactGrasped    : BOOL;
+        SectionClearTable : BOOL;
+        CoilDone          : BOOL;
+        contactReq        : BOOL;
+
+    END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>
