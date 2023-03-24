@@ -70,7 +70,8 @@ METHOD PROTECTED OnDone
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[{warning disable C0371}
-Iv3InputRequest1.Trigger := false;]]></ST>
+Iv3InputRequest1.Trigger := FALSE;
+//this^.Restore();]]></ST>
       </Implementation>
     </Method>
     <Method Name="OnError" Id="{4081d238-c888-08c6-25e7-8b62c813d56f}" FolderPath="TcOpen\">

@@ -1,25 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <DUT Name="ComRobOut" Id="{85dca0dc-6b78-0813-3849-7013a0aeabff}">
-    <Declaration><![CDATA[TYPE ComRobOut :
-STRUCT
-    ModeAuto       : BOOL;
-    stopRun        : BOOL;
-    reset          : BOOL;
-    contactReady   : BOOL;
-    contactPunched : BOOL;
-    homePosReq     : BOOL;
-    tableInPos     : BOOL;
-    HighPowerOn    : BOOL;
-    CoilIndex      : INT;
-    HighPowerOff   : BOOL;
-    RowDone        : BOOL;
-    //auf HMI: 
-    //            - Toggle vor eindruecken der Kontakte
-    //              - Hoehe einstellbar
-    ContactHeight        : INT;
-    WaitBeforeContacting : BOOL;
-END_STRUCT
+    <Declaration><![CDATA[TYPE
+    ComRobOut :
+    STRUCT
+        {attribute addProperty Name "<#AutoMode Aktiv#>"}
+        ModeAuto        : BOOL;
+        stopRun         : BOOL;
+        reset           : BOOL;
+        contactReady    : BOOL;
+        contactPunched  : BOOL;
+        homePosReq      : BOOL;
+        tableInPos      : BOOL;
+        HighPowerOn     : BOOL;
+        PalletPickIndex : INT := 1;
+        HighPowerOff    : BOOL;
+        RowDone         : BOOL;
+        //auf HMI: 
+        //            - Toggle vor eindruecken der Kontakte
+        //              - Hoehe einstellbar
+        ContactHeight        : INT;
+        WaitBeforeContacting : BOOL;
+        {attribute addProperty Name "<#Foto Done#>"}
+        FotoDone : BOOL;
+    END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>
 </TcPlcObject>

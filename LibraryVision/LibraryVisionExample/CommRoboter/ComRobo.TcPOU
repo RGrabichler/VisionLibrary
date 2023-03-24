@@ -320,7 +320,7 @@ IF NOT __ISVALIDREF(_msgRcv) THEN
      RETURN;
 END_IF
 
-FOR _index := 1 TO SIZEOF(_msgRcv) DO
+FOR _index := 1 TO SIZEOF(_msgRcv)-1 DO
     _msgRcv.aTel[_index] := 0;
 END_FOR
 

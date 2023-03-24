@@ -5,43 +5,30 @@
 VAR
     counter : INT;
 
-    _IvController            : LibraryVision.IVController(THIS^);
-    _trigger                 : BOOL;
-    _coordinate              : BOOL;
-    _coordinates             : ARRAY[0..2] OF LibraryVision.Coordinates;
-    _distanceFromObject      : LREAL;
-    _fieldOfView             : FieldOfView;
+    _IvController : LibraryVision.IVController(THIS^);
+    _trigger : BOOL;
+	_triggerR : Tc2_Standard.R_TRIG;
+    _coordinate : BOOL;
+    _coordinates : ARRAY[0..2] OF LibraryVision.Coordinates;
+    _distanceFromObject : LREAL;
+    _fieldOfView : FieldOfView;
     _coordinatesInMillimeter : LREAL;
-    _calculate               : BOOL;
+    _calculate : BOOL;
 END_VAR
 
 VAR
-    fbTcpClient   : TcpClient;
-    SrvNetId      : STRING := '';
-    ServerAddress : STRING := '192.168.3.208';
-    ServerPort    : UDINT  := 7000;
-
-    sReceive : STRING;
-    bBusy    : BOOL;
-    err      : BOOL;
-    errid    : UDINT;
-
-    bVar1  : BOOL;
-    bVar2  : BOOL;
-    ToSend : STRING := '11134';
-
-    fbSocketCloseAll : FB_SocketCloseAll := (sSrvNetID := '', tTimeout := DEFAULT_ADS_TIMEOUT);
-    bCloseAll        : BOOL              := TRUE;
-    _connect         : BOOL;
-END_VAR
-
-var
     _comRob : ComRobo;
 
     _communicationStruct : ComRob;
-    _msgToSend           : uTelegrammTCP;
-    _msgReceive          : uTelegrammTCP;
+    _msgToSend : uTelegrammTCP;
+    _msgReceive : uTelegrammTCP;
 
+    _arrayOfPositionValuesX : ARRAY[1..20] OF DINT;
+    _arrayOfPositionValuesY : ARRAY[1..20] OF DINT;
+    _arrayOfPositionValuesTheta : ARRAY[1..20] OF DINT;
+    _arrayOfPositionValuesInMillimeterX : ARRAY[1..20] OF DINT;
+    _arrayOfPositionValuesInMillimeterY : ARRAY[1..20] OF DINT;
+    _arrayOfPositionValuesInMillimeterTheta : ARRAY[1..20] OF DINT;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[counter := counter + 1;
@@ -56,9 +43,20 @@ END_IF
 
 _IvController();
 
+_triggerR(clk := _communicationStruct.in.TakeFoto);
+
+IF _triggerR.Q THEN
+    _trigger := TRUE;
+END_IF
+
+IF NOT _communicationStruct.in.TakeFoto THEN
+    _communicationStruct.out.FotoDone := FALSE;
+END_IF
+
 IF _trigger THEN
     IF _IvController.TriggerSensorMethod().Done THEN
-        _trigger := FALSE;
+        _trigger    := FALSE;
+        _coordinate := TRUE;
     end_if
 END_IF
 
@@ -70,14 +68,32 @@ IF _coordinate THEN
         _coordinates[0] := _IvController.RawCoordinatesTool1;
         _coordinates[1] := _IvController.RawCoordinatesTool2;
         _coordinates[2] := _IvController.RawCoordinatesTool3;
+
+        _arrayOfPositionValuesX[_communicationStruct.out.PalletPickIndex]     := _coordinates[0].xValue;
+        _arrayOfPositionValuesY[_communicationStruct.out.PalletPickIndex]     := _coordinates[0].yValue;
+        _arrayOfPositionValuesTheta[_communicationStruct.out.PalletPickIndex] := _coordinates[0].variableValue;
+
+        _calculate := TRUE;
     END_IF
 END_IF
 
 IF _calculate THEN
     IF _IvController.CalculationMethod().Done THEN
-        _calculate               := FALSE;
-        _distanceFromObject      := _IvController.CalculationTask.DistanceFromObject;
-        _fieldOfView             := _IvController.CalculationTask.FieldOfView;
+        _calculate          := FALSE;
+        _distanceFromObject := _IvController.CalculationTask.DistanceFromObject;
+        _fieldOfView        := _IvController.CalculationTask.FieldOfView;
+
+        _arrayOfPositionValuesInMillimeterX[_communicationStruct.out.PalletPickIndex] :=
+            _IvController.CalculationTask.CoordinatesInMillimeter.xValue;
+
+        _arrayOfPositionValuesInMillimeterY[_communicationStruct.out.PalletPickIndex] :=
+            _IvController.CalculationTask.CoordinatesInMillimeter.yValue;
+
+        _arrayOfPositionValuesInMillimeterTheta[_communicationStruct.out.PalletPickIndex] :=
+            _IvController.CalculationTask.CoordinatesInMillimeter.variableValue;
+
+        _communicationStruct.out.FotoDone        := TRUE;
+        _communicationStruct.out.PalletPickIndex := _communicationStruct.out.PalletPickIndex + 1;
     END_IF
 END_IF
 
@@ -125,37 +141,37 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[//TCP IP Komm
 ////==========in
-_communicationStruct.in.SectionClearCA    := INT_TO_BOOL(_msgReceive.stTel.myBool[1]);
-_communicationStruct.in.Fault             := INT_TO_BOOL(_msgReceive.stTel.myBool[2]);
-_communicationStruct.in.HomePosReached    := INT_TO_BOOL(_msgReceive.stTel.myBool[3]);
-_communicationStruct.in.contactReq        := INT_TO_BOOL(_msgReceive.stTel.myBool[4]);
-_communicationStruct.in.StatusRunning     := INT_TO_BOOL(_msgReceive.stTel.myBool[5]);
-_communicationStruct.in.PowerOn           := INT_TO_BOOL(_msgReceive.stTel.myBool[6]);
-_communicationStruct.in.Estop             := INT_TO_BOOL(_msgReceive.stTel.myBool[7]);
-_communicationStruct.in.ContactGrasped    := INT_TO_BOOL(_msgReceive.stTel.myBool[8]);
-_communicationStruct.in.SectionClearTable := INT_TO_BOOL(_msgReceive.stTel.myBool[9]);
-_communicationStruct.in.CoilDone          := INT_TO_BOOL(_msgReceive.stTel.myBool[10]);
-_communicationStruct.in.FaultID           := _msgReceive.stTel.myInt[1];
+_communicationStruct.in.TakeFoto := INT_TO_BOOL(_msgReceive.stTel.myBool[1]);
+//_communicationStruct.in.Fault             := INT_TO_BOOL(_msgReceive.stTel.myBool[2]);
+//_communicationStruct.in.HomePosReached    := INT_TO_BOOL(_msgReceive.stTel.myBool[3]);
+//_communicationStruct.in.contactReq        := INT_TO_BOOL(_msgReceive.stTel.myBool[4]);
+//_communicationStruct.in.StatusRunning     := INT_TO_BOOL(_msgReceive.stTel.myBool[5]);
+//_communicationStruct.in.PowerOn           := INT_TO_BOOL(_msgReceive.stTel.myBool[6]);
+//_communicationStruct.in.Estop             := INT_TO_BOOL(_msgReceive.stTel.myBool[7]);
+//_communicationStruct.in.ContactGrasped    := INT_TO_BOOL(_msgReceive.stTel.myBool[8]);
+//_communicationStruct.in.SectionClearTable := INT_TO_BOOL(_msgReceive.stTel.myBool[9]);
+//_communicationStruct.in.CoilDone          := INT_TO_BOOL(_msgReceive.stTel.myBool[10]);
+_communicationStruct.in.PalletIndexPick := _msgReceive.stTel.myInt[1];
 ///==================== OUT
-_msgToSend.stTel.myBool[1]  := BOOL_TO_INT(_communicationStruct.out.ModeAuto);
-_msgToSend.stTel.myBool[2]  := BOOL_TO_INT(_communicationStruct.out.stopRun);
-_msgToSend.stTel.myBool[3]  := BOOL_TO_INT(_communicationStruct.out.reset);
-_msgToSend.stTel.myBool[4]  := BOOL_TO_INT(_communicationStruct.out.contactReady);
-_msgToSend.stTel.myBool[5]  := BOOL_TO_INT(_communicationStruct.out.contactPunched);
-_msgToSend.stTel.myBool[6]  := BOOL_TO_INT(_communicationStruct.out.homePosReq);
-_msgToSend.stTel.myBool[7]  := BOOL_TO_INT(_communicationStruct.out.tableInPos);
-_msgToSend.stTel.myBool[8]  := BOOL_TO_INT(_communicationStruct.out.HighPowerOn);
-_msgToSend.stTel.myBool[9]  := BOOL_TO_INT(_communicationStruct.out.HighPowerOff);
-_msgToSend.stTel.myBool[11] := BOOL_TO_INT(_communicationStruct.out.RowDone);
-_msgToSend.stTel.myInt[1]   := _communicationStruct.out.CoilIndex;
+//_msgToSend.stTel.myBool[1]  := BOOL_TO_INT(_communicationStruct.out.ModeAuto);
+//_msgToSend.stTel.myBool[2]  := BOOL_TO_INT(_communicationStruct.out.stopRun);
+//_msgToSend.stTel.myBool[3]  := BOOL_TO_INT(_communicationStruct.out.reset);
+//_msgToSend.stTel.myBool[4]  := BOOL_TO_INT(_communicationStruct.out.contactReady);
+//_msgToSend.stTel.myBool[5]  := BOOL_TO_INT(_communicationStruct.out.contactPunched);
+//_msgToSend.stTel.myBool[6]  := BOOL_TO_INT(_communicationStruct.out.homePosReq);
+//_msgToSend.stTel.myBool[7]  := BOOL_TO_INT(_communicationStruct.out.tableInPos);
+//_msgToSend.stTel.myBool[8]  := BOOL_TO_INT(_communicationStruct.out.HighPowerOn);
+//_msgToSend.stTel.myBool[9]  := BOOL_TO_INT(_communicationStruct.out.HighPowerOff);
+//_msgToSend.stTel.myBool[11] := BOOL_TO_INT(_communicationStruct.out.RowDone);
+
+_msgToSend.stTel.myBool[10] := BOOL_TO_INT(_communicationStruct.out.FotoDone);
+_msgToSend.stTel.myInt[1]   := _communicationStruct.out.PalletPickIndex;
 
 //TEsten, start darf nur einmal ausgeführt werden
 IF _start THEN
     _start := FALSE;
     n      := n + 1;
 END_IF
-
-
 ]]></ST>
       </Implementation>
     </Method>

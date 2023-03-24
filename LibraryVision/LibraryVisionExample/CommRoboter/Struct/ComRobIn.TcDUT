@@ -1,20 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <DUT Name="ComRobIn" Id="{e3ddf2c1-df9f-0e60-14b1-1487ccd4cb19}">
-    <Declaration><![CDATA[TYPE ComRobIn :
+    <Declaration><![CDATA[TYPE
+    ComRobIn :
     STRUCT
-        SectionClearCA    : BOOL;
-        HomePosReached    : BOOL;
-        FaultID           : INT;
-        StatusRunning     : BOOL;
-        Fault             : BOOL;
-        PowerOn           : BOOL;
-        Estop             : BOOL;
-        ContactGrasped    : BOOL;
-        SectionClearTable : BOOL;
-        CoilDone          : BOOL;
-        contactReq        : BOOL;
-
+        {attribute addProperty Name "<#Station bereit fuer Spacer#>"}
+        StationClearForSpacer : BOOL;
+        {attribute addProperty Name "<#Home Pos erreicht#>"}
+        HomePosReached : BOOL;
+        {attribute addProperty Name "<#Fehler ID#>"}
+        FaultID : INT;
+        {attribute addProperty Name "<#Status Running#>"}
+        StatusRunning : BOOL;
+        {attribute addProperty Name "<#Fehler#>"}
+        Fault : BOOL;
+        {attribute addProperty Name "<#HighPower aktiv#>"}
+        PowerOn : BOOL;
+        {attribute addProperty Name "<#EStop aktiv#>"}
+        Estop : BOOL;
+        {attribute addProperty Name "<#Foerderband Anforderung>"}
+        CoilDone : BOOL;
+        {attribute addProperty Name "<#Index Palette Schaumstoffring#>"}
+        PalletIndexPick : INT;
+        {attribute addProperty Name "<#Foto machen#>"}
+        TakeFoto : BOOL;
     END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

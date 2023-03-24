@@ -1,5 +1,4 @@
-﻿using System;
-using Vortex.Adapters.Connector.Tc3.Adapter;
+﻿using Vortex.Adapters.Connector.Tc3.Adapter;
 
 namespace LibraryVision
 {

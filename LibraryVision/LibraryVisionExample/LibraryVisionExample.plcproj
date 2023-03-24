@@ -51,10 +51,13 @@
     <Compile Include="CommRoboter\Struct\uTelegrammTCP.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Comm\TcpClient.TcPOU">
+    <Compile Include="ImplicitChecks\CheckBounds.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Comm\TcpServer.TcPOU">
+    <Compile Include="ImplicitChecks\CheckRangeSigned.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ImplicitChecks\CheckRangeUnsigned.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
@@ -71,11 +74,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Comm" />
     <Folder Include="CommRoboter\Struct" />
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="CommRoboter" />
+    <Folder Include="ImplicitChecks" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>

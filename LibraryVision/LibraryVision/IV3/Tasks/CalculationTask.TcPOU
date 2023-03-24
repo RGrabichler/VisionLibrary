@@ -26,7 +26,8 @@ VAR
 
     _states : (CalculatingCoefficientState
         , CalculatingFieldOfViewState
-        , CalculationDistanceState
+        , CalculatingDistanceState
+		, CaulculatingCoordinatesInMillimeter
         , DoneState
         , ErrorState);
 
@@ -64,40 +65,32 @@ END_VAR
 
     CASE _states OF
         CalculatingCoefficientState:
-            _coefficientX := CalcCoefficientFromResolutionAndPixel
-            (
-                Resolution := _resolutionX
-                , Pixel    := CoordinatesTool3.variableValue
-            );
+            _coefficientX := CalcCoefficientFromResolutionAndPixel(Resolution := _resolutionX, Pixel := CoordinatesTool3.variableValue);
 
-            _coefficientY := CalcCoefficientFromResolutionAndPixel
-            (
-                Resolution := _resolutionY
-                , Pixel    := CoordinatesTool2.variableValue
-            );
+            _coefficientY := CalcCoefficientFromResolutionAndPixel(Resolution := _resolutionY, Pixel := CoordinatesTool2.variableValue);
 
             _states := CalculatingFieldOfViewState;
 
         CalculatingFieldOfViewState:
 
-            FieldOfView.xValue := CalcFieldOfViewWithCoefficientAndObjectMeasurement
-            (
-                Coefficient  := _coefficientX
-                , Value := THIS^.ControllerRef.ScoreToolWidth
-            );
+            FieldOfView.xValue :=
+                CalcFieldOfViewWithCoefficientAndObjectMeasurement(Coefficient := _coefficientX, Value := THIS^.ControllerRef.ScoreToolWidth);
 
-            FieldOfView.yValue := CalcFieldOfViewWithCoefficientAndObjectMeasurement
-            (
-                Coefficient  := _coefficientY
-                , Value := THIS^.ControllerRef.ScoreToolHeight
-            );
+            FieldOfView.yValue :=
+                CalcFieldOfViewWithCoefficientAndObjectMeasurement(Coefficient := _coefficientY, Value := THIS^.ControllerRef.ScoreToolHeight);
 
-            _states := CalculationDistanceState;
+            _states := CalculatingDistanceState;
 
-        CalculationDistanceState:
+        CalculatingDistanceState:
 
             _distanceFromX := (FieldOfView.xValue * _gainX) + _offsetX;
             _distanceFromY := (FieldOfView.yValue * _gainY) + _offsetY;
+            _states := CaulculatingCoordinatesInMillimeter;
+
+        CaulculatingCoordinatesInMillimeter:
+            _coordinatesInMillimeter.xValue := LREAL_TO_DINT((FieldOfView.xValue / _resolutionX) * CoordinatesTool1.xValue);
+            _coordinatesInMillimeter.yValue := LREAL_TO_DINT((FieldOfView.yValue / _resolutiony) * CoordinatesTool1.yValue);
+            _coordinatesInMillimeter.variableValue := CoordinatesTool1.variableValue;
 
             _states := DoneState;
 
@@ -245,7 +238,8 @@ END_VAR
 METHOD PROTECTED OnDone
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[{warning disable C0371}]]></ST>
+        <ST><![CDATA[{warning disable C0371}
+//this^.Restore();]]></ST>
       </Implementation>
     </Method>
     <Method Name="OnError" Id="{1b2f2ec7-af0a-0bf8-388f-b0d450213da7}" FolderPath="TcOpen\">
