@@ -29,6 +29,7 @@ VAR
     _arrayOfPositionValuesInMillimeterX     : ARRAY[1..SIZE] OF INT;
     _arrayOfPositionValuesInMillimeterY     : ARRAY[1..SIZE] OF INT;
     _arrayOfPositionValuesInMillimeterTheta : ARRAY[1..SIZE] OF INT;
+    _arrayOfCorrection                      : ARRAY[1..SIZE] OF ARRAY[ 0..2] OF INT;
 
     _index          : INT;
     _count          : INT;
@@ -106,29 +107,31 @@ IF _calculate THEN
         _arrayOfPositionValuesInMillimeterTheta[_communicationStruct.out.PalletPickIndex] :=
             DINT_TO_INT(_IvController.CalculationTask.CoordinatesInMillimeter.variableValue);
 
+        _communicationStruct.out.PalletPickIndex := _communicationStruct.out.PalletPickIndex + 1;
+
+        IF _communicationStruct.out.PalletPickIndex > SIZE_OF_PALLET THEN
+
+            FOR _index := 1 TO SIZE_OF_PALLET DO
+                IF _arrayOfPositionValuesInMillimeterX[_index] <> 0 THEN
+                    _aggrvValueX := _aggrvValueX + _arrayOfPositionValuesInMillimeterX[_index];
+                    _aggrvValueY := _aggrvValueY + _arrayOfPositionValuesInMillimeterY[_index];
+                    _count       := _count + 1;
+                END_IF
+            END_FOR
+
+            _aggrevatedMidX := _aggrvValueX / _count;
+            _aggrevatedMidY := _aggrvValueY / _count;
+
+            _communicationStruct.out.PalletPickIndex := 0;
+
+        END_IF
+
         _communicationStruct.out.FotoDone := TRUE;
         PositionCorrectionFactor();
         //        IF  _communicationStruct.in.RowPallet <> 0 THEN
-        _communicationStruct.out.PalletPickIndex := _communicationStruct.out.PalletPickIndex + 1;
 
     END_IF
 
-    IF _communicationStruct.out.PalletPickIndex >= SIZE_OF_PALLET THEN
-
-        FOR _index := 1 TO SIZE_OF_PALLET DO
-            IF _arrayOfPositionValuesInMillimeterX[_index] <> 0 THEN
-                _aggrvValueX := _aggrvValueX + _arrayOfPositionValuesInMillimeterX[_index];
-                _aggrvValueY := _aggrvValueY + _arrayOfPositionValuesInMillimeterY[_index];
-                _count       := _count + 1;
-            END_IF
-        END_FOR
-
-        _aggrevatedMidX := _aggrvValueX / _count;
-        _aggrevatedMidY := _aggrvValueY / _count;
-
-        _communicationStruct.out.PalletPickIndex := 0;
-
-    END_IF
 END_IF
 
 RunCommunication();
@@ -176,8 +179,8 @@ _communicationStruct.in.RowPallet       := _msgReceive.stTel.myInt[2];
 
 _msgToSend.stTel.myBool[10] := BOOL_TO_INT(_communicationStruct.out.FotoDone);
 _msgToSend.stTel.myInt[1]   := _communicationStruct.out.PalletPickIndex;
-_msgToSend.stTel.myInt[3] := _communicationStruct.out.Locations.LocX;
-_msgToSend.stTel.myInt[4] := _communicationStruct.out.Locations.LocY;
+_msgToSend.stTel.myInt[3] := _communicationStruct.out.Locations.LocHeight;
+_msgToSend.stTel.myInt[4] := _communicationStruct.out.Locations.LocWidth;
 _msgToSend.stTel.myInt[5] := _communicationStruct.out.Locations.Roll;
 
 //TEsten, start darf nur einmal ausgeführt werden
@@ -194,23 +197,30 @@ VAR_INST
 	// Werte experimentiell mit Versuchen ermittelt
     averageValueX     : INT := 299;
     averageValueY     : INT := 286;
-    avberageValueRoll : INT:= 0;
+    averageValueRoll : INT:= 0;
+	_index : INT;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF THIS^._IvController.ID01StatusProp.Total_Status_OK THEN
-    _communicationStruct.out.Locations.LocX :=
-        averageValueX - this^._arrayOfPositionValuesInMillimeterX[_communicationStruct.out.PalletPickIndex];
+        <ST><![CDATA[_index := _communicationStruct.out.PalletPickIndex - 1;
 
-    _communicationStruct.out.Locations.LocY :=
-        averageValueY - THIS^._arrayOfPositionValuesInMillimeterY[_communicationStruct.out.PalletPickIndex];
+IF THIS^._IvController.ID01StatusProp.Total_Status_OK THEN
+    _communicationStruct.out.Locations.LocWidth :=
+      averageValueX -   THIS^._arrayOfPositionValuesInMillimeterX[_index];
+
+    _communicationStruct.out.Locations.LocHeight :=
+      averageValueY -   THIS^._arrayOfPositionValuesInMillimeterY[_index] ;
 
     _communicationStruct.out.Locations.Roll :=
-        avberageValueRoll - THIS^._arrayOfPositionValuesInMillimeterTheta[_communicationStruct.out.PalletPickIndex];
+        averageValueRoll - THIS^._arrayOfPositionValuesInMillimeterTheta[_index];
 ELSE
-    _communicationStruct.out.Locations.LocX := 0;
-    _communicationStruct.out.Locations.LocY := 0;
-    _communicationStruct.out.Locations.Roll := 0;
-END_IF]]></ST>
+    _communicationStruct.out.Locations.LocHeight := 0;
+    _communicationStruct.out.Locations.LocWidth  := 0;
+    _communicationStruct.out.Locations.Roll      := 0;
+END_IF
+
+_arrayOfCorrection[_index][0] := _communicationStruct.out.Locations.LocHeight;
+_arrayOfCorrection[_index][1] := _communicationStruct.out.Locations.LocWidth;
+_arrayOfCorrection[_index][2] := _communicationStruct.out.Locations.Roll;]]></ST>
       </Implementation>
     </Method>
     <Method Name="RunCommunication" Id="{12f7af0b-cc56-027d-0c46-2e2d628f4c9d}" FolderPath="Communication\">
