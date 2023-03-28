@@ -66,7 +66,9 @@ VAR
     ID07_MatchingRateOfPositionAdujustmentTool_06 AT %I* : ID07_Current_Value; //value 0..1
     ID08_MatchingRateOfPositionAdujustmentTool_07 AT %I* : ID08_Current_Value; //value 0..1
     ID01Status                                    AT %I* : ID01_Status;
-    ID02Status                                    AT %I* : ID02_Status;
+    _ID01Status                                 : ID01_Status := ID01Status;
+  
+  ID02Status                                    AT %I* : ID02_Status;
     ID03Status                                    AT %I* : ID03_Status;
     ID04Status                                    AT %I* : ID04_Status;
     ID05Status                                    AT %I* : ID05_Status;
@@ -158,7 +160,8 @@ IF _readCoordinates THEN
     END_IF
 
 END_IF
-]]></ST>
+
+_ID01Status := ID01Status;]]></ST>
     </Implementation>
     <Folder Name="old" Id="{b26ebfb8-7b13-0ab2-293c-ccdc657e455d}">
       <Folder Name="CoeActions" Id="{38ad5833-e228-06d5-08c2-692a96a63a0e}" />
@@ -432,6 +435,18 @@ END_VAR
 END_CASE]]></ST>
       </Implementation>
     </Method>
+    <Property Name="ID01StatusProp" Id="{4b32a02d-c7bb-0454-2f07-5a999a253e92}" FolderPath="Status\">
+      <Declaration><![CDATA[{attribute 'monitoring' := 'call'}
+PROPERTY ID01StatusProp : REFERENCE TO ID01_Status]]></Declaration>
+      <Get Name="Get" Id="{c1d13bec-c14b-0b9b-0fb3-6256158af423}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ID01StatusProp REF= _ID01Status;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="IsError" Id="{fb44b890-472b-0194-0ca4-20bd3157b0fe}" FolderPath="Status\">
       <Declaration><![CDATA[{attribute 'monitoring' := 'call'}
 PROPERTY IsError : BOOL]]></Declaration>
@@ -602,7 +617,7 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="ScoreToolWidth" Id="{642c2181-39c4-0639-032d-c3b4cccae83d}" FolderPath="Output\">
+    <Property Name="ScoreToolWidth" Id="{642c2181-39c4-0639-032d-c3b4cccae83d}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY ScoreToolWidth : DINT]]></Declaration>
       <Get Name="Get" Id="{10235bf1-ec78-015e-3d58-09e07d7fb327}">
         <Declaration><![CDATA[VAR

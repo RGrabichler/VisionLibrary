@@ -45,6 +45,9 @@
     <Compile Include="CommRoboter\Struct\FaultHandling.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CommRoboter\Struct\Location\Locations.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CommRoboter\Struct\stTelegrammTCP.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -75,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CommRoboter\Struct" />
+    <Folder Include="CommRoboter\Struct\Location" />
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="CommRoboter" />

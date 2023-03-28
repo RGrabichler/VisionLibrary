@@ -1585,7 +1585,7 @@
 		</DataType>
 	</DataTypes>
 	<Project GUID="{DAF59FAF-F042-4C35-9613-F65BC51AD6A6}" Name="LibraryVisionExample" PrjFilePath="..\..\LibraryVisionExample\LibraryVisionExample.plcproj" TmcFilePath="..\..\LibraryVisionExample\LibraryVisionExample.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LibraryVisionExample\LibraryVisionExample.tmc" TmcHash="{524536BC-6CA1-D977-48D3-2135A17E3726}">
+		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LibraryVisionExample\LibraryVisionExample.tmc" TmcHash="{39089946-476E-5FBA-06F5-F87341A5A75B}">
 			<Name>LibraryVisionExample Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
@@ -1648,6 +1648,30 @@
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.ID01Status</Name>
 					<Type GUID="{BCC4DBE9-7A89-090C-EEED-051D57E8BA5A}" Namespace="LibraryVision">ID01_Status</Type>
+				</Var>
+				<Var>
+					<Name>MAIN._app._mainStation._IvController._ID01Status.Change_Program_Ack</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN._app._mainStation._IvController._ID01Status.Change_Program_Failed</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN._app._mainStation._IvController._ID01Status.Result_Valid</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN._app._mainStation._IvController._ID01Status.Total_Status_OK</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN._app._mainStation._IvController._ID01Status.Program_Num_00</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN._app._mainStation._IvController._ID01Status.Error_status</Name>
+					<Type>BOOL</Type>
 				</Var>
 				<Var>
 					<Name>MAIN._app._mainStation._IvController.ID02Status</Name>

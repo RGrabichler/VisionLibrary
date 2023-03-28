@@ -13,7 +13,7 @@
         homePosReq      : BOOL;
         tableInPos      : BOOL;
         HighPowerOn     : BOOL;
-        PalletPickIndex : INT := 1;
+        PalletPickIndex : INT := 0;
         HighPowerOff    : BOOL;
         RowDone         : BOOL;
         //auf HMI: 
@@ -22,7 +22,8 @@
         ContactHeight        : INT;
         WaitBeforeContacting : BOOL;
         {attribute addProperty Name "<#Foto Done#>"}
-        FotoDone : BOOL;
+        FotoDone  : BOOL;
+        Locations : Locations;
     END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

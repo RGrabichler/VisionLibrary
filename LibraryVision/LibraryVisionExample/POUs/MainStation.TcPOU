@@ -5,31 +5,43 @@
 VAR
     counter : INT;
 
-    _IvController : LibraryVision.IVController(THIS^);
-    _trigger : BOOL;
-	_triggerR : Tc2_Standard.R_TRIG;
-    _coordinate : BOOL;
-    _coordinates : ARRAY[0..2] OF LibraryVision.Coordinates;
-    _distanceFromObject : LREAL;
-    _fieldOfView : FieldOfView;
+    _IvController            : LibraryVision.IVController(THIS^);
+    _trigger                 : BOOL;
+    _triggerR                : Tc2_Standard.R_TRIG;
+    _coordinate              : BOOL;
+    _coordinates             : ARRAY[0..2] OF LibraryVision.Coordinates;
+    _distanceFromObject      : LREAL;
+    _fieldOfView             : FieldOfView;
     _coordinatesInMillimeter : LREAL;
-    _calculate : BOOL;
+    _calculate               : BOOL;
 END_VAR
 
 VAR
     _comRob : ComRobo;
 
     _communicationStruct : ComRob;
-    _msgToSend : uTelegrammTCP;
-    _msgReceive : uTelegrammTCP;
+    _msgToSend           : uTelegrammTCP;
+    _msgReceive          : uTelegrammTCP;
 
-    _arrayOfPositionValuesX : ARRAY[1..20] OF DINT;
-    _arrayOfPositionValuesY : ARRAY[1..20] OF DINT;
-    _arrayOfPositionValuesTheta : ARRAY[1..20] OF DINT;
-    _arrayOfPositionValuesInMillimeterX : ARRAY[1..20] OF DINT;
-    _arrayOfPositionValuesInMillimeterY : ARRAY[1..20] OF DINT;
-    _arrayOfPositionValuesInMillimeterTheta : ARRAY[1..20] OF DINT;
-END_VAR]]></Declaration>
+    _arrayOfPositionValuesX                 : ARRAY[1..SIZE] OF INT;
+    _arrayOfPositionValuesY                 : ARRAY[1..SIZE] OF INT;
+    _arrayOfPositionValuesTheta             : ARRAY[1..SIZE] OF INT;
+    _arrayOfPositionValuesInMillimeterX     : ARRAY[1..SIZE] OF INT;
+    _arrayOfPositionValuesInMillimeterY     : ARRAY[1..SIZE] OF INT;
+    _arrayOfPositionValuesInMillimeterTheta : ARRAY[1..SIZE] OF INT;
+
+    _index          : INT;
+    _count          : INT;
+    _aggrvValueX    : INT;
+    _aggrevatedMidX : LREAL;
+    _aggrvValueY    : INT;
+    _aggrevatedMidY : LREAL;
+END_VAR
+VAR CONSTANT
+    SIZE           : INT  := 30;
+    SIZE_OF_PALLET : UINT := 27; // 9 reihen, 3 columns
+END_VAR
+]]></Declaration>
     <Implementation>
       <ST><![CDATA[counter := counter + 1;
 
@@ -57,6 +69,7 @@ IF _trigger THEN
     IF _IvController.TriggerSensorMethod().Done THEN
         _trigger    := FALSE;
         _coordinate := TRUE;
+
     end_if
 END_IF
 
@@ -69,9 +82,10 @@ IF _coordinate THEN
         _coordinates[1] := _IvController.RawCoordinatesTool2;
         _coordinates[2] := _IvController.RawCoordinatesTool3;
 
-        _arrayOfPositionValuesX[_communicationStruct.out.PalletPickIndex]     := _coordinates[0].xValue;
-        _arrayOfPositionValuesY[_communicationStruct.out.PalletPickIndex]     := _coordinates[0].yValue;
-        _arrayOfPositionValuesTheta[_communicationStruct.out.PalletPickIndex] := _coordinates[0].variableValue;
+        _arrayOfPositionValuesX[_communicationStruct.out.PalletPickIndex]     := DINT_TO_INT(_coordinates[0].xValue);
+        _arrayOfPositionValuesY[_communicationStruct.out.PalletPickIndex]     := DINT_TO_INT(_coordinates[0].yValue);
+        _arrayOfPositionValuesTheta[_communicationStruct.out.PalletPickIndex] :=
+            DINT_TO_INT(_coordinates[0].variableValue);
 
         _calculate := TRUE;
     END_IF
@@ -84,45 +98,40 @@ IF _calculate THEN
         _fieldOfView        := _IvController.CalculationTask.FieldOfView;
 
         _arrayOfPositionValuesInMillimeterX[_communicationStruct.out.PalletPickIndex] :=
-            _IvController.CalculationTask.CoordinatesInMillimeter.xValue;
+            DINT_TO_INT(_IvController.CalculationTask.CoordinatesInMillimeter.xValue);
 
         _arrayOfPositionValuesInMillimeterY[_communicationStruct.out.PalletPickIndex] :=
-            _IvController.CalculationTask.CoordinatesInMillimeter.yValue;
+            DINT_TO_INT(_IvController.CalculationTask.CoordinatesInMillimeter.yValue);
 
         _arrayOfPositionValuesInMillimeterTheta[_communicationStruct.out.PalletPickIndex] :=
-            _IvController.CalculationTask.CoordinatesInMillimeter.variableValue;
+            DINT_TO_INT(_IvController.CalculationTask.CoordinatesInMillimeter.variableValue);
 
-        _communicationStruct.out.FotoDone        := TRUE;
+        _communicationStruct.out.FotoDone := TRUE;
+        PositionCorrectionFactor();
+        //        IF  _communicationStruct.in.RowPallet <> 0 THEN
         _communicationStruct.out.PalletPickIndex := _communicationStruct.out.PalletPickIndex + 1;
+
+    END_IF
+
+    IF _communicationStruct.out.PalletPickIndex >= SIZE_OF_PALLET THEN
+
+        FOR _index := 1 TO SIZE_OF_PALLET DO
+            IF _arrayOfPositionValuesInMillimeterX[_index] <> 0 THEN
+                _aggrvValueX := _aggrvValueX + _arrayOfPositionValuesInMillimeterX[_index];
+                _aggrvValueY := _aggrvValueY + _arrayOfPositionValuesInMillimeterY[_index];
+                _count       := _count + 1;
+            END_IF
+        END_FOR
+
+        _aggrevatedMidX := _aggrvValueX / _count;
+        _aggrevatedMidY := _aggrvValueY / _count;
+
+        _communicationStruct.out.PalletPickIndex := 0;
+
     END_IF
 END_IF
 
 RunCommunication();
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////==============================================================================================
-//fbTcpClient
-//(
-//    NetId        := SrvNetId
-//    , ServerAdr  := ServerAddress
-//    , ServerPort := ServerPort
-//    , sSend      := ToSend
-//    , sReceive   => sReceive
-//    , bBusy      => bBusy
-//    , err        => err
-//    , errid      => errid
-//);
-
-//IF bCloseAll THEN (*On PLC reset or program download close all old connections *)
-//    bCloseAll := FALSE;
-//    fbSocketCloseAll(bExecute := TRUE);
-//ELSE
-//    fbSocketCloseAll(bExecute := FALSE);
-//END_IF
-
-//IF NOT fbSocketCloseAll.bBusy THEN
-//    fbTcpClient(bConnect := _connect);
-//END_IF
 ]]></ST>
     </Implementation>
     <Folder Name="Communication" Id="{3b8326c8-7cba-0687-047d-2ad57cbc88e9}" />
@@ -152,6 +161,7 @@ _communicationStruct.in.TakeFoto := INT_TO_BOOL(_msgReceive.stTel.myBool[1]);
 //_communicationStruct.in.SectionClearTable := INT_TO_BOOL(_msgReceive.stTel.myBool[9]);
 //_communicationStruct.in.CoilDone          := INT_TO_BOOL(_msgReceive.stTel.myBool[10]);
 _communicationStruct.in.PalletIndexPick := _msgReceive.stTel.myInt[1];
+_communicationStruct.in.RowPallet       := _msgReceive.stTel.myInt[2];
 ///==================== OUT
 //_msgToSend.stTel.myBool[1]  := BOOL_TO_INT(_communicationStruct.out.ModeAuto);
 //_msgToSend.stTel.myBool[2]  := BOOL_TO_INT(_communicationStruct.out.stopRun);
@@ -166,6 +176,9 @@ _communicationStruct.in.PalletIndexPick := _msgReceive.stTel.myInt[1];
 
 _msgToSend.stTel.myBool[10] := BOOL_TO_INT(_communicationStruct.out.FotoDone);
 _msgToSend.stTel.myInt[1]   := _communicationStruct.out.PalletPickIndex;
+_msgToSend.stTel.myInt[3] := _communicationStruct.out.Locations.LocX;
+_msgToSend.stTel.myInt[4] := _communicationStruct.out.Locations.LocY;
+_msgToSend.stTel.myInt[5] := _communicationStruct.out.Locations.Roll;
 
 //TEsten, start darf nur einmal ausgeführt werden
 IF _start THEN
@@ -173,6 +186,31 @@ IF _start THEN
     n      := n + 1;
 END_IF
 ]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="PositionCorrectionFactor" Id="{f845392d-f6bd-0652-086f-209d5a7a61a5}">
+      <Declaration><![CDATA[METHOD PositionCorrectionFactor : BOOL
+VAR_INST
+	// Werte experimentiell mit Versuchen ermittelt
+    averageValueX     : INT := 299;
+    averageValueY     : INT := 286;
+    avberageValueRoll : INT:= 0;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF THIS^._IvController.ID01StatusProp.Total_Status_OK THEN
+    _communicationStruct.out.Locations.LocX :=
+        averageValueX - this^._arrayOfPositionValuesInMillimeterX[_communicationStruct.out.PalletPickIndex];
+
+    _communicationStruct.out.Locations.LocY :=
+        averageValueY - THIS^._arrayOfPositionValuesInMillimeterY[_communicationStruct.out.PalletPickIndex];
+
+    _communicationStruct.out.Locations.Roll :=
+        avberageValueRoll - THIS^._arrayOfPositionValuesInMillimeterTheta[_communicationStruct.out.PalletPickIndex];
+ELSE
+    _communicationStruct.out.Locations.LocX := 0;
+    _communicationStruct.out.Locations.LocY := 0;
+    _communicationStruct.out.Locations.Roll := 0;
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="RunCommunication" Id="{12f7af0b-cc56-027d-0c46-2e2d628f4c9d}" FolderPath="Communication\">

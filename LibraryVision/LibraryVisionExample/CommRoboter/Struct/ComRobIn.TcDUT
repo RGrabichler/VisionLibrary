@@ -22,6 +22,8 @@
         CoilDone : BOOL;
         {attribute addProperty Name "<#Index Palette Schaumstoffring#>"}
         PalletIndexPick : INT;
+        {attribute addProperty Name "<#Berechneter Wert aus Roboter#>"}
+        RowPallet : INT;
         {attribute addProperty Name "<#Foto machen#>"}
         TakeFoto : BOOL;
     END_STRUCT
