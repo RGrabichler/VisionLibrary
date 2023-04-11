@@ -117,4 +117,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="___Station_bereit_fuer_Spacer__" xml:space="preserve">
+    <value>Station bereit fuer Spacer</value>
+  </data>
+  <data name="___Home_Pos_erreicht__" xml:space="preserve">
+    <value>Home Pos erreicht</value>
+  </data>
+  <data name="___Fehler_ID__" xml:space="preserve">
+    <value>Fehler ID</value>
+  </data>
+  <data name="___Status_Running__" xml:space="preserve">
+    <value>Status Running</value>
+  </data>
+  <data name="___Fehler__" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="___HighPower_aktiv__" xml:space="preserve">
+    <value>HighPower aktiv</value>
+  </data>
+  <data name="___EStop_aktiv__" xml:space="preserve">
+    <value>EStop aktiv</value>
+  </data>
+  <data name="___Foerderband_Anforderung____________CoilDone___BOOL___________attribute_addProperty_Name____Index_Palette_Schaumstoffring__" xml:space="preserve">
+    <value>Foerderband Anforderung&gt;"}
+        CoilDone : BOOL;
+        {attribute addProperty Name "Index Palette Schaumstoffring</value>
+  </data>
+  <data name="___Berechneter_Wert_aus_Roboter__" xml:space="preserve">
+    <value>Berechneter Wert aus Roboter</value>
+  </data>
+  <data name="___Foto_machen__" xml:space="preserve">
+    <value>Foto machen</value>
+  </data>
+  <data name="___AutoMode_Aktiv__" xml:space="preserve">
+    <value>AutoMode Aktiv</value>
+  </data>
+  <data name="___Foto_Done__" xml:space="preserve">
+    <value>Foto Done</value>
+  </data>
 </root>

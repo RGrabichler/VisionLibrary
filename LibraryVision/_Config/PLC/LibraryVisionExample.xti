@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.42" ClassName="CNestedPlcProjDef">
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.44" ClassName="CNestedPlcProjDef">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{5D28E8E8-64F2-2A62-49D8-E02FDA0D47EE}" Namespace="LibraryVision" AutoDeleteType="true">InputBase_8311D824</Name>
@@ -1585,7 +1585,7 @@
 		</DataType>
 	</DataTypes>
 	<Project GUID="{DAF59FAF-F042-4C35-9613-F65BC51AD6A6}" Name="LibraryVisionExample" PrjFilePath="..\..\LibraryVisionExample\LibraryVisionExample.plcproj" TmcFilePath="..\..\LibraryVisionExample\LibraryVisionExample.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LibraryVisionExample\LibraryVisionExample.tmc" TmcHash="{27FE6D5B-02DD-AEFF-B348-11736C2C3706}">
+		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LibraryVisionExample\LibraryVisionExample.tmc" TmcHash="{46850E7F-967E-B488-5EA1-973DA2ED2FD2}">
 			<Name>LibraryVisionExample Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">

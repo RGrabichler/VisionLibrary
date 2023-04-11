@@ -18,14 +18,16 @@
         PowerOn : BOOL;
         {attribute addProperty Name "<#EStop aktiv#>"}
         Estop : BOOL;
-        {attribute addProperty Name "<#Foerderband Anforderung>"}
-        CoilDone : BOOL;
+        {attribute addProperty Name "<#Increase Index#"}
+       IncreaseIndex: BOOL;
         {attribute addProperty Name "<#Index Palette Schaumstoffring#>"}
         PalletIndexPick : INT;
         {attribute addProperty Name "<#Berechneter Wert aus Roboter#>"}
         RowPallet : INT;
         {attribute addProperty Name "<#Foto machen#>"}
         TakeFoto : BOOL;
+		   {attribute addProperty Name "<#Foto machen#>"}
+        AnglePickOrigin : INT;
     END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

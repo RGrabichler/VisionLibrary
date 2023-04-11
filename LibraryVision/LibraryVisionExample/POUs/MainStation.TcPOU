@@ -17,6 +17,7 @@ VAR
 END_VAR
 
 VAR
+	//~
     _comRob : ComRobo;
 
     _communicationStruct : ComRob;
@@ -37,14 +38,17 @@ VAR
     _aggrevatedMidX : LREAL;
     _aggrvValueY    : INT;
     _aggrevatedMidY : LREAL;
+	_increaseIndex : Tc2_Standard.R_TRIG	;
+	//~
 END_VAR
 VAR CONSTANT
     SIZE           : INT  := 30;
-    SIZE_OF_PALLET : UINT := 27; // 9 reihen, 3 columns
+    SIZE_OF_PALLET : INT := 27; // 9 reihen, 3 columns
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[counter := counter + 1;
+_increaseIndex(clk := _communicationStruct.in.IncreaseIndex);
 
 IF (THIS^.counter MOD 13 = 0) THEN
     THIS^.Messenger.Info('opalalla').Pin();
@@ -107,23 +111,26 @@ IF _calculate THEN
         _arrayOfPositionValuesInMillimeterTheta[_communicationStruct.out.PalletPickIndex] :=
             DINT_TO_INT(_IvController.CalculationTask.CoordinatesInMillimeter.variableValue);
 
+        _aggrevatedMidX := _aggrvValueX / _count;
+        _aggrevatedMidY := _aggrvValueY / _count;
+
+        _communicationStruct.out.PalletPickIndex := 1;
+
+    END_IF
+
+    IF _increaseIndex.q THEN
         _communicationStruct.out.PalletPickIndex := _communicationStruct.out.PalletPickIndex + 1;
 
         IF _communicationStruct.out.PalletPickIndex > SIZE_OF_PALLET THEN
 
-            FOR _index := 1 TO SIZE_OF_PALLET DO
-                IF _arrayOfPositionValuesInMillimeterX[_index] <> 0 THEN
-                    _aggrvValueX := _aggrvValueX + _arrayOfPositionValuesInMillimeterX[_index];
-                    _aggrvValueY := _aggrvValueY + _arrayOfPositionValuesInMillimeterY[_index];
-                    _count       := _count + 1;
-                END_IF
-            END_FOR
-
-            _aggrevatedMidX := _aggrvValueX / _count;
-            _aggrevatedMidY := _aggrvValueY / _count;
-
-            _communicationStruct.out.PalletPickIndex := 0;
-
+            //            FOR _index := 1 TO SIZE_OF_PALLET DO
+            //                IF _arrayOfPositionValuesInMillimeterX[_index] <> 0 THEN
+            //                    _aggrvValueX := _aggrvValueX + _arrayOfPositionValuesInMillimeterX[_index];
+            //                    _aggrvValueY := _aggrvValueY + _arrayOfPositionValuesInMillimeterY[_index];
+            //                    _count       := _count + 1;
+            //                END_IF
+            //            END_FOR
+			_communicationStruct.out.PalletPickIndex := 1;
         END_IF
 
         _communicationStruct.out.FotoDone := TRUE;
@@ -156,7 +163,7 @@ END_VAR]]></Declaration>
 _communicationStruct.in.TakeFoto := INT_TO_BOOL(_msgReceive.stTel.myBool[1]);
 //_communicationStruct.in.Fault             := INT_TO_BOOL(_msgReceive.stTel.myBool[2]);
 //_communicationStruct.in.HomePosReached    := INT_TO_BOOL(_msgReceive.stTel.myBool[3]);
-//_communicationStruct.in.contactReq        := INT_TO_BOOL(_msgReceive.stTel.myBool[4]);
+_communicationStruct.in.IncreaseIndex        := INT_TO_BOOL(_msgReceive.stTel.myBool[4]);
 //_communicationStruct.in.StatusRunning     := INT_TO_BOOL(_msgReceive.stTel.myBool[5]);
 //_communicationStruct.in.PowerOn           := INT_TO_BOOL(_msgReceive.stTel.myBool[6]);
 //_communicationStruct.in.Estop             := INT_TO_BOOL(_msgReceive.stTel.myBool[7]);
@@ -165,6 +172,7 @@ _communicationStruct.in.TakeFoto := INT_TO_BOOL(_msgReceive.stTel.myBool[1]);
 //_communicationStruct.in.CoilDone          := INT_TO_BOOL(_msgReceive.stTel.myBool[10]);
 _communicationStruct.in.PalletIndexPick := _msgReceive.stTel.myInt[1];
 _communicationStruct.in.RowPallet       := _msgReceive.stTel.myInt[2];
+_communicationStruct.in.AnglePickOrigin := _msgReceive.stTel.myInt[3];
 ///==================== OUT
 //_msgToSend.stTel.myBool[1]  := BOOL_TO_INT(_communicationStruct.out.ModeAuto);
 //_msgToSend.stTel.myBool[2]  := BOOL_TO_INT(_communicationStruct.out.stopRun);
@@ -199,9 +207,14 @@ VAR_INST
     averageValueY     : INT := 286;
     averageValueRoll : INT:= 0;
 	_index : INT;
+	
+	anglePickOrigin : REAL ;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[_index := _communicationStruct.out.PalletPickIndex - 1;
+
+// Umrechhung in RealWert, WinkelWert fuer Korrektur notwendig
+anglePickOrigin :=  _communicationStruct.in.AnglePickOrigin/ 10;
 
 IF THIS^._IvController.ID01StatusProp.Total_Status_OK THEN
     _communicationStruct.out.Locations.LocWidth :=

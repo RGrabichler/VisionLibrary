@@ -3,9 +3,11 @@
   <DUT Name="uTelegrammTCP" Id="{cc6b07e8-60ea-0ed2-0101-cb3b920d87df}">
     <Declaration><![CDATA[TYPE uTelegrammTCP :
 UNION
+	//~
     stTel       : stTelegrammTCP;
     aTel        : ARRAY[1..SIZEOF(stTelegrammTCP)] OF BYTE;
     sTel        : STRING(SIZEOF(stTelegrammTCP));
+	//~
 END_UNION
 END_TYPE
 ]]></Declaration>

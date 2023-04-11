@@ -13,7 +13,7 @@
         homePosReq      : BOOL;
         tableInPos      : BOOL;
         HighPowerOn     : BOOL;
-        PalletPickIndex : INT := 0;
+        PalletPickIndex : INT := 1;
         HighPowerOff    : BOOL;
         RowDone         : BOOL;
         //auf HMI: 
