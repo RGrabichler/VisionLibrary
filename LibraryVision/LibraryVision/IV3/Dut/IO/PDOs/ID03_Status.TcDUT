@@ -6,21 +6,22 @@
 {attribute addProperty Id "Regist_Master_Image_AckAT %I*BOOL1Regist_Master_Image_FailedAT %I*BOOL1Total_Status_OKAT %I*BOOL1Tool_01_StatusAT %I*BOOL1Program_Num_02AT %I*BOOL1Tool_01_InvalidAT %I*BOOL1"}
 {attribute addProperty CRC "695297954"}
 {attribute addProperty Size "6"}
-TYPE ID03_Status EXTENDS InputBase_8311D824 :
-STRUCT
-	{attribute addProperty Name "Regist_Master_Image_Ack"}
-	Regist_Master_Image_Ack AT %I* : BOOL;
-	{attribute addProperty Name "Regist_Master_Image_Failed"}
-	Regist_Master_Image_Failed AT %I* : BOOL;
-	{attribute addProperty Name "Total_Status_OK"}
-	Total_Status_OK AT %I* : BOOL;
-	{attribute addProperty Name "Tool_01_Status"}
-	Tool_01_Status AT %I* : BOOL;
-	{attribute addProperty Name "Program_Num_02"}
-	Program_Num_02 AT %I* : BOOL;
-	{attribute addProperty Name "Tool_01_Invalid"}
-	Tool_01_Invalid AT %I* : BOOL;
-END_STRUCT
+TYPE
+    ID03_Status EXTENDS InputBase_8311D824 :
+    STRUCT
+        {attribute addProperty Name "Regist_Master_Image_Ack"}
+        Regist_Master_Image_Ack AT %I* : BOOL;
+        {attribute addProperty Name "Regist_Master_Image_Failed"}
+        Regist_Master_Image_Failed AT %I* : BOOL;
+        {attribute addProperty Name "Total_Status_OK"}
+        Total_Status_OK AT %I* : BOOL;
+        {attribute addProperty Name "Tool_01_Status"}
+        Tool_01_Status AT %I* : BOOL;
+        {attribute addProperty Name "Program_Num_02"}
+        Program_Num_02 AT %I* : BOOL;
+        {attribute addProperty Name "Tool_01_Invalid"}
+        Tool_01_Invalid AT %I* : BOOL;
+    END_STRUCT
 END_TYPE
 ]]></Declaration>
   </DUT>

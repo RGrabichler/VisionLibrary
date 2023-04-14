@@ -5,7 +5,7 @@
 ]]></Declaration>
     <Folder Name="Data" Id="{8228426c-ab5b-0602-2da6-6b33d8775a71}" />
     <Property Name="CoordinatesInMillimeter" Id="{04b3ef71-22c7-0d43-37ae-9edd28b36a9f}" FolderPath="Data\">
-      <Declaration><![CDATA[PROPERTY CoordinatesInMillimeter: REFERENCE TO Coordinates]]></Declaration>
+      <Declaration><![CDATA[PROPERTY CoordinatesInMillimeter : REFERENCE TO Coordinates]]></Declaration>
       <Get Name="Get" Id="{48266f35-de7f-0b7d-02d7-3afdded76614}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>

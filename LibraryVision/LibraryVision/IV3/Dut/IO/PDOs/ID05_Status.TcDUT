@@ -6,21 +6,22 @@
 {attribute addProperty Id "Reset_Statistics_AckAT %I*BOOL1RunAT %I*BOOL1Logic_02AT %I*BOOL1Tool_03_StatusAT %I*BOOL1Program_Num_04AT %I*BOOL1Tool_03_InvalidAT %I*BOOL1"}
 {attribute addProperty CRC "2929837159"}
 {attribute addProperty Size "6"}
-TYPE ID05_Status EXTENDS InputBase_8311D824 :
-STRUCT
-	{attribute addProperty Name "Reset_Statistics_Ack"}
-	Reset_Statistics_Ack AT %I* : BOOL;
-	{attribute addProperty Name "Run"}
-	Run AT %I* : BOOL;
-	{attribute addProperty Name "Logic_02"}
-	Logic_02 AT %I* : BOOL;
-	{attribute addProperty Name "Tool_03_Status"}
-	Tool_03_Status AT %I* : BOOL;
-	{attribute addProperty Name "Program_Num_04"}
-	Program_Num_04 AT %I* : BOOL;
-	{attribute addProperty Name "Tool_03_Invalid"}
-	Tool_03_Invalid AT %I* : BOOL;
-END_STRUCT
+TYPE
+    ID05_Status EXTENDS InputBase_8311D824 :
+    STRUCT
+        {attribute addProperty Name "Reset_Statistics_Ack"}
+        Reset_Statistics_Ack AT %I* : BOOL;
+        {attribute addProperty Name "Run"}
+        Run AT %I* : BOOL;
+        {attribute addProperty Name "Logic_02"}
+        Logic_02 AT %I* : BOOL;
+        {attribute addProperty Name "Tool_03_Status"}
+        Tool_03_Status AT %I* : BOOL;
+        {attribute addProperty Name "Program_Num_04"}
+        Program_Num_04 AT %I* : BOOL;
+        {attribute addProperty Name "Tool_03_Invalid"}
+        Tool_03_Invalid AT %I* : BOOL;
+    END_STRUCT
 END_TYPE
 ]]></Declaration>
   </DUT>

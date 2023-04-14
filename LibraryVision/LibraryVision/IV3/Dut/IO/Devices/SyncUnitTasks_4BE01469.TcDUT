@@ -6,13 +6,14 @@
 {attribute addProperty Id "unreferencedAT %I*SyncUnitTask_AB2F50799PlcTaskAT %I*SyncUnitTask_AB2F50799"}
 {attribute addProperty CRC "1272976489"}
 {attribute addProperty Size "18"}
-TYPE SyncUnitTasks_4BE01469 EXTENDS SyncUnitTasksBase_7C8711EB :
-STRUCT
-	{attribute addProperty Name "unreferenced"}
-	unreferenced : SyncUnitTask_AB2F5079;
-	{attribute addProperty Name "PlcTask"}
-	PlcTask : SyncUnitTask_AB2F5079;
-END_STRUCT
+TYPE
+    SyncUnitTasks_4BE01469 EXTENDS SyncUnitTasksBase_7C8711EB :
+    STRUCT
+        {attribute addProperty Name "unreferenced"}
+        unreferenced : SyncUnitTask_AB2F5079;
+        {attribute addProperty Name "PlcTask"}
+        PlcTask : SyncUnitTask_AB2F5079;
+    END_STRUCT
 END_TYPE
 ]]></Declaration>
   </DUT>

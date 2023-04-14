@@ -6,11 +6,12 @@
 {attribute addProperty Id "Tool_02_ScoreAT %I*DINT4"}
 {attribute addProperty CRC "640120323"}
 {attribute addProperty Size "4"}
-TYPE ID04_Current_Value EXTENDS InputBase_8311D824 :
-STRUCT
-	{attribute addProperty Name "Tool_02_Score"}
-	Tool_02_Score AT %I* : DINT;
-END_STRUCT
+TYPE
+    ID04_Current_Value EXTENDS InputBase_8311D824 :
+    STRUCT
+        {attribute addProperty Name "Tool_02_Score"}
+        Tool_02_Score AT %I* : DINT;
+    END_STRUCT
 END_TYPE
 ]]></Declaration>
   </DUT>

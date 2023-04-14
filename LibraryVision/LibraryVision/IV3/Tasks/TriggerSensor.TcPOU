@@ -3,22 +3,22 @@
   <POU Name="TriggerSensor" Id="{5ae7e97a-745d-0450-3624-14347edad9e0}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK TriggerSensor EXTENDS TcoCore.TcoTask
 VAR_IN_OUT
-    Iv3InputRequest1 : Iv3InputRequestResponse1;
+    Iv3InputRequest1  : Iv3InputRequestResponse1;
     Iv3InputResponse1 : Iv3InputRequestResponse1;
-    StatusOfSystem : Status_of_System;
+    StatusOfSystem    : Status_of_System;
 END_VAR
 VAR_INPUT
     ActionDesc : STRING(25);
 END_VAR
 VAR
-    _state : USINT;
+    _state   : USINT;
     _errorId : UINT;
 
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF (THIS^.Execute()) THEN
     //ERror Case
-               THIS^.ThrowWhen(StatusOfSystem.Error_Status);
+    THIS^.ThrowWhen(StatusOfSystem.Error_Status);
 
     CASE _state OF
         10:

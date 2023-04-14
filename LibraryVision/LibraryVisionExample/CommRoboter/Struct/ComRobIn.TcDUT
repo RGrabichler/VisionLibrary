@@ -19,15 +19,17 @@
         {attribute addProperty Name "<#EStop aktiv#>"}
         Estop : BOOL;
         {attribute addProperty Name "<#Increase Index#"}
-       IncreaseIndex: BOOL;
+        IncreaseIndex : BOOL;
         {attribute addProperty Name "<#Index Palette Schaumstoffring#>"}
         PalletIndexPick : INT;
         {attribute addProperty Name "<#Berechneter Wert aus Roboter#>"}
         RowPallet : INT;
         {attribute addProperty Name "<#Foto machen#>"}
         TakeFoto : BOOL;
-		   {attribute addProperty Name "<#Foto machen#>"}
-        AnglePickOrigin : INT;
+        {attribute addProperty Name "<#Pick Palette Index X#>"}
+        PickPalletXcount : INT;
+        {attribute addProperty Name "<#Pick Palette Index Y#>"}
+        PickPalletYcount : INT;
     END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

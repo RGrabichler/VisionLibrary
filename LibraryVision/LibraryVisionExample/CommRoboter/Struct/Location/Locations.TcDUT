@@ -5,8 +5,8 @@
     Locations :
     STRUCT
         LocHeight : INT;
-        LocWidth : INT;
-        Roll : INT;
+        LocWidth  : INT;
+        Roll      : INT;
     END_STRUCT
 END_TYPE
 ]]></Declaration>

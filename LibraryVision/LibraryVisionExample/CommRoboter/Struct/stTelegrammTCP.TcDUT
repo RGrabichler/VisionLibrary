@@ -2,13 +2,14 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <DUT Name="stTelegrammTCP" Id="{6a03a642-7edc-0545-3f5b-60608adef82e}">
     <Declaration><![CDATA[{attribute 'pack_mode' := '1'}
-TYPE stTelegrammTCP :
-STRUCT
-    myStats  : ARRAY[1..4] OF BYTE;
-    myInt    : ARRAY[1..8] OF INT;
-    myBool   : ARRAY[1..12] OF INT;
-    fillbyte : ARRAY[1..2] OF BYTE;
-END_STRUCT
+TYPE
+    stTelegrammTCP :
+    STRUCT
+        myStats  : ARRAY[1..4] OF BYTE;
+        myInt    : ARRAY[1..8] OF INT;
+        myBool   : ARRAY[1..12] OF INT;
+        fillbyte : ARRAY[1..2] OF BYTE;
+    END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>
 </TcPlcObject>

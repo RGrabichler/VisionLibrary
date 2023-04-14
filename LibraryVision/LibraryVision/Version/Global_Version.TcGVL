@@ -6,8 +6,16 @@
 {attribute 'linkalways'}
 // This function has been automatically generated from the project information.
 VAR_GLOBAL CONSTANT
-	{attribute 'const_non_replaced'}
-	stLibVersion_LibraryVision : ST_LibVersion := (iMajor := 0, iMinor := 9, iBuild := 9, iRevision := 9, nFlags := 0, sVersion := '0.9.9.9');
+    {attribute 'const_non_replaced'}
+    stLibVersion_LibraryVision : ST_LibVersion :=
+    (
+        iMajor      := 0
+        , iMinor    := 9
+        , iBuild    := 9
+        , iRevision := 9
+        , nFlags    := 0
+        , sVersion  := '0.9.9.9'
+    );
 END_VAR
 ]]></Declaration>
   </GVL>

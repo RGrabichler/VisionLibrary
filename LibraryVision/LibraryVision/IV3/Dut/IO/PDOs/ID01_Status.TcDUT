@@ -6,21 +6,22 @@
 {attribute addProperty Id "Change_Program_AckAT %I*BOOL1Change_Program_FailedAT %I*BOOL1Result_ValidAT %I*BOOL1Total_Status_OKAT %I*BOOL1Program_Num_00AT %I*BOOL1Error_statusAT %I*BOOL1"}
 {attribute addProperty CRC "3787914147"}
 {attribute addProperty Size "6"}
-TYPE ID01_Status EXTENDS InputBase_8311D824 :
-STRUCT
-	{attribute addProperty Name "Change_Program_Ack"}
-	Change_Program_Ack AT %I* : BOOL;
-	{attribute addProperty Name "Change_Program_Failed"}
-	Change_Program_Failed AT %I* : BOOL;
-	{attribute addProperty Name "Result_Valid"}
-	Result_Valid AT %I* : BOOL;
-	{attribute addProperty Name "Total_Status_OK"}
-	Total_Status_OK AT %I* : BOOL;
-	{attribute addProperty Name "Program_Num_00"}
-	Program_Num_00 AT %I* : BOOL;
-	{attribute addProperty Name "Error_status"}
-	Error_status AT %I* : BOOL;
-END_STRUCT
+TYPE
+    ID01_Status EXTENDS InputBase_8311D824 :
+    STRUCT
+        {attribute addProperty Name "Change_Program_Ack"}
+        Change_Program_Ack AT %I* : BOOL;
+        {attribute addProperty Name "Change_Program_Failed"}
+        Change_Program_Failed AT %I* : BOOL;
+        {attribute addProperty Name "Result_Valid"}
+        Result_Valid AT %I* : BOOL;
+        {attribute addProperty Name "Total_Status_OK"}
+        Total_Status_OK AT %I* : BOOL;
+        {attribute addProperty Name "Program_Num_00"}
+        Program_Num_00 AT %I* : BOOL;
+        {attribute addProperty Name "Error_status"}
+        Error_status AT %I* : BOOL;
+    END_STRUCT
 END_TYPE
 ]]></Declaration>
   </DUT>

@@ -6,21 +6,22 @@
 {attribute addProperty Id "SD_Save_Stop_AckAT %I*BOOL1SD_Card_DetectedAT %I*BOOL1Logic_01AT %I*BOOL1Tool_02_StatusAT %I*BOOL1Program_Num_03AT %I*BOOL1Tool_02_InvalidAT %I*BOOL1"}
 {attribute addProperty CRC "922163961"}
 {attribute addProperty Size "6"}
-TYPE ID04_Status EXTENDS InputBase_8311D824 :
-STRUCT
-	{attribute addProperty Name "SD_Save_Stop_Ack"}
-	SD_Save_Stop_Ack AT %I* : BOOL;
-	{attribute addProperty Name "SD_Card_Detected"}
-	SD_Card_Detected AT %I* : BOOL;
-	{attribute addProperty Name "Logic_01"}
-	Logic_01 AT %I* : BOOL;
-	{attribute addProperty Name "Tool_02_Status"}
-	Tool_02_Status AT %I* : BOOL;
-	{attribute addProperty Name "Program_Num_03"}
-	Program_Num_03 AT %I* : BOOL;
-	{attribute addProperty Name "Tool_02_Invalid"}
-	Tool_02_Invalid AT %I* : BOOL;
-END_STRUCT
+TYPE
+    ID04_Status EXTENDS InputBase_8311D824 :
+    STRUCT
+        {attribute addProperty Name "SD_Save_Stop_Ack"}
+        SD_Save_Stop_Ack AT %I* : BOOL;
+        {attribute addProperty Name "SD_Card_Detected"}
+        SD_Card_Detected AT %I* : BOOL;
+        {attribute addProperty Name "Logic_01"}
+        Logic_01 AT %I* : BOOL;
+        {attribute addProperty Name "Tool_02_Status"}
+        Tool_02_Status AT %I* : BOOL;
+        {attribute addProperty Name "Program_Num_03"}
+        Program_Num_03 AT %I* : BOOL;
+        {attribute addProperty Name "Tool_02_Invalid"}
+        Tool_02_Invalid AT %I* : BOOL;
+    END_STRUCT
 END_TYPE
 ]]></Declaration>
   </DUT>

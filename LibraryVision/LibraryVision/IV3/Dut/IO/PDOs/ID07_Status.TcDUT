@@ -6,17 +6,18 @@
 {attribute addProperty Id "Logic_04AT %I*BOOL1Tool_05_StatusAT %I*BOOL1Program_Num_06AT %I*BOOL1Tool_05_InvalidAT %I*BOOL1"}
 {attribute addProperty CRC "1568950313"}
 {attribute addProperty Size "4"}
-TYPE ID07_Status EXTENDS InputBase_8311D824 :
-STRUCT
-	{attribute addProperty Name "Logic_04"}
-	Logic_04 AT %I* : BOOL;
-	{attribute addProperty Name "Tool_05_Status"}
-	Tool_05_Status AT %I* : BOOL;
-	{attribute addProperty Name "Program_Num_06"}
-	Program_Num_06 AT %I* : BOOL;
-	{attribute addProperty Name "Tool_05_Invalid"}
-	Tool_05_Invalid AT %I* : BOOL;
-END_STRUCT
+TYPE
+    ID07_Status EXTENDS InputBase_8311D824 :
+    STRUCT
+        {attribute addProperty Name "Logic_04"}
+        Logic_04 AT %I* : BOOL;
+        {attribute addProperty Name "Tool_05_Status"}
+        Tool_05_Status AT %I* : BOOL;
+        {attribute addProperty Name "Program_Num_06"}
+        Program_Num_06 AT %I* : BOOL;
+        {attribute addProperty Name "Tool_05_Invalid"}
+        Tool_05_Invalid AT %I* : BOOL;
+    END_STRUCT
 END_TYPE
 ]]></Declaration>
   </DUT>

@@ -6,21 +6,22 @@
 {attribute addProperty Id "Trigger_AckAT %I*BOOL1Trigger_FailedAT %I*BOOL1Result_Updated_ToggleAT %I*BOOL1Tool_00_StatusAT %I*BOOL1Program_Num_01AT %I*BOOL1Tool_00_InvalidAT %I*BOOL1"}
 {attribute addProperty CRC "3351424392"}
 {attribute addProperty Size "6"}
-TYPE ID02_Status EXTENDS InputBase_8311D824 :
-STRUCT
-	{attribute addProperty Name "Trigger_Ack"}
-	Trigger_Ack AT %I* : BOOL;
-	{attribute addProperty Name "Trigger_Failed"}
-	Trigger_Failed AT %I* : BOOL;
-	{attribute addProperty Name "Result_Updated_Toggle"}
-	Result_Updated_Toggle AT %I* : BOOL;
-	{attribute addProperty Name "Tool_00_Status"}
-	Tool_00_Status AT %I* : BOOL;
-	{attribute addProperty Name "Program_Num_01"}
-	Program_Num_01 AT %I* : BOOL;
-	{attribute addProperty Name "Tool_00_Invalid"}
-	Tool_00_Invalid AT %I* : BOOL;
-END_STRUCT
+TYPE
+    ID02_Status EXTENDS InputBase_8311D824 :
+    STRUCT
+        {attribute addProperty Name "Trigger_Ack"}
+        Trigger_Ack AT %I* : BOOL;
+        {attribute addProperty Name "Trigger_Failed"}
+        Trigger_Failed AT %I* : BOOL;
+        {attribute addProperty Name "Result_Updated_Toggle"}
+        Result_Updated_Toggle AT %I* : BOOL;
+        {attribute addProperty Name "Tool_00_Status"}
+        Tool_00_Status AT %I* : BOOL;
+        {attribute addProperty Name "Program_Num_01"}
+        Program_Num_01 AT %I* : BOOL;
+        {attribute addProperty Name "Tool_00_Invalid"}
+        Tool_00_Invalid AT %I* : BOOL;
+    END_STRUCT
 END_TYPE
 ]]></Declaration>
   </DUT>

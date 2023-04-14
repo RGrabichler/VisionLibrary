@@ -66,16 +66,16 @@ VAR
     ID07_MatchingRateOfPositionAdujustmentTool_06 AT %I* : ID07_Current_Value; //value 0..1
     ID08_MatchingRateOfPositionAdujustmentTool_07 AT %I* : ID08_Current_Value; //value 0..1
     ID01Status                                    AT %I* : ID01_Status;
-    _ID01Status                                 : ID01_Status := ID01Status;
-  
-  ID02Status                                    AT %I* : ID02_Status;
-    ID03Status                                    AT %I* : ID03_Status;
-    ID04Status                                    AT %I* : ID04_Status;
-    ID05Status                                    AT %I* : ID05_Status;
-    ID06Status                                    AT %I* : ID06_Status;
-    ID07Status                                    AT %I* : ID07_Status;
-    ID08Status                                    AT %I* : ID08_Status;
-    InputRequest                                  AT %Q* : Input_Request;
+    _ID01Status                                          : ID01_Status := ID01Status;
+
+    ID02Status   AT %I* : ID02_Status;
+    ID03Status   AT %I* : ID03_Status;
+    ID04Status   AT %I* : ID04_Status;
+    ID05Status   AT %I* : ID05_Status;
+    ID06Status   AT %I* : ID06_Status;
+    ID07Status   AT %I* : ID07_Status;
+    ID08Status   AT %I* : ID08_Status;
+    InputRequest AT %Q* : Input_Request;
     //    //General Ethercat Data
     WcState  AT %I* : WcState_0B2B16F9;
     InfoData AT %I* : InfoData;

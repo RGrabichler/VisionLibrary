@@ -6,13 +6,14 @@
 {attribute addProperty Id "AdsAddrAT %I*AMSADDR8StateAT %I*UINT2"}
 {attribute addProperty CRC "854291690"}
 {attribute addProperty Size "10"}
-TYPE InfoData EXTENDS InputBase_8311D824 :
-STRUCT
-	{attribute addProperty Name "AdsAddr"}
-	AdsAddr AT %I* : AMSADDR;
-	{attribute addProperty Name "State"}
-	State AT %I* : UINT;
-END_STRUCT
+TYPE
+    InfoData EXTENDS InputBase_8311D824 :
+    STRUCT
+        {attribute addProperty Name "AdsAddr"}
+        AdsAddr AT %I* : AMSADDR;
+        {attribute addProperty Name "State"}
+        State AT %I* : UINT;
+    END_STRUCT
 END_TYPE
 ]]></Declaration>
   </DUT>

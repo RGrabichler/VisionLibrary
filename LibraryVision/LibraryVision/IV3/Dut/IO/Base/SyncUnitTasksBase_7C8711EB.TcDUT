@@ -2,9 +2,10 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <DUT Name="SyncUnitTasksBase_7C8711EB" Id="{155c2ddf-c8f2-0750-25fb-a8980e29fc2b}">
     <Declaration><![CDATA[
-TYPE SyncUnitTasksBase_7C8711EB :
-STRUCT
-END_STRUCT
+TYPE
+    SyncUnitTasksBase_7C8711EB :
+    STRUCT
+    END_STRUCT
 END_TYPE
 ]]></Declaration>
   </DUT>

@@ -22,8 +22,12 @@
         ContactHeight        : INT;
         WaitBeforeContacting : BOOL;
         {attribute addProperty Name "<#Foto Done#>"}
-        FotoDone  : BOOL;
-        Locations : Locations;
+        FotoDone : BOOL;
+        {attribute addProperty Name "<#Foto Status IO>"}
+        FotoStatusIo : BOOL;
+        {attribute addProperty Name "<#Foto Status nIO>"}
+        FotoStatusNIo : BOOL;
+        Locations     : Locations;
     END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

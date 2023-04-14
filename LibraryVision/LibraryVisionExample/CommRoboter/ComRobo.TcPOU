@@ -311,16 +311,15 @@ END_CASE]]></ST>
 VAR
     _index : UINT;
 END_VAR
-
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[// The warning can be disabled here as the user is aware of the risk that the reference may not be valid by checking its validity
 {warning disable C0371}
 IF NOT __ISVALIDREF(_msgRcv) THEN
-     RETURN;
+    RETURN;
 END_IF
 
-FOR _index := 1 TO SIZEOF(_msgRcv)-1 DO
+FOR _index := 1 TO SIZEOF(_msgRcv) - 1 DO
     _msgRcv.aTel[_index] := 0;
 END_FOR
 
@@ -331,7 +330,7 @@ END_FOR
     <Method Name="mTestComCauseOfErr" Id="{31e7a23d-52c4-087b-36e0-fbac9ad6716e}">
       <Declaration><![CDATA[METHOD PRIVATE mTestComCauseOfErr : BOOL
 VAR_INST
-    i : INT;
+    i     : INT;
     fbTon : Tc2_Standard.TON;
 END_VAR
 ]]></Declaration>
@@ -350,7 +349,6 @@ END_VAR
 //        END_IF
 //    END_FOR
 
-
 //FOR i := 1 TO 8 DO
 //    IF gIOs._msgSend.stTel.myBool[i] THEN
 //        gIOs._msgSend.stTel.myInt[i] := gIOs._msgSend.stTel.myInt[i] + 1;
@@ -358,7 +356,7 @@ END_VAR
 //    END_IF
 //END_FOR
 
-//END_IF]]></ST>
+//END_IF ]]></ST>
       </Implementation>
     </Method>
   </POU>

@@ -6,11 +6,12 @@
 {attribute addProperty Id "ReservedAT %I*DINT4"}
 {attribute addProperty CRC "2013026300"}
 {attribute addProperty Size "4"}
-TYPE ID01_Current_Value EXTENDS InputBase_8311D824 :
-STRUCT
-	{attribute addProperty Name "Reserved"}
-	Reserved AT %I* : DINT;
-END_STRUCT
+TYPE
+    ID01_Current_Value EXTENDS InputBase_8311D824 :
+    STRUCT
+        {attribute addProperty Name "Reserved"}
+        Reserved AT %I* : DINT;
+    END_STRUCT
 END_TYPE
 ]]></Declaration>
   </DUT>

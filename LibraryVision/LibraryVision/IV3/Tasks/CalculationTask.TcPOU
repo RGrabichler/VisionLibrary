@@ -27,7 +27,7 @@ VAR
     _states : (CalculatingCoefficientState
         , CalculatingFieldOfViewState
         , CalculatingDistanceState
-		, CaulculatingCoordinatesInMillimeter
+        , CaulculatingCoordinatesInMillimeter
         , DoneState
         , ErrorState);
 
@@ -65,19 +65,35 @@ END_VAR
 
     CASE _states OF
         CalculatingCoefficientState:
-            _coefficientX := CalcCoefficientFromResolutionAndPixel(Resolution := _resolutionX, Pixel := CoordinatesTool3.variableValue);
+            _coefficientX := CalcCoefficientFromResolutionAndPixel
+            (
+                Resolution := _resolutionX
+                , Pixel    := CoordinatesTool3.variableValue
+            );
 
-            _coefficientY := CalcCoefficientFromResolutionAndPixel(Resolution := _resolutionY, Pixel := CoordinatesTool2.variableValue);
+            _coefficientY := CalcCoefficientFromResolutionAndPixel
+            (
+                Resolution := _resolutionY
+                , Pixel    := CoordinatesTool2.variableValue
+            );
 
             _states := CalculatingFieldOfViewState;
 
         CalculatingFieldOfViewState:
 
             FieldOfView.xValue :=
-                CalcFieldOfViewWithCoefficientAndObjectMeasurement(Coefficient := _coefficientX, Value := THIS^.ControllerRef.ScoreToolWidth);
+                CalcFieldOfViewWithCoefficientAndObjectMeasurement
+            (
+                Coefficient := _coefficientX
+                , Value     := THIS^.ControllerRef.ScoreToolWidth
+            );
 
             FieldOfView.yValue :=
-                CalcFieldOfViewWithCoefficientAndObjectMeasurement(Coefficient := _coefficientY, Value := THIS^.ControllerRef.ScoreToolHeight);
+                CalcFieldOfViewWithCoefficientAndObjectMeasurement
+            (
+                Coefficient := _coefficientY
+                , Value     := THIS^.ControllerRef.ScoreToolHeight
+            );
 
             _states := CalculatingDistanceState;
 
@@ -85,11 +101,15 @@ END_VAR
 
             _distanceFromX := (FieldOfView.xValue * _gainX) + _offsetX;
             _distanceFromY := (FieldOfView.yValue * _gainY) + _offsetY;
-            _states := CaulculatingCoordinatesInMillimeter;
+            _states        := CaulculatingCoordinatesInMillimeter;
 
         CaulculatingCoordinatesInMillimeter:
-            _coordinatesInMillimeter.xValue := LREAL_TO_DINT((FieldOfView.xValue / _resolutionX) * CoordinatesTool1.xValue);
-            _coordinatesInMillimeter.yValue := LREAL_TO_DINT((FieldOfView.yValue / _resolutiony) * CoordinatesTool1.yValue);
+            _coordinatesInMillimeter.xValue :=
+                LREAL_TO_DINT((FieldOfView.xValue / _resolutionX) * CoordinatesTool1.xValue);
+
+            _coordinatesInMillimeter.yValue :=
+                LREAL_TO_DINT((FieldOfView.yValue / _resolutiony) * CoordinatesTool1.yValue);
+
             _coordinatesInMillimeter.variableValue := CoordinatesTool1.variableValue;
 
             _states := DoneState;
@@ -130,7 +150,7 @@ CalcCoefficientFromResolutionAndPixel := (Resolution / Pixel) * 10;
       <Declaration><![CDATA[METHOD PRIVATE CalcFieldOfViewWithCoefficientAndObjectMeasurement : LREAL
 VAR_INPUT
     Coefficient : LREAL;
-    Value      : DINT;
+    Value       : DINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -141,18 +161,18 @@ END_VAR
       <Declaration><![CDATA[PROPERTY ControllerRef : REFERENCE TO IVController]]></Declaration>
       <Get Name="Get" Id="{4f09edc7-6f53-0e4d-269d-265d2b2c1d25}">
         <Declaration><![CDATA[VAR
-	_controllerRef : POINTER TO IVController;
+    _controllerRef : POINTER TO IVController;
 END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[IF __QUERYPOINTER(_ParentObject, _controllerRef) THEN // Check if _Parent is Station001
-    ControllerRef REF= _controllerRef^;                     // If the check is successful dereference a pointer. simlar to THIS^ or SUPER^
+    ControllerRef REF= _controllerRef^;               // If the check is successful dereference a pointer. simlar to THIS^ or SUPER^
 END_IF]]></ST>
         </Implementation>
       </Get>
     </Property>
     <Property Name="CoordinatesInMillimeter" Id="{dba460d6-1093-0ca3-078d-7f6c972bbd77}" FolderPath="Data\">
-      <Declaration><![CDATA[PROPERTY CoordinatesInMillimeter: REFERENCE TO Coordinates]]></Declaration>
+      <Declaration><![CDATA[PROPERTY CoordinatesInMillimeter : REFERENCE TO Coordinates]]></Declaration>
       <Get Name="Get" Id="{e2207b1b-61c4-0080-0666-9dbc1107310c}">
         <Declaration><![CDATA[VAR
 END_VAR
@@ -169,7 +189,11 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[DistanceFromObject := (_distanceFromX + _distanceFromY) / 2;
+          <ST><![CDATA[IF (_distanceFromX <> 0 AND _distanceFromY <> 0) THEN
+    DistanceFromObject := (_distanceFromX + _distanceFromY) / 2;
+ELSE
+    DistanceFromObject := 0;
+END_IF
 ]]></ST>
         </Implementation>
       </Get>
@@ -210,9 +234,9 @@ THIS^._resolutionX := ResolutionX;
 THIS^._resolutionY := ResolutionY;
 
 _offsetX := OffsetX;
-_gainX := GainX;
+_gainX   := GainX;
 _offsetY := OffsetY;
-_gainY := GainY;]]></ST>
+_gainY   := GainY;]]></ST>
       </Implementation>
     </Method>
     <Property Name="FieldOfView" Id="{57b9f83f-34b0-0ea7-0663-04ccd42988ba}" FolderPath="Data\">
@@ -239,7 +263,7 @@ METHOD PROTECTED OnDone
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[{warning disable C0371}
-//this^.Restore();]]></ST>
+//this^.Restore(); ]]></ST>
       </Implementation>
     </Method>
     <Method Name="OnError" Id="{1b2f2ec7-af0a-0bf8-388f-b0d450213da7}" FolderPath="TcOpen\">
@@ -256,7 +280,7 @@ METHOD PROTECTED OnDone
 METHOD PROTECTED OnError
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[{warning disable C0371}]]></ST>
+        <ST><![CDATA[{warning disable C0371} ]]></ST>
       </Implementation>
     </Method>
     <Method Name="OnStart" Id="{e7ce9761-a6b1-018f-2993-eb84164af652}" FolderPath="TcOpen\">

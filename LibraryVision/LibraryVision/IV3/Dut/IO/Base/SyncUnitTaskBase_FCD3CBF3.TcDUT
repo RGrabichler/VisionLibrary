@@ -2,9 +2,10 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <DUT Name="SyncUnitTaskBase_FCD3CBF3" Id="{37cc628e-f733-03c2-1080-533646c57c1a}">
     <Declaration><![CDATA[
-TYPE SyncUnitTaskBase_FCD3CBF3 :
-STRUCT
-END_STRUCT
+TYPE
+    SyncUnitTaskBase_FCD3CBF3 :
+    STRUCT
+    END_STRUCT
 END_TYPE
 ]]></Declaration>
   </DUT>

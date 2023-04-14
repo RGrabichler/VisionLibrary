@@ -66,17 +66,17 @@ END_VAR
 
             _state := 80;
         40:
-//            Calculating
-//            (
-//                ResolutionY := ReadCoordinates.ResolutionY
-//                , PixelY    := _rawCoordinates.variableValue
-//                , ValueY    := THIS^.ResultValue
-//                , ResolutionX := ReadCoordinates.ResolutionX
-//                , PixelX := _rawCoordinates.
-//                , ValueX
-//                , FieldOfView => _fieldOfView
-//                , Distance    => _distanceFromHeight
-//            );
+            //            Calculating
+            //            (
+            //                ResolutionY := ReadCoordinates.ResolutionY
+            //                , PixelY    := _rawCoordinates.variableValue
+            //                , ValueY    := THIS^.ResultValue
+            //                , ResolutionX := ReadCoordinates.ResolutionX
+            //                , PixelX := _rawCoordinates.
+            //                , ValueX
+            //                , FieldOfView => _fieldOfView
+            //                , Distance    => _distanceFromHeight
+            //            );
 
             _state := 80;
 
@@ -120,7 +120,7 @@ END_VAR
 {warning disable C0316}
 SUPER^.FB_init(bInitRetains, bInCopyCode, ParentObject);
 
-_coeIndex         := CoeIndex;]]></ST>
+_coeIndex := CoeIndex;]]></ST>
       </Implementation>
     </Method>
     <Method Name="OnDone" Id="{0ddc4aae-67b7-0e6e-3397-57c4de466ff6}" FolderPath="TcOpen\">
